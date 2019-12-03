@@ -7,7 +7,7 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 ---
 # Welcome 
 
-This lesson will introduce you to open data science so you can work with data in an open, reproducible, and collaborative way. Open data science means that methods, data, and code are available so that others can access, reuse, and build from it without much fuss. Here you will learn a workflow with R, RStudio, Git, and GitHub, as we describe in [Lowndes *et al. 2017, Nature Ecology & Evolution*: Our path to better science in less time using open data science tools](https://www.nature.com/articles/s41559-017-0160).
+This lesson will introduce you to open data science so you can work with data in an open, reproducible, and collaborative way. Open data science means that methods, data, and code are available so that others can access, reuse, and build from it without much fuss. Here you will learn a workflow with R, RStudio, Git, and GitHub, as we describe in [Lowndes *et al. 2017, Nature Ecology & Evolution*: Our path to better science in less time using open data science tools](https://www.nature.com/articles/s41559-017-0160). These lesson episodes are heavily inspired from the Ocean Health Index book [Introduction to Open Data Science](https://carpentries-incubator.github.io/open-science-with-r/). 
 
 This is going to be fun, because learning these open data science tools and practices is empowering! This training book is written (and always improving) so you can use it as self-paced learning, or it can be used to teach an in-person workshop where the instructor live-codes. Either way, you should do everything hands-on on your own computer as you learn. 
 
