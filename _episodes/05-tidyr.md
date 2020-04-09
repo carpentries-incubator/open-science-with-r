@@ -320,7 +320,7 @@ ggplot(life_df, aes(x = year, y = obs_values, color = country)) +
 
 
 ### Additional customization
-We can use the `scale_fill_brewer` from the `ggplot2` package to change the colour scheme of our plot.   
+We can use the `scale_colour_brewer` from the `ggplot2` package to change the colour scheme of our plot.   
 From the help page of the function: 
 > The brewer scales provides sequential, diverging and qualitative colour schemes from ColorBrewer. These are particularly well suited to display discrete values on a map. See http://colorbrewer2.org for more information.
 
