@@ -548,11 +548,11 @@ gapminder %>%
 > ## Exercise
 > 
 > 1. Arrange your data frame in descending order (opposite of what we've done). Expect that this is possible: `?arrange`
-> 2. Save your data frame as a variable
-> 3. Find the maximum life expectancy for countries in Asia. What is the earliest year you encounter? The latest? Hint: you can use either `base::max` or `dplyr::arrange()`...
+> 2. Find the maximum life expectancy for countries in Asia. What is the earliest year you encounter? The latest? Hint: you can use either `base::max` or `dplyr::arrange()`...
 >
 > > ## Solution
-> > 3) `gapminder %>%` 
+> > 1) `arrange(desc(max_gdp))`
+> > 2) `gapminder %>%` 
 > > `filter(continent == 'Asia') %>%` 
 > > `group_by(country) %>%` 
 > > `filter(lifeExp == max(lifeExp)) %>%` 
