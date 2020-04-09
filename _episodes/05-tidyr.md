@@ -332,7 +332,7 @@ ggplot(data = continents, aes(x = year, y = mean_le, color = continent)) +
        y = "Age (years)",
        color = "Continent") +
   theme_classic() +
-  scale_fill_brewer(palette = "Blues")  
+  scale_colour_brewer(palette = "Blues")  
 ~~~ 
 {:.language-r}
 
