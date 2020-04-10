@@ -84,7 +84,7 @@ Often, data must be reshaped for it to become tidy data. What does that mean? Th
 
 Yesterday we started off with the gapminder data in a format that was already tidy. But what if it weren't? Let's look at a different version of those data. 
 
-The gapminder dataset in the *wide* format is on GitHub: `https://raw.githubusercontent.com/ScienceParkStudyGroup/r-lesson-based-on-ohi-data-training/gh-pages/data/gapminder_wide.csv`  
+The gapminder dataset in the *wide* format is on GitHub:[https://github.com/carpentries-incubator/open-science-with-r/blob/gh-pages/data/gapminder_wide.csv](https://github.com/carpentries-incubator/open-science-with-r/blob/gh-pages/data/gapminder_wide.csv).
 
 First have a look at the data. 
 
@@ -120,7 +120,7 @@ I'm going to write this outside of a coding chunk in my RMarkdown file:
 ~~~
 Data wrangling with `tidyr`, which is part of the tidyverse. We are going to tidy some data!
 ~~~
-{:.language-r}
+{: .source}
 
 ### Load `tidyverse` (which has `tidyr` inside)
 
@@ -140,10 +140,10 @@ Read in the data from GitHub. Let's also read in the gapminder data (tidy format
 
 ~~~
 ## wide messy format
-gap_wide <- readr::read_csv('https://raw.githubusercontent.com/ScienceParkStudyGroup/r-lesson-based-on-ohi-data-training/gh-pages/data/gapminder_wide.csv')
+gap_wide <- readr::read_csv('https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/gapminder_wide.csv')
 
 ## long tidy format
-gapminder <- readr::read_csv('https://raw.githubusercontent.com/ScienceParkStudyGroup/r-lesson-based-on-ohi-data-training/gh-pages/data/gapminder.csv')
+gapminder <- readr::read_csv('https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/gapminder.csv')
 ~~~
 {:.language-r}
 

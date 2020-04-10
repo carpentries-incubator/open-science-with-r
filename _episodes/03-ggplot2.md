@@ -437,8 +437,15 @@ Note: The parameters `width` and `height` also determine the font size in the sa
 So as you can see, `ggplot2` is a fantastic package for visualizing data. But there are some additional packages that let you make plots interactive. `plotly`, `gganimate`.
 
 ~~~
+# install package first and load library
 install.packages("plotly")
 library(plotly)
+
+my_plot <- ggplot(data = mass) + 
+      geom_bar(aes(x = type, fill = park_name)) +
+  labs(x = "",
+       y = "")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 7))
 
 ggplotly(my_plot)
 ~~~
