@@ -656,7 +656,7 @@ Let's play with [these](http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_da
 
 ~~~
 ## read in the data.
-co2 <- read_csv("https://raw.githubusercontent.com/ScienceParkStudyGroup/r-lesson-based-on-ohi-data-training/gh-pages/data/co2.csv")
+co2 <- read_csv("https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/co2.csv")
 
 ## explore
 co2 %>% head()
