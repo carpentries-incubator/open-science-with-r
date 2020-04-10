@@ -160,7 +160,7 @@ To add a geom to the plot use `+` operator. Because we have two continuous varia
 ~~~
 # add geoms 
 ggplot(data=ca) +
-  geom_point(aes(x=year,y=visitors))
+  geom_point(aes(x = year,y = visitors))
 ~~~
 {: .language-r}
 
@@ -270,13 +270,18 @@ We can now make the faceted plot by splitting further by park using `park_name` 
 A __geom__ is the geometrical object that a plot uses to represent data. People often describe plots by the type of geom that the plot uses. For example, bar charts use bar geoms, line charts use line geoms, boxplots use boxplot geoms, and so on. Scatterplots break the trend; they use the point geom. You can use different geoms to plot the same data. To change the geom in your plot, change the geom function that you add to `ggplot()`. Let's look at a few ways of viewing the distribution of annual visitation (`visitors`) for each park (`park_name`).
 
 ~~~
+# representations as points with a jitter offset
 ggplot(data = se) + 
   geom_jitter(aes(x = park_name, y = visitors, color = park_name), 
               width = 0.1, 
               alpha = 0.4) +
   coord_flip() +
   theme(legend.position = "none") 
-        
+~~~
+{:.language-r}
+
+~~~
+# boxplots
 ggplot(se, aes(x = park_name, y = visitors)) + 
   geom_boxplot() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
@@ -432,7 +437,7 @@ Note: The parameters `width` and `height` also determine the font size in the sa
 So as you can see, `ggplot2` is a fantastic package for visualizing data. But there are some additional packages that let you make plots interactive. `plotly`, `gganimate`.
 
 ~~~
-#install.packages("plotly")
+install.packages("plotly")
 library(plotly)
 
 ggplotly(my_plot)

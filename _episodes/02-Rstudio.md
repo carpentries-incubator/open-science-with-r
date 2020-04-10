@@ -27,7 +27,8 @@ keypoints:
 7. [Packages](#packages)
 8. [Clearing the environment](#clearing-the-environment)
 9. [RMarkdown](#rmarkdown)
-10. [Miscellaneous](#miscellaneous)
+10. [Importing your own data](#import-your-own-data)
+11. [Miscellaneous](#miscellaneous)
 
 ## Introduction
 
@@ -536,6 +537,25 @@ Now, hitting return does not execute this command; remember, it's a text file in
 > Add a few more commands to your file from this morning.  
 > Execute them by trying the three ways above. Then, save your R Markdown file. 
 {: .challenge}
+
+
+## Import your own data
+
+### Functions available
+
+To import your own data, you can use different functions depending on your input format:
+* `read.table` is the generic function to import from various format. You _do have to_ specify the separator as it is not known by default (tabulation or comma for instance).
+* `read.csv` to import a table with comma-separated values (`my_file.csv`). You don't have to specify the separator as it is by default a comma.
+* `read.delim` to import a table with tabulated-separated values (`my_file.tsv` or `my_file.txt`). You don't have to specify the separator as it is by default a tabulation.
+
+
+Some important parameters in data import functions:
+* `stringsAsFactors = TRUE` is by default converting your characters into factors. This can be an issue for plotting for instance. I recommend to turn it off (`stringsAsFactors = FALSE` and change your strings to factors explicitely later on using `factor()` for instance.
+* `check.names = TRUE` is by default checking your column names. For instance, if your column names start with a number, then R will prepend an `X` before your column variable name. To avoid this, add `check.names = FALSE`.
+
+### Large tables
+
+If you have very large tables (1000s of rows and/or columns), use the `fread()` function from the [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) package. 
 
 ## Miscellaneous
 

@@ -61,7 +61,7 @@ Today's materials are again borrowing from some excellent sources, including:
 
 We'll be using [Gapminder data](http://www.gapminder.org/world), which represents the health and wealth of nations. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
 
-![](../img/gapminder-world_motion-chart.png)
+<img src="../img/gapminder-world_motion-chart.png" width="500">
 
 We'll use the package `dplyr`, which is bundled within the `tidyverse` package. Please load the `tidyverse` if not already done. : 
 
@@ -92,7 +92,7 @@ Conceptually, making data tidy first is really critical. Instead of building you
 
 And actually, Hadley Wickham and RStudio have created a ton of packages that help you at every step of the way here. This is from one of Hadley's presentations: 
 
-![](../img/tidyverse_wickham_pres.jpg)
+<img src="../img/tidyverse_wickham_pres.jpg" width="500">
 
 ### Setup
 
@@ -121,7 +121,7 @@ This is becoming standard practice for how to load a library in a file, and if y
 Previously, we explored the national parks data.frame visually. Today, we'll explore a dataset by the numbers.
 We will work with some of the data from the [Gapminder project](http://www.gapminder.org).   
 
-The data are on GitHub. Navigate to: `https://github.com/ScienceParkStudyGroup/r-lesson-based-on-ohi-data-training/blob/gh-pages/data/gapminder_wide.csv`
+The data are on GitHub. Navigate to: [https://github.com/ScienceParkStudyGroup/r-lesson-based-on-ohi-data-training/blob/gh-pages/data/gapminder_wide.csv](https://github.com/ScienceParkStudyGroup/r-lesson-based-on-ohi-data-training/blob/gh-pages/data/gapminder_wide.csv).
 
 This is data-view mode: so we can have a quick look at the data. It's a .csv file, which you've probably encountered before, but GitHub has formatted it nicely so it's easy to look at. You can see that for every country and year, there are several columns with data in them. 
 
