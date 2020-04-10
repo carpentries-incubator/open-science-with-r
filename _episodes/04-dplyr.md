@@ -494,6 +494,8 @@ gapminder %>%
 ~~~
 {:.language-r}
 
+The `ungroup()` serves to allow operations again (`mutate` or `summarize`) on the grouping variables. If you would like to change something on `country` you would need to `ungroup()` them first. For an extensive discussion about ungroup, see the [RStudio community forum here](https://community.rstudio.com/t/is-ungroup-recommended-after-every-group-by/5296/4). 
+
 So instead of filtering for a specific country, we've grouped by country, and then done the same operations. It's hard to see; let's look at a bunch at the tail:
 
 ~~~
@@ -574,7 +576,7 @@ We have done a pretty incredible amount of work in a few lines. Our whole analys
 library(tidyverse) ## install.packages('tidyverse')
 
 ## read in data
-gapminder <- readr::read_csv('https://raw.githubusercontent.com/ScienceParkStudyGroup/r-lesson-based-on-ohi-data-training/gh-pages/data/gapminder.csv') 
+gapminder <- readr::read_csv('https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/gapminder.csv') 
 
 ## summarize
 gap_max_gdp <- gapminder %>% 
@@ -602,7 +604,7 @@ Instead of calculating the max for each country like we did with `dplyr` above, 
 ## gapminder-wrangle.R --- baseR
 ## J. Lowndes lowndes@nceas.ucsb.edu
 
-gapminder <- read.csv(''https://raw.githubusercontent.com/ScienceParkStudyGroup/r-lesson-based-on-ohi-data-training/gh-pages/data/gapminder.csv', stringsAsFactors = FALSE) 
+gapminder <- read.csv('https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/gapminder.csv', stringsAsFactors = FALSE) 
 x1  <- gapminder[ , c('country', 'year', 'pop', 'gdpPercap') ] # subset columns
 mex <- x1[x1$country == "Mexico", ] # subset rows
 mex$gdp <- mex$pop * mex$gdpPercap # add new columns
