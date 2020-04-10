@@ -127,7 +127,7 @@ Data wrangling with `tidyr`, which is part of the tidyverse. We are going to tid
 First load `tidyr` in an R chunk. You already have installed the tidyverse, so you should be able to just load it like this (using the comment so you can run `install.packages("tidyverse")` easily if need be):
 
 ~~~
-library(tidyverse) # install.packages("tidyverse")
+library(tidyverse) 
 ~~~
 {:.language-r}
 
@@ -322,17 +322,26 @@ ggplot(life_df, aes(x = year, y = obs_values, color = country)) +
 ### Additional customization
 We can use the `scale_colour_brewer` from the `ggplot2` package to change the colour scheme of our plot.   
 From the help page of the function: 
-> The brewer scales provides sequential, diverging and qualitative colour schemes from ColorBrewer. These are particularly well suited to display discrete values on a map. See http://colorbrewer2.org for more information.
+> The brewer scales provides sequential, diverging and qualitative colour schemes from ColorBrewer. These are particularly well suited to display discrete values on a map. See [http://colorbrewer2.org](http://colorbrewer2.org) for more information.
 
 ~~~
+# (re)create an object that stores averages of life expectancy per continent and per year
+continents <- gap_long %>%
+  filter(obs_type == "lifeExp",
+  year > 1980) %>%
+  group_by(continent, year) %>%
+  summarize(mean_le = mean(obs_values)) %>%
+  ungroup()
+
+# plot
 ggplot(data = continents, aes(x = year, y = mean_le, color = continent)) + 
-  geom_line() +
+  geom_line(size = 1) +
   labs(title = "Mean life expectancy",
        x = "Year",
        y = "Age (years)",
        color = "Continent") +
   theme_classic() +
-  scale_colour_brewer(palette = "Blues")  
+  scale_colour_brewer(type = "qual", palette = "Set1")  
 ~~~ 
 {:.language-r}
 
@@ -389,8 +398,8 @@ Restart R. In RStudio, use *Session > Restart R*. Otherwise, quit R with `q()` a
 This session RMarkdown notebook .Rmd could look something like this: 
 
 ~~~
-## load tidyr (in tidyverse)
-library(tidyverse) # install.packages("tidyverse")
+## load tidyverse
+library(tidyverse) 
 
 ## load wide data
 gap_wide <- readr::read_csv('https://raw.githubusercontent.com/ScienceParkStudyGroup/r-lesson-based-on-ohi-data-training/gh-pages/data/gapminder_wide.csv')
