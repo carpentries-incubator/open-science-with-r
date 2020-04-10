@@ -121,7 +121,7 @@ This is becoming standard practice for how to load a library in a file, and if y
 Previously, we explored the national parks data.frame visually. Today, we'll explore a dataset by the numbers.
 We will work with some of the data from the [Gapminder project](http://www.gapminder.org).   
 
-The data are on GitHub. Navigate to: [https://github.com/carpentries-incubator/open-science-with-r/blob/gh-pages/data/gapminder_wide.csv](https://github.com/carpentries-incubator/open-science-with-r/blob/gh-pages/data/gapminder_wide.csv).
+The data are on GitHub. Navigate to: [https://github.com/carpentries-incubator/open-science-with-r/blob/gh-pages/data/gapminder.csv](https://github.com/carpentries-incubator/open-science-with-r/blob/gh-pages/data/gapminder.csv).
 
 This is data-view mode: so we can have a quick look at the data. It's a .csv file, which you've probably encountered before, but GitHub has formatted it nicely so it's easy to look at. You can see that for every country and year, there are several columns with data in them. 
 
@@ -133,13 +133,13 @@ We can read this data into R directly from GitHub, without downloading it. But w
 
 ![](../img/gapminder-gh-raw.png)
 
-Copy the url for raw data: `https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/gapminder_wide.csv`
+Copy the url for raw data: `https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/gapminder.csv`
 
 Now, let's go back to RStudio. In our R Markdown, let's read this csv file and name the variable "gapminder". We will use the `read_csv()` function from the `readr` package (part of the `tidyverse`, so it's already installed!). 
 
 ~~~
 ## read gapminder csv. Note the readr:: prefix identifies which package it's in
-gapminder <- readr::read_csv('https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/gapminder_wide.csv') 
+gapminder <- readr::read_csv('https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/gapminder.csv') 
 ~~~
 {:.language-r}
 
