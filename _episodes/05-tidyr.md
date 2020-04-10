@@ -402,7 +402,7 @@ This session RMarkdown notebook .Rmd could look something like this:
 library(tidyverse) 
 
 ## load wide data
-gap_wide <- readr::read_csv('https://raw.githubusercontent.com/ScienceParkStudyGroup/r-lesson-based-on-ohi-data-training/gh-pages/data/gapminder_wide.csv')
+gap_wide <- readr::read_csv('https://github.com/carpentries-incubator/open-science-with-r/blob/gh-pages/data/gapminder_wide.csv')
 
 head(gap_wide)
 str(gap_wide)
@@ -500,6 +500,8 @@ kelpdf %>% complete(Year = full_seq(Year, period = 1),
 
 ## Other links
 
-* [Tidying up Data - Env Info](http://ucsb-bren.github.io/env-info/wk04_tidyr.html) - [Rmd](https://github.com/ucsb-bren/env-info/blob/gh-pages/wk04_tidyr.Rmd)
-* [Data wrangling with dplyr and tidyr - Tyler Clavelle & Dan Ovando](http://bbest.github.io/dplyr-tidyr-tutorial/) - [Rmd](https://github.com/bbest/dplyr-tidyr-tutorial/blob/gh-pages/index.Rmd)
+* [Tidying up Data - Env Info](http://ucsb-bren.github.io/env-info/wk04_tidyr.html) 
+* [Rmd](https://github.com/ucsb-bren/env-info/blob/gh-pages/wk04_tidyr.Rmd)
+* [Data wrangling with dplyr and tidyr - Tyler Clavelle & Dan Ovando](http://bbest.github.io/dplyr-tidyr-tutorial/) 
+* [Rmd](https://github.com/bbest/dplyr-tidyr-tutorial/blob/gh-pages/index.Rmd)
 
