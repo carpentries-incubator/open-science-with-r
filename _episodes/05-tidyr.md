@@ -17,25 +17,15 @@ keypoints:
 ---
 
 ## Table of contents
-- [Introduction](#introduction)
-  - [Resources](#resources)
-  - [Data and packages](#data-and-packages)
-- [`tidyr` basics](#tidyr-basics)
-- [Explore the gapminder dataset.](#explore-the-gapminder-dataset)
-  - [Setup](#setup)
-  - [Load `tidyverse` (which has `tidyr` inside)](#load-tidyverse-which-has-tidyr-inside)
-- [`gather()` data from wide to long format](#gather-data-from-wide-to-long-format)
-  - [Data import](#data-import)
-  - [Recap: ](#recap-)
-  - [From messy to tidy: final steps](#from-messy-to-tidy-final-steps)
-- [Plot long format data](#plot-long-format-data)
-  - [Your turn](#your-turn)
-  - [Additional customization](#additional-customization)
-- [`spread()`: from long to wide format ](#spread-from-long-to-wide-format-)
-  - [Your turn ](#your-turn-)
-- [Recap: the complete RMarkdown notebook ](#recap-the-complete-rmarkdown-notebook-)
-- [`complete()` turns implicit missing values into explicit missing values.](#complete-turns-implicit-missing-values-into-explicit-missing-values)
-- [Other links](#other-links)
+1. [Introduction](#introduction)
+2. [`tidyr` basics](#tidyr-basics)
+3. [Explore the gapminder dataset.](#explore-the-gapminder-dataset)
+4. [`gather()` data from wide to long format](#gather-data-from-wide-to-long-format)
+5. [Plot long format data](#plot-long-format-data)
+6. [`spread()`: from long to wide format ](#spread-from-long-to-wide-format-)
+7. [Recap: the complete RMarkdown notebook ](#recap-the-complete-rmarkdown-notebook-)
+8. [`complete()` turns implicit missing values into explicit missing values.](#complete-turns-implicit-missing-values-into-explicit-missing-values)
+9. [Other links](#other-links)
 
 ## Introduction
 

@@ -20,22 +20,11 @@ keypoints:
 ---
 
 ## Table of contents
-- [Introduction](#introduction)
-- [Create an R script](#create-an-r-script)
-- [Automation with for loops](#automation-with-for-loops)
-  - [Thinking ahead: cleaning up our code](#thinking-ahead-cleaning-up-our-code)
-  - [For loop basic structure](#for-loop-basic-structure)
-  - [Executable for loop!](#executable-for-loop)
-  - [Your turn](#your-turn)
-- [Conditional statements with `if` and `else`](#conditional-statements-with-if-and-else)
-  - [if statement basic structure](#if-statement-basic-structure)
-  - [Executable if statement](#executable-if-statement)
-  - [Executable if/else statement](#executable-ifelse-statement)
-- [More R!](#more-r)
-  - [Importing and Installing](#importing-and-installing)
-  - [Organization and workflows](#organization-and-workflows)
-  - [Getting help](#getting-help)
-  - [Going further](#going-further)
+1. [Introduction](#introduction)
+2. [Create an R script](#create-an-r-script)
+3. [Automation with for loops](#automation-with-for-loops)
+4. [Conditional statements with `if` and `else`](#conditional-statements-with-if-and-else)
+5. [More R!](#more-r)
 
 ## Introduction
 
