@@ -1,7 +1,7 @@
 ---
 title: "Visualizing data with ggplot2"
 teaching: 30
-exercises: 60 
+exercises: 60
 questions:
 - "How can I make publication-grade plots with `ggplot2`?"
 - "What are the key concepts underlying `ggplot2` plotting?"
@@ -48,19 +48,19 @@ This lesson borrows heavily from Hadley Wickham's [R for Data Science book](http
 
 ### Resources
 
-Here are some additional resources for data visualization in R:  
+Here are some additional resources for data visualization in R:
 
-- [ggplot2-cheatsheet-2.1.pdf](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)  
-- [Interactive Plots and Maps - Environmental Informatics](http://ucsb-bren.github.io/env-info/wk06_widgets.html)  
-- [Graphs with ggplot2 - Cookbook for R](http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2)  
-- [ggplot2 Essentials - STHDA](http://www.sthda.com/english/wiki/ggplot2-essentials)  
+- [ggplot2-cheatsheet-2.1.pdf](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
+- [Interactive Plots and Maps - Environmental Informatics](http://ucsb-bren.github.io/env-info/wk06_widgets.html)
+- [Graphs with ggplot2 - Cookbook for R](http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2)
+- [ggplot2 Essentials - STHDA](http://www.sthda.com/english/wiki/ggplot2-essentials)
 - ["Why I use ggplot2" - David Robinson Blog Post](http://varianceexplained.org/r/why-I-use-ggplot2/)
 - ["The Grammar of Graphics explained" - Towards Data Science blog series](https://towardsdatascience.com/a-comprehensive-guide-to-the-grammar-of-graphics-for-effective-visualization-of-multi-dimensional-1f92b4ed4149)
 
 
 ## Install our first package: `tidyverse`
 
-Packages are bundles of functions, along with help pages and other goodies that make them easier for others to use, (ie. vignettes). 
+Packages are bundles of functions, along with help pages and other goodies that make them easier for others to use, (ie. vignettes).
 
 So far we've been using packages that are already included in *base R*. These can be considered *out-of-the-box* packages and include things such as `sum` and `mean`. You can also download and install packages created by the vast and growing R user community. The most traditional place to download packages is from [CRAN, the Comprehensive R Archive Network](https://cran.r-project.org/). This is where you went to download R originally, and will go again to look for updates. You can also install packages directly from GitHub, which we'll do tomorrow.
 
@@ -72,16 +72,16 @@ We are going to be using the package `ggplot2`, which is actually bundled into a
 ~~~
 ## from CRAN:
 install.packages("tidyverse") ## do this once only to install the package on your computer.
-library(tidyverse) ## do this every time you restart R and need it 
+library(tidyverse) ## do this every time you restart R and need it
 ~~~
 {: .language-r}
 
 
 When you do this, it will tell you which packages are inside of `tidyverse` that have also been installed. Note that there are a few name conflicts; it is alerting you that we'll be using two functions from dplyr instead of the built-in stats package.
 
-What's the difference between `install.packages()` and `library()`? Why do you need both? Here's an analogy: 
+What's the difference between `install.packages()` and `library()`? Why do you need both? Here's an analogy:
 
-- `install.packages()` is setting up electricity for your house. Just need to do this once (let's ignore monthly bills). 
+- `install.packages()` is setting up electricity for your house. Just need to do this once (let's ignore monthly bills).
 - `library()` is turning on the lights. You only turn them on when you need them, otherwise it wouldn't be efficient. And when you quit R, it turns the lights off, but the electricity lines are still there. So when you come back, you'll have to turn them on again with `library()`, but you already have your electricity set up.
 
 You can also install packages by going to the Packages tab in the bottom right pane. You can see the packages that you have installed (listed) and loaded (checkbox). You can also install packages using the install button, or check to see if any of your installed packages have updates available (update button). You can also click on the name of the package to see all the functions inside it — this is a super helpful feature that I use all the time.
@@ -92,7 +92,7 @@ Copy and paste the code chunk below and read it in to your RStudio to load the f
 
 ~~~
 # National Parks in California
-ca <- read_csv("https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/ca.csv") 
+ca <- read_csv("https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/ca.csv")
 
 # Acadia National Park
 acadia <- read_csv("https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/acadia.csv")
@@ -113,7 +113,7 @@ mass <- read_csv("https://raw.githubusercontent.com/carpentries-incubator/open-s
 
 **`ggplot2`** is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatterplot. This helps in creating publication quality plots with minimal amounts of adjustments and tweaking.
 
-ggplot likes data in the **tidy** ('long') format: i.e., a column for every dimension, and a row for every observation. Well structured data will save you lots of time when making figures with ggplot. We'll learn more about tidy data in the next section. 
+ggplot likes data in the **tidy** ('long') format: i.e., a column for every dimension, and a row for every observation. Well structured data will save you lots of time when making figures with ggplot. We'll learn more about tidy data in the next section.
 
 ggplot graphics are built step by step by adding new elements. Adding layers in this fashion allows for extensive flexibility and customization of plots.
 
@@ -154,11 +154,11 @@ ggplot(data=ca)
 - add `geoms` -- graphical representation of the data in the plot (points, lines, bars). **`ggplot2`** offers many different geoms; we will use some common ones today, including:
       * `geom_point()` for scatter plots, dot plots, etc.
       * `geom_bar()` for bar charts
-      * `geom_line()` for trend lines, time-series, etc.  
+      * `geom_line()` for trend lines, time-series, etc.
 To add a geom to the plot use `+` operator. Because we have two continuous variables, let's use `geom_point()` first and then assign x and y aesthetics (`aes`).
 
 ~~~
-# add geoms 
+# add geoms
 ggplot(data=ca) +
   geom_point(aes(x = year,y = visitors))
 ~~~
@@ -218,31 +218,31 @@ ggplot(data = ca) +
 
 In addition to `theme_bw()`, which changes the plot background to white, **`ggplot2`** comes with several other themes which can be useful to quickly change the look of your visualization.
 
-The [ggthemes](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html) package provides a wide variety of options (including an Excel 2003 theme). The [**`ggplot2`** extensions website](https://www.ggplot2-exts.org) provides a list of packages that extend the capabilities of **`ggplot2`**, including additional themes.
+The [ggthemes](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html) package provides a wide variety of options (including an Excel 2003 theme). The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) provides a list of packages that extend the capabilities of **`ggplot2`**, including additional themes.
 
 
 ### Your turn
 
 > ## Exercise
 >
-> 1. Using the `se` dataset, make a scatterplot showing visitation to all national parks in the Southeast region with color identifying individual parks.  
+> 1. Using the `se` dataset, make a scatterplot showing visitation to all national parks in the Southeast region with color identifying individual parks.
 > 2. Change the plot so that color indicates `state`. Customize by adding your own title and theme. You can also change the text sizes and angles. Try applying a 45 degree angle to the x-axis. Use your cheatsheet!
 > 3. In the following code, why isn't the data showing up? `ggplot(data = se, aes(x = year, y = visitors))`
-> 
+>
 > > ## Solution
 > > 1. `ggplot(data = se) + geom_point(aes(x = year, y = visitors, color = park_name))`.
-> > 2. See the code below:  
+> > 2. See the code below:
 > > `ggplot(data = se) +
-> >  geom_point(aes(x = year, y = visitors, color = state)) + ` 
+> >  geom_point(aes(x = year, y = visitors, color = state)) + `
 > >  `labs(x = "Year",
 > >      y = "Visitation",
 > >      title = "Southeast States National Park Visitation") + `
 > > `theme_light() +
 > > theme(legend.title = element_blank(),
 > >       axis.text.x = element_text(angle = 45, hjust = 1, size = 14))`
-> > 3. The code is missing a geom to describe how the data should be plotted. 
+> > 3. The code is missing a geom to describe how the data should be plotted.
 > {: .solution}
-{: .challenge}  
+{: .challenge}
 
 
 ## Faceting
@@ -271,18 +271,18 @@ A __geom__ is the geometrical object that a plot uses to represent data. People 
 
 ~~~
 # representations as points with a jitter offset
-ggplot(data = se) + 
-  geom_jitter(aes(x = park_name, y = visitors, color = park_name), 
-              width = 0.1, 
+ggplot(data = se) +
+  geom_jitter(aes(x = park_name, y = visitors, color = park_name),
+              width = 0.1,
               alpha = 0.4) +
   coord_flip() +
-  theme(legend.position = "none") 
+  theme(legend.position = "none")
 ~~~
 {:.language-r}
 
 ~~~
 # boxplots
-ggplot(se, aes(x = park_name, y = visitors)) + 
+ggplot(se, aes(x = park_name, y = visitors)) +
   geom_boxplot() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
@@ -304,7 +304,7 @@ To display multiple geoms in the same plot, add multiple geom functions to `ggpl
 `geom_smooth` allows you to view a smoothed mean of data. Here we look at the smooth mean of visitation over time to Acadia National Park:
 
 ~~~
-ggplot(data = acadia) + 
+ggplot(data = acadia) +
   geom_point(aes(x = year, y = visitors)) +
   geom_line(aes(x = year, y = visitors)) +
   geom_smooth(aes(x = year, y = visitors)) +
@@ -321,7 +321,7 @@ Notice that this plot contains three geoms in the same graph! Each geom is using
 If you place mappings in a geom function, ggplot2 will treat them as local mappings for the layer. It will use these mappings to extend or overwrite the global mappings _for that layer only_. This makes it possible to display different aesthetics in different layers.
 
 ~~~
-ggplot(data = acadia, aes(x = year, y = visitors)) + 
+ggplot(data = acadia, aes(x = year, y = visitors)) +
   geom_point() +
   geom_line() +
   geom_smooth(color = "red") +
@@ -348,21 +348,21 @@ ggplot(data = acadia, aes(x = year, y = visitors)) +
 
 Next, let's take a look at a bar chart. Bar charts seem simple, but they are interesting because they reveal something subtle about plots. Consider a basic bar chart, as drawn with `geom_bar()`. The following chart displays the total number of parks in each state within the Pacific West region.
 
-~~~ 
-ggplot(data = visit_16, aes(x = state)) + 
+~~~
+ggplot(data = visit_16, aes(x = state)) +
   geom_bar()
 ~~~
 {:.language-r}
 
 On the x-axis, the chart displays `state`, a variable from `visit_16`. On the y-axis, it displays count, but count is not a variable in `visit_16`! Where does count come from? Many graphs, like scatterplots, plot the raw values of your dataset. Other graphs, like bar charts, calculate new values to plot:
 
-* bar charts, histograms, and frequency polygons bin your data 
+* bar charts, histograms, and frequency polygons bin your data
   and then plot bin counts, the number of points that fall in each bin.
 
 * smoothers fit a model to your data and then plot predictions from the
   model.
 
-* boxplots compute a robust summary of the distribution and then display a 
+* boxplots compute a robust summary of the distribution and then display a
   specially formatted box.
 
 The algorithm used to calculate new values for a graph is called a __stat__, short for statistical transformation.
@@ -371,13 +371,13 @@ You can learn which stat a geom uses by inspecting the default value for the `st
 
 `ggplot2` provides over 20 stats for you to use. Each stat is a function, so you can get help in the usual way, e.g. `?stat_bin`. To see a complete list of stats, try the ggplot2 cheatsheet.
 
-  
+
 ### Position adjustments
 
 There's one more piece of magic associated with bar charts. You can colour a bar chart using either the `color` aesthetic, or, more usefully, `fill`:
 
 ~~~
-ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) + 
+ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) +
   geom_bar(stat = "identity")
 ~~~
 {:.language-r}
@@ -387,13 +387,13 @@ The stacking is performed automatically by the __position adjustment__ specified
 * `position = "dodge"` places overlapping objects directly _beside_ one another. This makes it easier to compare individual values.
 
 ~~~
-ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) + 
+ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) +
   geom_bar(stat = "identity", position = "dodge")
 ~~~
 {:.language-r}
 
 
-### Your turn 
+### Your turn
 
 > ## Exercise
 >
@@ -403,24 +403,24 @@ ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) +
 > 2. Change the color palette used
 > 3. Use `scale_x_discrete` to change the x-axis tick labels to the full state names (Arizona, Colorado, etc.)
 > 4. Make a bar chart using the Massachussets dataset (`mass`) and find out how many parks of each type are in the state.
-> 
+>
 > > ## Solution
-> > 4) How many of each types of parks are in Massachusetts?   
-> > `ggplot(data = mass) + `  
-> >     `geom_bar(aes(x = type, fill = park_name)) +`  
-> >     `labs(x = "",y = "")+`  
+> > 4) How many of each types of parks are in Massachusetts?
+> > `ggplot(data = mass) + `
+> >     `geom_bar(aes(x = type, fill = park_name)) +`
+> >     `labs(x = "",y = "")+`
 > >     `theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 7))`
 > {: .solution}
 {: .challenge}
 
 ## Arranging and exporting plots
 
-After creating your plot, you can save it to a file in your favorite format. The Export tab in the **Plot** pane in RStudio will save your plots at low resolution, which will not be accepted by many journals and will not scale well for posters. 
+After creating your plot, you can save it to a file in your favorite format. The Export tab in the **Plot** pane in RStudio will save your plots at low resolution, which will not be accepted by many journals and will not scale well for posters.
 
 Instead, use the `ggsave()` function, which allows you easily change the dimension and resolution of your plot by adjusting the appropriate arguments (`width`, `height` and `dpi`):
 
 ~~~
-my_plot <- ggplot(data = mass) + 
+my_plot <- ggplot(data = mass) +
       geom_bar(aes(x = type, fill = park_name)) +
   labs(x = "",
        y = "")+
@@ -441,7 +441,7 @@ So as you can see, `ggplot2` is a fantastic package for visualizing data. But th
 install.packages("plotly")
 library(plotly)
 
-my_plot <- ggplot(data = mass) + 
+my_plot <- ggplot(data = mass) +
       geom_bar(aes(x = type, fill = park_name)) +
   labs(x = "",
        y = "")+
@@ -452,7 +452,7 @@ ggplotly(my_plot)
 {:.language-r}
 
 ~~~
-acad_vis <- ggplot(data = acadia, aes(x = year, y = visitors)) + 
+acad_vis <- ggplot(data = acadia, aes(x = year, y = visitors)) +
   geom_point() +
   geom_line() +
   geom_smooth(color = "red") +
@@ -464,20 +464,3 @@ acad_vis <- ggplot(data = acadia, aes(x = year, y = visitors)) +
 ggplotly(acad_vis)
 ~~~
 {:.language-r}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
