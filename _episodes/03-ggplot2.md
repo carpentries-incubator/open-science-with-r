@@ -297,7 +297,7 @@ ggplot(se, aes(x = year, y = visitors, color = park_name)) +
 ~~~
 {:.language-r}
 
-`ggplot2` provides over 30 geoms, and extension packages provide even more (see <https://www.ggplot2-exts.org> for a sampling). The best way to get a comprehensive overview is the [ggplot2 cheatsheet](http://rstudio.com/cheatsheets). To learn more about any single geom, use help: `?geom_smooth`.
+`ggplot2` provides over 30 geoms, and extension packages provide even more (see <https://exts.ggplot2.tidyverse.org/> for a sampling). The best way to get a comprehensive overview is the [ggplot2 cheatsheet](http://rstudio.com/cheatsheets). To learn more about any single geom, use help: `?geom_smooth`.
 
 To display multiple geoms in the same plot, add multiple geom functions to `ggplot()`:
 
