@@ -22,7 +22,7 @@ keypoints:
 The crisis of confidence poses a general problem across most empirical research disciplines and is characterized by an alarmingly low rate of key findings that are reproducible (e.g., Fidler et al. [2017](https://academic.oup.com/bioscience/article-abstract/67/3/282/2900173); Open Science Collaboration, [2015](https://science.sciencemag.org/content/349/6251/aac4716.short); Poldrack et al., [2017](https://www.nature.com/nrn/journal/v18/n2/abs/nrn.2016.167.html); Wager et at., [2009](https://www.sciencedirect.com/science/article/pii/S1053811908012111)). A low reproducibility rate can arise when scientists do not respect the empirical cycle. Scientific research methods for experimental research are based on the hypothetico-deductive approach (see e.g., de Groot, [1969](https://books.google.nl/books?hl=en&lr=&id=6hiBDwAAQBAJ&oi=fnd&pg=PR5&dq=de+groot+methologie&ots=GR5-EAw6pB&sig=Ej1MJgvsN1bHiQHio__ibrO4fkA&redir_esc=y#v=onepage&q=de%20groot%20methologie&f=false); Peirce, [1878](https://www.taylorfrancis.com/books/e/9781315823126/chapters/10.4324/9781315823126-7)), which is illustrated in Figure 1.
 
 
-{% include figure.html url="../img/EmpiricalCycle.jpg" description="<strong>Figure 1.</strong> The two stages of the empirical cycle; after the initial stage of creative discovery and hypothesis generation (illustrated in the right panel), researchers test their hypotheses in a statistical context of justification (illustrated in the left panel). However, scientists fool themselves, if they test their new predictions on old knowledge and old data (dotted line)." %}  
+{% include figure.html url="../img/EmpiricalCycle.jpg" description="<strong>Figure 1.</strong> The two stages of the empirical cycle; after the initial stage of creative discovery and hypothesis generation (illustrated in the right panel), researchers test their hypotheses in a statistical context of justification (illustrated in the left panel). However, scientists fool themselves, if they test their new predictions on old knowledge and old data (dotted line)." %}
 
 
 The empirical cycle suggests that scientists initially find themselves in "the creative context of discovery", where the primary goal is to generate hypotheses and predictions based on exploration and data-dependent analyses. Subsequently, this initial stage of discovery is followed by "the statistical context of justification". This is the stage of hypothesis-testing in which the statistical analysis must be independent of the outcome. Scientists may fool themselves whenever the results from the creative context of discovery with its data-dependent analyses are treated as if they came from the statistical context of justification. Since the selection of hypotheses now capitalizes on chance fluctuations, the corresponding findings are unlikely to replicate.
@@ -86,7 +86,7 @@ If there are 3 things to communicate to others after this workshop, I think they
 **2. Open data science tools exist**
 
 - Data science tools that enable open science are game-changing for analysis, collaboration and communication.
-- Open science is "the concept of transparency at all stages of the research process, coupled with free and open access to data, code, and papers" ([Hampton et al. 2015](http://onlinelibrary.wiley.com/doi/10.1890/ES14-00402.1/abstract))  
+- Open science is "the concept of transparency at all stages of the research process, coupled with free and open access to data, code, and papers" ([Hampton et al. 2015](http://onlinelibrary.wiley.com/doi/10.1890/ES14-00402.1/abstract))
 - For empirical researchers: transparency checklist (https://eltedecisionlab.shinyapps.io/TransparencyChecklist/)
 - Repositories such as the Open Science Framework (https://osf.io/preregistration) offer preregistration templates and the tools to archive your projects
 
@@ -116,9 +116,9 @@ Join existing communities locally and online, and start local chapters with frie
 
 Some ideas:
 
-- [Amsterdam Science Park Study Group Slack workspace](https://join.slack.com/t/scienceparkstudygroup/signup): join this workspace to ask questions and network with other biologists on programming and data analysis topics. [Slack](https://slack.com/intl/en-fr/features) is a collaboration software used mostly by companies that has more than 10 million users worldwide.  
+- [Amsterdam Science Park Study Group Slack workspace](https://join.slack.com/t/scienceparkstudygroup/signup): join this workspace to ask questions and network with other biologists on programming and data analysis topics. [Slack](https://slack.com/intl/en-fr/features) is a collaboration software used mostly by companies that has more than 10 million users worldwide.
 
-- [Amsterdam Science Park Study Group](www.scienceparkstudygroup.info): this local [Mozilla Study Groups](https://science.mozilla.org/programs/studygroups) is regularly organising local training workshops for biologists that are either beginners or more advanced in scientific programming. [A publication describing the intention of these study groups and how to implement them has been published in 2018 in PLoS Biology](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.2005561).   
+- [Amsterdam Science Park Study Group](www.scienceparkstudygroup.info): this local [Mozilla Study Groups](https://science.mozilla.org/programs/studygroups) is regularly organising local training workshops for biologists that are either beginners or more advanced in scientific programming. [A publication describing the intention of these study groups and how to implement them has been published in 2018 in PLoS Biology](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.2005561).
 
 - [RLadies](https://rladies.org/). Informal but efficient communities centered on R data analysis meant to be inclusive and supportive. The [RLadies Amsterdam](https://www.meetup.com/rladies-amsterdam/) chapter is quite active in Amsterdam!
 
