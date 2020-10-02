@@ -15,12 +15,13 @@ Before you begin, be sure you are all set up (see below).
 
 > ## Before you start
 >
-> Before the training, please make sure you have done the following: 
+> - Before the training, please make sure you have completed the [Setup](https://carpentries-incubator.github.io/open-science-with-r/setup.html) instructions.   
+> - There are two options to install necessary softwares and packages:
+>   * (Option 1) The favored one is to install everything using a homemade _ad hoc_ Docker image available from the [Docker Hub](https://hub.docker.com/repository/docker/scienceparkstudygroup/master-gls).
+>   * (Option 2) Alternatively, you can install everything manually. Follow the Setup instructions to do so.
 >
-> 2. Create a GitHub account: [https://github.com](https://github.com) *Note! Shorter names that kind of identify you are better, and use your work email!*
-> 3. Read the workshop [Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html) to make sure this workshop stays welcoming for everybody.
-> 4. Get comfortable: if you're not in a physical workshop, be set up with two screens if possible. You will be following along in RStudio on your own computer while also following this tutorial on your own.
-> 5. Install R, RStudio and other packages following instructions in [the **Setup** section](https://carpentries-incubator.github.io/open-science-with-r/setup.html).
+> - Please read the workshop [Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html) to make sure this workshop stays welcoming for everybody.  
+> - Get comfortable: if you're not in a physical workshop, be set up with two screens if possible. You will be following along in RStudio on your own computer while also following this tutorial on your own.
 {: .prereq}
 
 

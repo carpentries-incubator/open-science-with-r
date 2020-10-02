@@ -16,18 +16,21 @@ keypoints:
 - "I can make my workflow more reproducible and collaborative by using git and Github."
 ---
 
-## Table of Contents
-1. [Overview](#overview)
-2. [What to expect](#what-to-expect)
-3. [What you will learn](#what-you-will-learn)
-4. [Tidy data workflow](#tidy-data-workflow)
-5. [Learning with public datasets](#learning-with-public-datasets)
-6. [Emphasizing collaboration](#emphasizing-collaboration)
-6. [By the end of the course](#by-the-end-of-the-course)
-6. [Credits](#credits)
+<!-- MarkdownTOC autolink="True" -->
+
+- [Overview](#overview)
+	- [What to expect](#what-to-expect)
+	- [What you will learn](#what-you-will-learn)
+- [The tidy data workflow](#the-tidy-data-workflow)
+	- [Learning with public datasets](#learning-with-public-datasets)
+	- [Emphasizing collaboration](#emphasizing-collaboration)
+- [By the end of the course](#by-the-end-of-the-course)
+- [Credits](#credits)
+
+<!-- /MarkdownTOC -->
 
 
-## Overview 
+# Overview 
 
 Welcome!
 
@@ -67,7 +70,7 @@ Everyone in this workshop is coming from a different place with different experi
     - the #rstats online community is fantastic. The tools we're using are developed by real people. Real, nice people. They are building powerful and empowering tools and are welcoming to all skill-levels.
 
 
-## Tidy data workflow
+# The tidy data workflow
 
 We will be learning about tidy data. And how to use a tidyverse suite of tools to work with tidy data.
 
@@ -99,7 +102,7 @@ Collaborating efficiently has historically been really hard to do. It's only bee
 
 Working with collaborators in mind is critical for reproducibility. And, your most important collaborator is your future self. This training will introduce best practices using open tools, so that collaboration will become second nature to you!
 
-## By the end of the course
+# By the end of the course
 
 By the end of the course, you'll wrangle a few different data sets, and make your own graphics that you'll publish on webpages you've built collaboratively with GitHub and RMarkdown. Woop!
 
@@ -108,7 +111,7 @@ Here are some important things to keep in mind as you learn (these are joke book
 ![](../img/practical_dev_both.png)
 
 
-## Credits
+# Credits
 
 This lesson has been formatted according to the [Carpentries Foundation](https://carpentries.org/) lesson template and following their recommendations on how to teach researchers good practices in programming and data analysis.   
 
@@ -122,50 +125,3 @@ It also pulls from the following resources, which are highly recommended for fur
 - [Software Carpentry](https://software-carpentry.org/lessons/) by the Carpentries
 
 {% include links.md %}
-
-<!---
-## Motivation 
-
-
-More often than not, there are more than one way to do things. I'm going to focus mostly on what I have ended up using day-to-day; I try to incorporate better practices as I come upon them but that's not always the case. RStudio has some built-in redundancy too that I'll try to show you so that you can approach things in different ways and ease in.
-
-- based on literature: best and good enough practices
-- also based on our team's experience of how to do better science in less time
-
-
-
-
-## Collaboration
-
-Everything we learn today is to going to help you collaborate with your most important collaborator — YOU. Science is collaborative, starting with Future You, your current collaborators, and anyone wanting to build off your science later on. 
-
-## Reproducibility
-
-- record of your analyses. 
-- rerun them!
-- modify them, maybe change a threshold, try a different coefficient, etc, maybe today
-- modify them, make a new figure, in 6 months! 
-
-## Mindset
-
-New but will become increasingly familiar. We’ll start you off with some momentum, like if you were going to learn to ride a bike or ...
-
-Expect that there is a way to do what you want to do
-
-- stop confounding data science with your science. Expect that someone has had your problem before or done what you want to do. 
-
-
-If you plan to program mostly in one particular language on a single platform (such as Mac or Windows), you might try an integrated development environment (IDE). IDEs integrate text editing, syntax highlighting, version control, help, build tools, and debugging in one interface, simplifying development. 
-
-http://r-bio.github.io/intro-git-rstudio/
-
-## Data science is a discipline
-
-It has theories, methods, and tools. 
-
-Tidyverse and Hadley’s graphic. Tidy data.
-
-Going to teach you how to think differently, get into some of the theory but in the context of hands-on work.
-
-
---->
