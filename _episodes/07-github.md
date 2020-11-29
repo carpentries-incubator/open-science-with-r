@@ -275,12 +275,12 @@ And the repository will be saved to the `github` folder on your computer:
 
 ## Inspect your repository
 
-Notice a few things in our repo here:
+Notice a few things in our Rstudio environment here:
 
-1. Our working directory is set to `~/github/my-repo`. This means that I can start working with the files I have in here without setting the filepath. This is that when we cloned this from RStudio, it created an RStudio project, which you can tell because:
-    - `.RProj` file, which you can see in the Files pane.
+1. The working directory is set to `~/github/my-repo`. This means that I can start working with the files I have in here without setting the filepath explicitly. When we cloned the repository from Github using RStudio, Rstudio created an RStudio project, which you can tell because:
+    - `.RProj` file, which you can see in the 'Files' pane.
     - The project is named in the top right hand corner
-1. We have a git tab! This is how we will interface directly to Github.com
+1. Rstudio adds a 'git' tab. This is how we will interface directly to [github.com/](https://github.com/).
 
 <img src="../img/RStudio_IDE_git.png" width="900px">
 
