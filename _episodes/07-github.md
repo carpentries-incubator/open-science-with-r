@@ -3,9 +3,8 @@ title: "Version control with git and Github"
 teaching: 45
 exercises: 45
 questions:
-- "What is version control?"
 - "What benefits does a version control system brings in for my research?"
-- "How do I use version control?"
+- "What is version control?" "How do I use version control?"
 - "What is the difference between `git`and Github?"
 objectives:
 - "Understand the benefits of using a version control system such as `git`."
