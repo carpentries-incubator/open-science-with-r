@@ -50,7 +50,7 @@ Github will facilitate your daily coding life when working with your most import
 > Your past self from 6 months ago is gone and won't answer emails from your present self!
 
 **git:**
-The version control program `git` will track and version your files locally on your machine. `git` is locally executed and works on your local machine. It was named created and named by *Linus Torvalds*, the creator of Linux. Torvalds sarcastically quipped about the name _git_ (which means unpleasant person in British English slang): "I'm an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'."
+The version control program `git` will track and version your files locally on your machine. `git` is locally executed and works on your local machine. It was created and named by *Linus Torvalds*, the creator of Linux. Torvalds sarcastically quipped about the name _git_ (which means unpleasant person in British English slang): "I'm an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'."
 
 `git` is a version control system that lets you track changes to files over time. These files can be any kind of file (e.g. .doc, .pdf, .xls), but free text differences are visible and can be read by humans (eg txt, csv, md).
 
