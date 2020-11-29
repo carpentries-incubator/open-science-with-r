@@ -29,8 +29,7 @@ keypoints:
 
 ### Why should scientists use git and Github?
 
-* Ends (or, nearly ends) the horror of keeping track of versions.
-  Basically, we get away from this:
+Ends (or, nearly ends) the horror of keeping track of versions. Basically, we get away from this:
 
 ![](../img/MessySaves.png)
 
