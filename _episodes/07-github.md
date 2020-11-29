@@ -84,17 +84,16 @@ Today, we'll focus on the features and terminology that scientists need to start
 
 ## Outline
 
-Today, we'll interface with GitHub from our local computers using RStudio. There are many other ways to interact with GitHub, including GitHub's Desktop App or the command line ([here is Jenny Bryan's list of git clients](http://stat545.com/git02_git-clients.html)), but today we are going to work from RStudio. You have the largest suite of options if you interface through the command line, but the most common things you'll do can be done through one of these other applications (i.e. RStudio and the GitHub Desktop App).
+Today, we'll interface with GitHub from our local computer using RStudio. There are many other ways to interact with GitHub, including GitHub's Desktop App or the command line ([here is Jenny Bryan's list of git clients](http://stat545.com/git02_git-clients.html)), but today we are going to work from RStudio. You have the largest suite of options if you interface through the command line, but the most common things you'll do can be done through one of these other applications (i.e. RStudio and the GitHub Desktop App).
 
-Here's what we'll do after we set up `git` on your computers:
+What we will do after we set up `git` on your computer:
 
-1. create a repository on Github.com
-2. clone locally using RStudio.
-3. learn the RStudio-GitHub workflow by syncing to Github.com: `pull`, `stage`, `commit`, `push`.
-4. explore github.com: files, commit history, file history.
+1. create a repository on [github.com](https://github.com/).
+2. clone locally using [RStudio](https://rstudio.com/).
+3. learn the RStudio-GitHub workflow by syncing to [github.com](https://github.com/) using the git verbs `pull`, `stage`, `commit`, `push`.
+4. explore [github.com](https://github.com/): files, commit history, file history.
 5. practice the RStudio-GitHub workflow by editing and adding files.
 6. practice R Markdown.
-
 
 ### Some Github terminology
 
