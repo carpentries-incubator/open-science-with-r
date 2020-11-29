@@ -257,7 +257,7 @@ So really. Make sure that you have an all-lowercase folder called `github` in yo
 
 ### Step 5: Paste it in the Repository URL field
 
-Type **tab** to autofill the Project Directory name. Make sure you keep the Project Directory Name **THE SAME** as the repository name from the URL.
+Type the **TAB** keystroke to autofill the Project Directory name. Make sure you keep the Project Directory Name **THE SAME** as the repository name from the URL.
 
 Save it in your github folder (click on Browse) to do this.
 
@@ -267,11 +267,11 @@ If everything went well, the repository will be added to the list located here:
 
 <img src="../img/select_project.png" width="700px">
 
-And the repository will be saved to the Github folder on your computer:
+And the repository will be saved to the `github` folder on your computer:
 
 <img src="../img/cloned_repository.png" width="900px">
 
-<font size="+2">Ta da!!!</font> The folder doesn't contain much of interest, but we are going to change that.
+<font size="+2">Ta da!!!</font> The folder doesn't contain much, but we are going to change that.
 
 ## Inspect your repository
 
