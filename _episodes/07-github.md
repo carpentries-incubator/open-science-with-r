@@ -211,16 +211,15 @@ Also, add a description, make it public, create a README file, and create your r
 
 The *Add gitignore* option adds a document where you can identify files or file-types you want Github to ignore. These files will stay in on the local `git` folder (the one on your computer), but will not be uploaded onto the web version of Github.
 
-The *Add a license* option adds a license that describes how other people can use your Github files (e.g., open source, but no one can profit from them, etc.).  We won't worry about this today.
+The *Add a license* option adds a license that describes how other people can use your Github files (e.g., open source, but no one can profit from them, etc.). We won't worry about this today.
 
-Check out our new repository!
+Check out your new repository!
 
-Notice how the README.md file we created is automatically displayed at the bottom. The .md means that it is Markdown (remember how .Rmd was RMarkdown?) so the formatting we learned in the last lesson apply here.
+Notice how the `README.md` file we created is automatically displayed at the bottom. The `.md` means that it is Markdown (remember how `.Rmd` was RMarkdown?) so the formatting we learned in the last lesson apply here as well.
 
 <img src="../img/New_repository.png" width="900px">
 
 **From here, you will work locally (on your computer).**
-
 
 ## Clone your repository using RStudio
 
