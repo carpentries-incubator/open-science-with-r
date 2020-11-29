@@ -186,7 +186,7 @@ Does the **“Git executable”** filepath match what the url in Terminal says?
 
 If not, click the browse button and navigate there.
 
->*Note*: on my laptop, even though I navigated to /usr/local/bin/git, it then automatically redirect because /usr/local/bin/git was an alias on my computer. That is fine. Click OK.
+>*Note*: on my laptop, even though I navigated to `/usr/local/bin/git`, it then automatically redirect because `/usr/local/bin/git` was an alias on my computer. That is fine. Click OK.
 
 Quit RStudio.
 
