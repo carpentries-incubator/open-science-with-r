@@ -381,7 +381,7 @@ Remember, `git` will track anything within that folder (the way Dropbox does), i
 
 ## How often should I commit?
 
-Whenever you make changes to the files in Github, you will walk through the Pull -> Stage -> Commit -> Push steps.
+Whenever you make changes to files in your project folder (i.e. repository), you will walk through the Pull -> Stage -> Commit -> Push steps.
 
 I tend to do this every time I finish a task (basically when I start getting nervous that I will lose my work).  Once something is committed, it is very difficult to lose it.
 
