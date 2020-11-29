@@ -3,15 +3,16 @@ title: "Version control with git and Github"
 teaching: 45
 exercises: 45
 questions:
-- "What is version control? How do I use it?"
-- "What is the difference between `git`and Github?"
+- "What is version control?"
 - "What benefits does a version control system brings in for my research?"
+- "How do I use version control?"
+- "What is the difference between `git`and Github?"
 objectives:
 - "Understand the benefits of using a version control system such as `git`."
-- "Understand the basics of `git` and its usage in RStudio."    
+- "Understand the basics of `git` and its usage in RStudio."
 keypoints:
-- "`git` and Github allow you to version control files and go back in time if needed."
-- "In a version control system, file names do not reflect their versions."
+- "`git` and Github allow you to keep track of your files and go back in time if needed."
+- "In a version control system, file names do not reflect their versions. The history is managed by the version control system."
 - "An RStudio project folder can be fully version controlled and synchronized online with Github."
 - "Working locally in RStudio with a synchronised online folder will make your work more stable and understandable for you and others."
 ---
@@ -40,26 +41,26 @@ When you open your repository, you only see the most recent version.  But, it ea
 
 * Improves collaborative efforts.  Different researchers can work on the same files at the same time!
 * It is easy to share and distribute files through the Github website.
-* Your files are available anywhere, you just need internet connection!  
+* Your files are available anywhere, you just need internet connection!
 
 ### git and Github
 
-We will learn about version control using `git` and [GitHub](https://en.wikipedia.org/wiki/GitHub), and we will interface with this through RStudio. This will change your scientific life (for the better!). Github was developed for social coding (i.e., sort of like an open source Wikipedia for programmers). Consequently, much of the functionality and terminology of Github (e.g., branches and pull requests) will not be relevant for most scientists. Therefore, we will skip over all this stuff!    
+We will learn about version control using `git` and [GitHub](https://en.wikipedia.org/wiki/GitHub), and we will interface with this through RStudio. This will change your scientific life (for the better!). Github was developed for social coding (i.e., sort of like an open source Wikipedia for programmers). Consequently, much of the functionality and terminology of Github (e.g., branches and pull requests) will not be relevant for most scientists. Therefore, we will skip over all this stuff!
 
 Github will facilitate your daily coding life when working with your most important collaborator: **you** ! A famous quote that we like to emphasize:
-> Your past self from 6 months ago is gone and won't answer emails from your present self!  
+> Your past self from 6 months ago is gone and won't answer emails from your present self!
 
-**git:**   
+**git:**
 The version control program `git` will track and version your files locally on your machine. `git` is locally executed and works on your local machine. It was named created and named by *Linus Torvalds*, the creator of Linux. Torvalds sarcastically quipped about the name _git_ (which means unpleasant person in British English slang): "I'm an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'."
 
 `git` is a version control system that lets you track changes to files over time. These files can be any kind of file (e.g. .doc, .pdf, .xls), but free text differences are visible and can be read by humans (eg txt, csv, md).
 
-**Github:**  
+**Github:**
 [GitHub](https://github.com/) is a website for storing your git versioned files remotely. It has many nice features to be able visualize differences between [images](https://help.github.com/articles/rendering-and-diffing-images/), [rendering](https://help.github.com/articles/mapping-geojson-files-on-github/) & [diffing](https://github.com/blog/1772-diffable-more-customizable-maps) map data files, [render text data files](https://help.github.com/articles/rendering-csv-and-tsv-data/), and [track changes in text](https://help.github.com/articles/rendering-differences-in-prose-documents/).
 
-> If you are a student you can get the micro account which includes 5 private repositories for free (normally a $7/month value).  You can sign up for the student account [here](https://education.github.com/pack).  Instructors can also request a free organization [account, "Request a discount"](https://education.github.com/). These concepts are more important for coders who want the entire coding community (and not just people working on the same project) to be able to suggest changes to their code.  This isn't how most scientists will use Github. To get the full functionality of Github, you will eventually want to learn other concepts. But, this can wait.  
+> If you are a student you can get the micro account which includes 5 private repositories for free (normally a $7/month value).  You can sign up for the student account [here](https://education.github.com/pack).  Instructors can also request a free organization [account, "Request a discount"](https://education.github.com/). These concepts are more important for coders who want the entire coding community (and not just people working on the same project) to be able to suggest changes to their code.  This isn't how most scientists will use Github. To get the full functionality of Github, you will eventually want to learn other concepts. But, this can wait.
 
-**git and Github**:  
+**git and Github**:
 Although `git` and GitHub are two different things, distinct from each other, I think of them as a bundle since I always use them together. It also helped me to think of GitHub like Dropbox: you make folders that are 'tracked' and can be synced to the cloud. GitHub does this too, but you have to be more deliberate about when syncs are made. This is because GitHub saves these as different versions, with information about who contributed when, line-by-line. This makes collaboration easier, and it allows you to roll-back to different versions or contribute to others' work.
 
 <figure>
@@ -165,7 +166,7 @@ which git
 
 Look at the filepath that is returned. Does it say anything to do with Apple?
 
--> If yes, then the [Git you downloaded](https://git-scm.com/downloads) isn't installed, please redownload if necessary, and follow instructions to install.  
+-> If yes, then the [Git you downloaded](https://git-scm.com/downloads) isn't installed, please redownload if necessary, and follow instructions to install.
 
 -> If no, (in the example image, the filepath does not say anything with Apple) then proceed below:
 
@@ -183,13 +184,13 @@ Does the **“Git executable”** filepath match what the url in Terminal says?
 <img src="../img/git_options_filepath.png" width="500px">
 
 
-If not, click the browse button and navigate there.   
+If not, click the browse button and navigate there.
 
 >*Note*: on my laptop, even though I navigated to /usr/local/bin/git, it then automatically redirect because /usr/local/bin/git was an alias on my computer. That is fine. Click OK.
 
-Quit RStudio.   
+Quit RStudio.
 
-Then relaunch RStudio.  
+Then relaunch RStudio.
 
 Try syncing or cloning, and if that works and then you don’t need to worry about typing into the Terminal, you’re all done!
 
@@ -202,7 +203,7 @@ First, go to your account on github.com and click "New repository".
 <img src="../img/create_repository.png" width="900px">
 
 
-Name it `my-repo`, short for "my-repository" (any short self-describing name would be good).   
+Name it `my-repo`, short for "my-repository" (any short self-describing name would be good).
 
 Also, add a description, make it public, create a README file, and create your repo!
 
@@ -212,7 +213,7 @@ The *Add gitignore* option adds a document where you can identify files or file-
 
 The *Add a license* option adds a license that describes how other people can use your Github files (e.g., open source, but no one can profit from them, etc.).  We won't worry about this today.
 
-Check out our new repository!  
+Check out our new repository!
 
 Notice how the README.md file we created is automatically displayed at the bottom. The .md means that it is Markdown (remember how .Rmd was RMarkdown?) so the formatting we learned in the last lesson apply here.
 
@@ -257,7 +258,7 @@ So really. Make sure that you have an all-lowercase folder called `github` in yo
 
 ### Step 5: Paste it in the Repository URL field
 
-Type **tab** to autofill the Project Directory name. Make sure you keep the Project Directory Name **THE SAME** as the repository name from the URL.  
+Type **tab** to autofill the Project Directory name. Make sure you keep the Project Directory Name **THE SAME** as the repository name from the URL.
 
 Save it in your github folder (click on Browse) to do this.
 
@@ -299,7 +300,7 @@ The repository will contain:
 And, I typically create the following:
 
 * a folder for my raw unmodified datasets named `data/`.
-* a folder for my figures named `figures/`. I have a subfolder for each figure (e.g. `figure1/`).  
+* a folder for my figures named `figures/`. I have a subfolder for each figure (e.g. `figure1/`).
 * a folder for my R scripts named....`Rscripts/`.
 
 I'm going to go to the Finder (Windows Explorer on a PC) and copy a file into my repository from there. And then I'm going to go back to RStudio -- it shows up in the git tab! So the repository is being tracked, no matter how you make changes to it (changes do not have to be done only through RStudio).
@@ -375,7 +376,7 @@ Let's also explore commit history, file history.
 > > * 6) Click on the **Commit** button and write a small descriptive message. It should be the end of the sentence: "with this commit, ...".
 > >
 > {: .solution}
-{: .challenge}  
+{: .challenge}
 
 Remember, `git` will track anything within that folder (the way Dropbox does), it's not specific to RStudio!
 
