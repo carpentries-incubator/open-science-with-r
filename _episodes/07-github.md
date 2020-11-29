@@ -101,10 +101,10 @@ What we will do after we set up `git` on your computer:
 * **Organization**: The Github account for one or more user (e.g., datacarpentry).
 * **Repository**: A folder within the organization that includes files dedicated to a project.
 * **Local Github**: Copies of Github files located your computer.
-* **Remote Github**: Github files located on the https://github.com website.
+* **Remote Github**: Github files located on the [https://github.com/](https://github.com/) website.
 * **Clone**: Process of making a local copy of a remote Github repository.  This only needs to be done once (unless you mess up your local copy).
 * **Pull**: Copy changes on the remote Github repository to your local Github repository.  This is useful if multiple people are making changes to a repository.
-* **Push**: Save local changes to remote Github
+* **Push**: Save local changes to Github.
 <br />
 <br />
 
