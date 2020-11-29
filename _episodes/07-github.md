@@ -223,7 +223,7 @@ Notice how the `README.md` file we created is automatically displayed at the bot
 
 ## Clone your repository using RStudio
 
-We'll start of by cloning to our local computer using RStudio. We are going to be cloning a copy of our remote repository on Github.com to our local computers. Unlike downloading, cloning keeps all the version control and user information bundled with the files.
+To get the project repository as a folder on your local computer, you need to `clone` it to your local computer. Using RStudio, you are going to `clone` the remote repository on [github.com/](https://github.com/) to your local computer. Unlike downloading, cloning keeps all the version control and user information bundled with the files.
 
 ### Step 0: Create your `github` folder
 
