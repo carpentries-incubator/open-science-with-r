@@ -80,7 +80,7 @@ These materials borrow from:
 - Melanie Frazier's [GitHub Quickstart](https://rawgit.com/nazrug/Quickstart/master/GithubQuickstart.html)
 - Ben Best's [Software Carpentry at UCSB](http://remi-daigle.github.io/2016-04-15-UCSB/git/)
 
-Today, we'll only introduce the features and terminology that scientists need to learn to begin managing their projects.
+Today, we'll focus on the features and terminology that scientists need to start managing their projects.
 
 ## Outline
 
