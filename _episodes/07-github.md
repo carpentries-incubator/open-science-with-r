@@ -124,10 +124,10 @@ We're going to switch gears from R for a moment and set up Git and GitHub, which
         # display your version of git
         git --version
 
-        # replace USER with your Github user account
+        # replace YOUR_USER_NAME with your Github user account
         git config --global user.name YOUR_USER_NAME
 
-        # replace NAME@EMAIL.EDU with the email you used to register with Github
+        # replace YOUR_NAME@@EMAIL.UNIVERSITY with the email you used to register on Github
         git config --global user.email YOUR_NAME@@EMAIL.UNIVERSITY
 
         # list your config to confirm user.* variables set
