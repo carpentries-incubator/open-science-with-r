@@ -32,15 +32,15 @@ keypoints:
 * Ends (or, nearly ends) the horror of keeping track of versions.
   Basically, we get away from this:
 
-![](../img/MessySaves.png)
+  ![](../img/MessySaves.png)
 
-![](../img/phdcomics_version_control.png)
+  ![](../img/phdcomics_version_control.png)
 
-When you open your project folder, you only see the most recent version.  But you keep the ability to compare versions and you can revert to previous versions.
+  When you open your project folder, you only see the most recent version.  But you keep the ability to compare versions and you can revert to previous versions.
 
 * Improves collaborative efforts.  Different researchers can work on the same files at the same time!
 * It is easy to share and distribute files through the Github website.
-* Your files are available anywhere, you just need internet connection!
+* Your files are available anywhere, you just need internet connection.
 
 ### git and Github
 
