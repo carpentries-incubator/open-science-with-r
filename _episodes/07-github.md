@@ -35,7 +35,7 @@ Ends (or, nearly ends) the horror of keeping track of versions. Basically, we ge
 
 ![](../img/phdcomics_version_control.png)
 
-When you open your repository, you only see the most recent version.  But you keep the ability to compare versions and you can revert to previous versions.
+When you open your project folder, you only see the most recent version.  But you keep the ability to compare versions and you can revert to previous versions.
 
 * Improves collaborative efforts.  Different researchers can work on the same files at the same time!
 * It is easy to share and distribute files through the Github website.
