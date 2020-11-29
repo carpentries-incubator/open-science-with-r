@@ -46,7 +46,7 @@ keypoints:
 
 We will learn about version control using `git` and [GitHub](https://en.wikipedia.org/wiki/GitHub), and we will interface with this through RStudio. This will change your scientific life (for the better!). Github was developed for social coding (i.e., sort of like an open source Wikipedia for programmers). Consequently, much of the functionality and terminology of Github (e.g., branches and pull requests) will not be relevant for most scientists. Therefore, we will skip over all this stuff!
 
-Github will facilitate your daily coding life when working with your most important collaborator: **you** ! A famous quote that we like to emphasize:
+Version control will facilitate your daily coding life when working with your most important collaborator: **you** ! A famous quote that we like to emphasize:
 > Your past self from 6 months ago is gone and won't answer emails from your present self!
 
 **git:**
@@ -60,7 +60,9 @@ The version control program `git` will track and version your files locally on y
 > If you are a student you can get the micro account which includes 5 private repositories for free (normally a $7/month value).  You can sign up for the student account [here](https://education.github.com/pack).  Instructors can also request a free organization [account, "Request a discount"](https://education.github.com/). These concepts are more important for coders who want the entire coding community (and not just people working on the same project) to be able to suggest changes to their code.  This isn't how most scientists will use Github. To get the full functionality of Github, you will eventually want to learn other concepts. But, this can wait.
 
 **git and Github**:
-Although `git` and GitHub are two different things, distinct from each other, I think of them as a bundle since I always use them together. It also helped me to think of GitHub like Dropbox: you make folders that are 'tracked' and can be synced to the cloud. GitHub does this too, but you have to be more deliberate about when syncs are made. This is because GitHub saves these as different versions, with information about who contributed when, line-by-line. This makes collaboration easier, and it allows you to roll-back to different versions or contribute to others' work.
+Although `git` and GitHub are two different things, distinct from each other, think of them as a bundle since you typically use them together.
+
+It helps to think of GitHub like Dropbox: you make folders that are 'tracked' and can be synced to the cloud. GitHub does this too, but you have to be more deliberate about when syncs are made. This is because GitHub saves these as different versions, with information about who contributed when, line-by-line. This makes collaboration easier, and it allows you to roll-back to different versions or contribute to others' work.
 
 <figure>
     <img src="../img/octocat_GitHub_mascot.png" alt='Github Mascot' width="250" />
