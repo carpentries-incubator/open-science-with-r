@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "stijnvanhoey",
+      "name": "Stijn Van Hoey",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/754862?v=4",
+      "profile": "https://github.com/stijnvanhoey",
+      "contributions": [
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "open-science-with-r",
+  "projectOwner": "carpentries-incubator",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
