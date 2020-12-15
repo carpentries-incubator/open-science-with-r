@@ -1,8 +1,10 @@
-# FIXME Lesson title
+# Open Science with R
 
 [![Create a Slack Account with us](https://img.shields.io/badge/Create_Slack_Account-The_Carpentries-071159.svg)](https://swc-slack-invite.herokuapp.com/)
 
 This repository generates the corresponding lesson website from [The Carpentries](https://carpentries.org/) repertoire of lessons. 
+
+This lesson teaches modern R scripting using the `tidyverse` collection of packages, version control and collaboration using `git` and GitHub. Altogether, this provides a foundation for a more Open Science by offering practical ways of analysing data and building workflows and figures in a transparent and efficient manner.   
 
 ## Contributing
 
@@ -24,9 +26,7 @@ Look for the tag ![good_first_issue](https://img.shields.io/badge/-good%20first%
 
 Current maintainers of this lesson are 
 
-* FIXME
-* FIXME
-* FIXME
+* Marc Galland @mgalland
 
 
 ## Authors
