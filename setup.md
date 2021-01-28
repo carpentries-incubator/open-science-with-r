@@ -2,6 +2,17 @@
 title: Setup
 ---
 
+## For all operating systems
+
+> ## Install a good text editor
+> Before you start, it is handy to dispose of a jack-of-all-trades text editor.  
+> [Sublime Text](https://www.sublimetext.com/) is a flexible platform agnostic text editor for code and markdown syntax. For instance, it can open R scripts and markdown `.md` text files and color-code their languages accordingly. 
+> 1. Go to the Sublime Text [download page](https://www.sublimetext.com/3).
+> 2. Select your OS (Linux, Mac or Windows) and install it.
+{: .prereq}
+
+What needs to be installed are the R and RStudio softwares as well as related R packages. You will also have to install the version control `git` software. There are _two different options_ for you to consider. Option 1 is favored.  
+
 ## Option 1: using a Docker image
 
 The preferred option to install all softwares and packages is to use a tailor-made Docker image. See [this nice introduction to Docker here](https://aws.amazon.com/docker/).   
@@ -13,7 +24,7 @@ This image is based on the [rocker verse Docker image](https://hub.docker.com/r/
 >
 > Before the training, please make sure you have done the following: 
 >
-> 1. First, install [Docker desktop](https://www.docker.com/products/docker-desktop) for your operating system.  
+> 1. First, install [Docker desktop](https://www.docker.com/products/docker-desktop) for your operating system. You can find [more installation instructions here](https://carpentries-incubator.github.io/docker-introduction/setup.html) if this fails. 
 > 2. If needed, install Shell Bash: [follow these instructions](http://swcarpentry.github.io/shell-novice/setup.html).
 > 3. Open a new Shell Bash window and navigate to a folder that will be your workspace. For instance, you could create a folder named `r-tutorial/` on your Desktop and move inside with the Shell using `cd ~/Desktop/r-tutorial/`. 
 > 4. In a Shell Bash window, type the following command: `docker run --rm --name rstudio_instance -v $PWD:/home/rstudio/ -e PASSWORD=mypwd -p 8787:8787 scienceparkstudygroup/master-gls:openr-latest`. This will download a Docker image for the course, create and run a container where RStudio will be running.   
