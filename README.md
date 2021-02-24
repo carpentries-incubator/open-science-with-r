@@ -1,7 +1,7 @@
 # Open Science with R
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Create a Slack Account with us](https://img.shields.io/badge/Create_Slack_Account-The_Carpentries-071159.svg)](https://swc-slack-invite.herokuapp.com/)
@@ -54,6 +54,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/stijnvanhoey"><img src="https://avatars1.githubusercontent.com/u/754862?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stijn Van Hoey</b></sub></a><br /><a href="https://github.com/carpentries-incubator/open-science-with-r/pulls?q=is%3Apr+reviewed-by%3Astijnvanhoey" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/rtherezan"><img src="https://avatars.githubusercontent.com/u/60100308?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rodrigo</b></sub></a><br /><a href="https://github.com/carpentries-incubator/open-science-with-r/pulls?q=is%3Apr+reviewed-by%3Artherezan" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/azancarini"><img src="https://avatars.githubusercontent.com/u/22880040?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Anouk Zancarini</b></sub></a><br /><a href="https://github.com/carpentries-incubator/open-science-with-r/pulls?q=is%3Apr+reviewed-by%3Aazancarini" title="Reviewed Pull Requests">👀</a></td>
   </tr>
 </table>
 
