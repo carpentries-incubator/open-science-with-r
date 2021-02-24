@@ -54,6 +54,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/stijnvanhoey"><img src="https://avatars1.githubusercontent.com/u/754862?v=4" width="100px;" alt=""/><br /><sub><b>Stijn Van Hoey</b></sub></a><br /><a href="https://github.com/carpentries-incubator/open-science-with-r/pulls?q=is%3Apr+reviewed-by%3Astijnvanhoey" title="Reviewed Pull Requests">👀</a></td>
   </tr>
+    <tr>
+    <td align="center"><a href="https://github.com/tijsbliek"><img src="https://avatars1.githubusercontent.com/u/754862?v=4" width="100px;" alt=""/><br /><sub><b>Tijs Bliek</b></sub></a><br /><a href="https://github.com/carpentries-incubator/open-science-with-r/pulls?q=is%3Apr+reviewed-by%3Astijnvanhoey" title="Reviewed Pull Requests">👀</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
