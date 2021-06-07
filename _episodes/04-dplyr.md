@@ -19,23 +19,45 @@ keypoints:
 - "The _then_ operator `%>%` allows you to chain successive operations without needing to define intermediary variables for creating the most parsimonious, easily read analysis."
 ---
 
-## Table of contents
-1. [Introduction](#introduction)
-2. [Gapminder dataset](#gapminder-dataset)
-3. [Tidy data](#tidy-data)
-4. [Explore the gapminder dataframe](#explore-gapminder-dataframe)
-5. [`dplyr` basics](#dplyr-basics)
-6. [`filter()` observations](#filter-observations)
-7. [`select()` variables](#select-variables)
-8. [Use `select()` and `filter()` together: the awesome pipe](#use-select-and-filter-together-the-awesome-pipe)
-9. [`mutate()` adds new variables](#mutate-adds-new-variables)
-10. [`group_by` makes group that can be`summarize()`](#group_by-makes-group-that-can-be-summarize)
-11. [`arrange()` orders columns](#arrange-orders-columns)
-12. [All together now](#all-together-now)
-13. [Joining datasets](#joining-datasets)
+<!-- MarkdownTOC autolink="true" -->
 
-## Introduction
-Why should we care about data transformation?   
+- [Introduction](#introduction)
+	- [Why should we care about data transformation?](#why-should-we-care-about-data-transformation)
+	- [Gapminder dataset](#gapminder-dataset)
+- [Tidy Data](#tidy-data)
+	- [Setup](#setup)
+	- [Load `tidyverse` \(which has `dplyr` inside\)](#load-tidyverse-which-has-dplyr-inside)
+	- [Explore the gapminder dataframe](#explore-the-gapminder-dataframe)
+		- [Read data with `readr::read_csv()`](#read-data-with-readrread_csv)
+		- [Look at the variables inside a data.frame](#look-at-the-variables-inside-a-dataframe)
+	- [`dplyr` basics](#dplyr-basics)
+	- [`filter()` observations](#filter-observations)
+		- [Your turn](#your-turn)
+	- [1906415](#1906415)
+	- [`select()` variables](#select-variables)
+	- [Use `select()` and `filter()` together: the awesome pipe](#use-select-and-filter-together-the-awesome-pipe)
+		- [Meet the new pipe `%>%` operator](#meet-the-new-pipe--operator)
+		- [Revel in the convenience](#revel-in-the-convenience)
+	- [`mutate()` adds new variables](#mutate-adds-new-variables)
+		- [Your turn](#your-turn-1)
+	- [`group_by` makes group that can be `summarize()`](#group_by-makes-group-that-can-be-summarize)
+		- [`group_by` operates on groups](#group_by-operates-on-groups)
+		- [`summarize()` compiles values for each group](#summarize-compiles-values-for-each-group)
+	- [`arrange()` orders columns](#arrange-orders-columns)
+		- [Your turn](#your-turn-2)
+	- [All together now](#all-together-now)
+		- [With `dplyr`](#with-dplyr)
+		- [With `base` R](#with-base-r)
+	- [Joining datasets](#joining-datasets)
+- [Resources](#resources)
+
+<!-- /MarkdownTOC -->
+
+
+# Introduction
+
+## Why should we care about data transformation?   
+
 > Data scientists, according to interviews and expert estimates, spend from __50 percent to 80 percent__ of their time mired in the mundane labor of collecting and preparing data, before it can be explored for useful information. - [NYTimes (2014)](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html)
 
 What are some common things you like to do with your data? Maybe remove rows or columns, do calculations and maybe add new columns? This is called **data wrangling** (or more simply data transformation). It's not data management or data manipulation: you **keep the raw data raw** and do these things programatically in R with the tidyverse.
@@ -44,16 +66,6 @@ We are going to introduce you to data wrangling in R first with the `tidyverse`.
 
 For some things, _base-R_ is more straightforward, and we'll show you that too. Whenever we use a function that is from the `tidyverse`, we will prefix it so you'll know for sure. 
 
-### Resources
-
-Today's materials are again borrowing from some excellent sources, including:
-
-- Jenny Bryan's lectures from STAT545 at UBC: [Introduction to dplyr](http://stat545.com/block009_dplyr-intro.html)
-- Hadley Wickham and Garrett Grolemund's [R for Data Science](http://r4ds.had.co.nz/)
-- Software Carpentry's R for reproducible scientific analysis materials: [Dataframe manipulation with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr.html)
-- First developed for [Software Carpentry at UCSB](http://remi-daigle.github.io/2016-04-15-UCSB/dplyr/)
-- [RStudio's data wrangling cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) 
-- [RStudio's data wrangling webinar](https://www.rstudio.com/resources/webinars/data-wrangling-with-r-and-rstudio/) 
 
 ## Gapminder dataset
 
@@ -70,7 +82,7 @@ library("tidyverse")
 ~~~
 {:.language-r}
 
-## Tidy Data
+# Tidy Data
 
 Let's start off discussing tidy Data. Hadley Wickham, RStudio's Chief Scientist, and his team have been building R packages for data wrangling and visualization based on the idea of **tidy data**. 
 
@@ -94,7 +106,7 @@ And actually, Hadley Wickham and RStudio have created a ton of packages that hel
 
 <img src="../img/tidyverse_wickham_pres.jpg" width="500">
 
-### Setup
+## Setup
 
 We'll do this in a new RMarkdown file. 
 
@@ -105,7 +117,7 @@ We'll do this in a new RMarkdown file.
 3. Save as `gapminder-wrangle.Rmd`
 4. Delete the irrelevant text and write a little note to yourself about this section. 
 
-### Load `tidyverse` (which has `dplyr` inside)
+## Load `tidyverse` (which has `dplyr` inside)
 
 In your R Markdown file, let's make sure we've got our libraries loaded and ensure that you have the following code in a code chunk:
 
@@ -686,3 +698,14 @@ rj %>% View()
 {: .language-r}
 
 That's all we're going to talk about today with joining, but there are more ways to think about and join your data. Check out the [Relational Data Chapter](http://r4ds.had.co.nz/relational-data.html) in [R for Data Science](http://r4ds.had.co.nz).
+
+# Resources
+
+Today's materials are again borrowing from some excellent sources, including:
+
+- Jenny Bryan's lectures from STAT545 at UBC: [Introduction to dplyr](http://stat545.com/block009_dplyr-intro.html)
+- Hadley Wickham and Garrett Grolemund's [R for Data Science](http://r4ds.had.co.nz/)
+- Software Carpentry's R for reproducible scientific analysis materials: [Dataframe manipulation with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr.html)
+- First developed for [Software Carpentry at UCSB](http://remi-daigle.github.io/2016-04-15-UCSB/dplyr/)
+- [RStudio's data wrangling cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) 
+- [RStudio's data wrangling webinar](https://www.rstudio.com/resources/webinars/data-wrangling-with-r-and-rstudio/) 
