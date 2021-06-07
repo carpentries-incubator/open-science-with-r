@@ -13,6 +13,34 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "rtherezan",
+      "name": "Rodrigo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60100308?v=4",
+      "profile": "https://github.com/rtherezan",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "azancarini",
+      "name": "Anouk Zancarini",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22880040?v=4",
+      "profile": "https://github.com/azancarini",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "tijsbliek",
+      "name": "tijs bliek",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29064949?v=4",
+      "profile": "https://github.com/tijsbliek",
+      "contributions": [
+        "review",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
