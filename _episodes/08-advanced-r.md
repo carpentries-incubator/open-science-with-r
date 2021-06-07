@@ -1,5 +1,5 @@
 ---
-title: "Functions in R"
+title: "Advanced programming in R"
 teaching: 30
 exercises: 60
 questions:
@@ -13,10 +13,6 @@ keypoints:
 <!-- MarkdownTOC autolink="True" levels="1,2" -->
 
 - [Introduction](#introduction)
-	- [When to make functions?](#when-to-make-functions)
-	- [Function trinity](#function-trinity)
-- [Scoping](#scoping)
-	- [lobal and Local variables](#lobal-and-local-variables)
 - [Custom filtering function](#custom-filtering-function)
 - [Functionals](#functionals)
 - [Split apply combine](#split-apply-combine)
@@ -27,32 +23,6 @@ keypoints:
 
 #  Introduction
 Functions are at the heart of the R programming language. A lot of analytical steps you will perform in R will be based composed of a series of functions working together.
-
-## When to make functions?
-- When you repeat yourself many times. Same block of code repeated over and over (copy-paste-mistake pattern).
-- When your code becomes very long (e.g. > 50 lines) and it becomes hard to understand the logic behind your code. What are the steps taken? Why? - - When you need to create a series of plots, models that all differ by very few optional arguments (e.g. p-value threhold), etc. 
-
-## Function trinity    
-- Inputs: arguments of your function. This can be accessed using the ?formals(my_function)
-- Body: function definition (inside curly braces). What your function does. 
-- Environment: 
-
-> ## Exercise
-> ```
-> subby <- function(a, b) {
->  a - b
-> }
-> ```
-> {: .language-r}
-> 
-> Type `?formals(subby)`  
-> Type `?body(subby)`
-> Type `?environment(subby)`
-{: .challenge}
-
-# Scoping 
-
-## lobal and Local variables
 
 
 # Custom filtering function
