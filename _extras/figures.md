@@ -3,7 +3,7 @@ title: Figures
 ---
 
 {% include base_path.html %}
-{% include manual_episode_order.html %}
+{% comment %} {% include manual_episode_order.html %}  {% endcomment %} 
 
 <script>
   window.onload = function() {

@@ -1,13 +1,19 @@
 ---
-title: "Functions in R"
+title: "Functional programming in R"
 teaching: 30
 exercises: 60
 questions:
-- ""
+- "What is the structure of a function in R?"
+- "Functions allow to perform "
 objectives:
-- ""
+- "Understand how a function in R is structured."
+- "Be able to name the advantages of creating functions."
+- "Be able to execute a vectorised operation using a function and a vector."
 keypoints:
-- ""
+- "A function in R consist of a name, one or several arguments, a body and an execution environment."
+- "Functions can avoid code repetition and their associated mistake."
+- "The name of a function should contain a verb to describe its action."
+- "Vectorised operations allow to replace for loops and make your code more readable and maintanable."
 ---
 
 <!-- MarkdownTOC autolink="True" levels="1,2" -->
@@ -22,10 +28,7 @@ keypoints:
 	- [Default arguments](#default-arguments)
 - [Scoping](#scoping)
 	- [lobal and Local variables](#lobal-and-local-variables)
-- [Custom filtering function](#custom-filtering-function)
-- [Functionals](#functionals)
-- [Split apply combine](#split-apply-combine)
-- [List Column Workflow](#list-column-workflow)
+- [Application to the `gapminder` dataset](#application-to-the-gapminder-dataset)
 	- [References](#references)
 
 <!-- /MarkdownTOC -->
@@ -128,25 +131,10 @@ my_function <- function(x, pvalue = 0.01, na.rm = TRUE)
 ## lobal and Local variables
 
 
-# Custom filtering function
+# Application to the `gapminder` dataset
 
-https://b-rodrigues.github.io/modern_R/defining-your-own-functions.html#functions-that-take-columns-of-data-as-arguments
-
-# Functionals
-
-About the `map` family of functions. Apply a function to a vector or a list. 
-
-[Read and perform the described operations](https://adv-r.hadley.nz/fp.html)
-
-
-# Split apply combine
-
-[Follow this tutorial](https://burtmonroe.github.io/SoDA501/Materials/SplitApplyCombine_R/)
-
-
-# List Column Workflow
-
-[Follow this tutorial](https://drsimonj.svbtle.com/running-a-model-on-separate-groups)
+FIXME: create a plotting function with `country` as an argument. 
+FIXME: create a function to calculate the mean, sd and se of different parameters per country with `country` as an argument. 
 
 ## References 
 

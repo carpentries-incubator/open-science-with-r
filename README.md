@@ -10,10 +10,23 @@ This repository generates the corresponding lesson website from [The Carpentries
 
 This lesson teaches modern R scripting using the `tidyverse` collection of packages, version control and collaboration using `git` and GitHub. Altogether, this provides a foundation for a more Open Science by offering practical ways of analysing data and building workflows and figures in a transparent and efficient manner.   
 
-## Contributing
+# Local preview of the website
 
-We welcome all contributions to improve the lesson! Maintainers will do their best to help you if you have any
-questions, concerns, or experience any difficulties along the way.
+To visualise the website before comming your changes and pushing them to GitHub, several options are available. 
+
+## Ruby rbenv
+`rbenv` is a way to manage different Ruby version on your machine. The GitHub page is here: [https://github.com/rbenv/rbenv](https://github.com/rbenv/rbenv). 
+
+1. Install `rbenv` by following the instructions. 
+2. Install your Ruby version with `rbenv install 2.7.3`
+3. Install the required Gems (see the [Gemfile](./Gemfile) for the dependency list with `bundle install`
+4. Preview the website locally with `bundle exec jekyll serve`. This will read the `_config.yml` file by default. 
+5. Preview the website locally at http://127.0.0.1:4000
+
+
+# Contributing and authors
+
+We welcome all contributions to improve the lesson! Maintainers will do their best to help you if you have any questions, concerns, or experience any difficulties along the way.
 
 We'd like to ask you to familiarize yourself with our [Contribution Guide](CONTRIBUTING.md) and have a look at
 the [more detailed guidelines][lesson-example] on proper formatting, ways to render the lesson locally, and even
@@ -24,7 +37,6 @@ repository. For making your contribution, we use the GitHub flow, which is
 nicely explained in the chapter [Contributing to a Project](http://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) in Pro Git
 by Scott Chacon.
 Look for the tag ![good_first_issue](https://img.shields.io/badge/-good%20first%20issue-gold.svg). This indicates that the mantainers will welcome a pull request fixing this issue.  
-
 
 ## Maintainer(s)
 
