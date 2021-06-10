@@ -19,44 +19,40 @@ keypoints:
 - "The _then_ operator `%>%` allows you to chain successive operations without needing to define intermediary variables for creating the most parsimonious, easily read analysis."
 ---
 
-<!-- MarkdownTOC autolink="true" -->
+# Table of contents
 
-- [Introduction](#introduction)
-	- [Why should we care about data transformation?](#why-should-we-care-about-data-transformation)
-	- [Gapminder dataset](#gapminder-dataset)
-- [Tidy Data](#tidy-data)
-	- [Setup](#setup)
-	- [Load `tidyverse` \(which has `dplyr` inside\)](#load-tidyverse-which-has-dplyr-inside)
-	- [Explore the gapminder dataframe](#explore-the-gapminder-dataframe)
-		- [Read data with `readr::read_csv()`](#read-data-with-readrread_csv)
-		- [Look at the variables inside a data.frame](#look-at-the-variables-inside-a-dataframe)
-	- [`dplyr` basics](#dplyr-basics)
-	- [`filter()` observations](#filter-observations)
-		- [Your turn](#your-turn)
-	- [1906415](#1906415)
-	- [`select()` variables](#select-variables)
-	- [Use `select()` and `filter()` together: the awesome pipe](#use-select-and-filter-together-the-awesome-pipe)
-		- [Meet the new pipe `%>%` operator](#meet-the-new-pipe--operator)
-		- [Revel in the convenience](#revel-in-the-convenience)
-	- [`mutate()` adds new variables](#mutate-adds-new-variables)
-		- [Your turn](#your-turn-1)
-	- [`group_by` makes group that can be `summarize()`](#group_by-makes-group-that-can-be-summarize)
-		- [`group_by` operates on groups](#group_by-operates-on-groups)
-		- [`summarize()` compiles values for each group](#summarize-compiles-values-for-each-group)
-	- [`arrange()` orders columns](#arrange-orders-columns)
-		- [Your turn](#your-turn-2)
-	- [All together now](#all-together-now)
-		- [With `dplyr`](#with-dplyr)
-		- [With `base` R](#with-base-r)
-	- [Joining datasets](#joining-datasets)
-- [Resources](#resources)
+<!-- MarkdownTOC autolink="true" levels="1,2" -->
+
+- [1. Introduction](#1-introduction)
+	- [1.1 Why should we care about data transformation?](#11-why-should-we-care-about-data-transformation)
+	- [1.2 Gapminder dataset](#12-gapminder-dataset)
+	- [1.3 Load the tidyverse suite](#13-load-the-tidyverse-suite)
+	- [1.4 Create a new R Markdown file.](#14-create-a-new-r-markdown-file)
+- [2. Explore the gapminder dataframe](#2-explore-the-gapminder-dataframe)
+	- [2.1 Import data with `readr::read_csv()`](#21-import-data-with-readrread_csv)
+	- [2.2 Dataset inspection](#22-dataset-inspection)
+	- [2.3 Descriptive statistics of the gapminder dataset](#23-descriptive-statistics-of-the-gapminder-dataset)
+- [3. `dplyr` basics](#3-dplyr-basics)
+	- [3.1 `filter()` observations](#31-filter-observations)
+	- [3.2 `select()` variables](#32-select-variables)
+	- [3.3 The pipe  `%>%` operator](#33-the-pipe--operator)
+	- [3.4 `mutate()` adds new variables](#34-mutate-adds-new-variables)
+	- [3.5 `group_by` makes group that can be `summarize()`](#35-group_by-makes-group-that-can-be-summarize)
+	- [3.6 `arrange()` orders columns](#36-arrange-orders-columns)
+- [4. All together now](#4-all-together-now)
+	- [4.1 With `dplyr`](#41-with-dplyr)
+	- [4.2 With `base` R](#42-with-base-r)
+- [5. Joining datasets](#5-joining-datasets)
+	- [5.1 Types of join](#51-types-of-join)
+	- [5.2 Join the gapminder dataset with a co2 dataset](#52-join-the-gapminder-dataset-with-a-co2-dataset)
+- [6. Resources and credits](#6-resources-and-credits)
 
 <!-- /MarkdownTOC -->
 
 
-# Introduction
+# 1. Introduction
 
-## Why should we care about data transformation?   
+## 1.1 Why should we care about data transformation?   
 
 > Data scientists, according to interviews and expert estimates, spend from __50 percent to 80 percent__ of their time mired in the mundane labor of collecting and preparing data, before it can be explored for useful information. - [NYTimes (2014)](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html)
 
@@ -67,70 +63,41 @@ We are going to introduce you to data wrangling in R first with the `tidyverse`.
 For some things, _base-R_ is more straightforward, and we'll show you that too. Whenever we use a function that is from the `tidyverse`, we will prefix it so you'll know for sure. 
 
 
-## Gapminder dataset
-
-**Gapminder data**
+## 1.2 Gapminder dataset
 
 We'll be using [Gapminder data](http://www.gapminder.org/world), which represents the health and wealth of nations. It was pioneered by [Hans Rosling](https://www.ted.com/speakers/hans_rosling), who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his [2006 TED Talk: The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen): 
 
 <img src="../img/gapminder-world_motion-chart.png" width="500">
 
-We'll use the package `dplyr`, which is bundled within the `tidyverse` package. Please load the `tidyverse` if not already done. : 
+## 1.3 Load the tidyverse suite 
+
+We'll use the package `dplyr`, which is bundled within the `tidyverse` suite of packages. Please load the `tidyverse` if not already done.  
 
 ~~~
 library("tidyverse")
 ~~~
 {:.language-r}
 
-# Tidy Data
-
-Let's start off discussing tidy Data. Hadley Wickham, RStudio's Chief Scientist, and his team have been building R packages for data wrangling and visualization based on the idea of **tidy data**. 
-
-Tidy data has a simple convention: put variables in the columns and observations in the rows.
-
-![](../img/tidy_data.png)
-
-The national parks dataset we were working with this morning was an example of tidy data. When data are tidy, you are set up to work with it for your analyses, plots, etc. 
-
-![](../img/tidy_img_np.png) 
-
-Right now we are going to use `dplyr` to wrangle this tidy-ish data set (the transform part of the cycle), and then come back to tidying messy data using `tidyr` once we've had some fun wrangling. These are both part of the `tidyverse` package that we've already installed:
-
-![](../img/r4ds_data-science.png)
-
-<br>
-
-Conceptually, making data tidy first is really critical. Instead of building your analyses around whatever (likely weird) format your data are in, take deliberate steps to make your data tidy. When your data are tidy, you can use a growing assortment of powerful analytical and visualization tools instead of inventing home-grown ways to accommodate your data. This will save you time since you aren't reinventing the wheel, and will make your work more clear and understandable to your collaborators (most importantly, you in 6 months aka your future self). 
-
-And actually, Hadley Wickham and RStudio have created a ton of packages that help you at every step of the way here. This is from one of Hadley's presentations: 
+The `tidyverse` package suite contains all the tools you need for data science. Actually, Hadley Wickham and RStudio have created a ton of packages that help you at every step of the way here. This is from one of Hadley's presentations: 
 
 <img src="../img/tidyverse_wickham_pres.jpg" width="500">
 
-## Setup
+## 1.4 Create a new R Markdown file. 
 
-We'll do this in a new RMarkdown file. 
+We'll do this in a new R Markdown file. 
 
 **Here's what to do:**
 
 1. Clear your workspace (Session > Restart R)
 2. New File > R Markdown...
 3. Save as `gapminder-wrangle.Rmd`
-4. Delete the irrelevant text and write a little note to yourself about this section. 
+4. Delete the irrelevant text and write a little note to yourself about this section: "cleaning and transforming the gapminder dataset."
 
-## Load `tidyverse` (which has `dplyr` inside)
+<br>
 
-In your R Markdown file, let's make sure we've got our libraries loaded and ensure that you have the following code in a code chunk:
+# 2. Explore the gapminder dataframe
 
-~~~
-library(tidyverse)   
-~~~
-{:.language-r}
-
-This is becoming standard practice for how to load a library in a file, and if you get an error that the library doesn't exist, you can install the package easily by running the code within the comment (highlight `install.packages("tidyverse")` and run it).
-
-## Explore the gapminder dataframe
-
-Previously, we explored the national parks data.frame visually. Today, we'll explore a dataset by the numbers.
+Previously, we explored the national parks dataframe visually. Today, we'll explore a dataset by the numbers.
 We will work with some of the data from the [Gapminder project](http://www.gapminder.org).   
 
 The data are on GitHub. Navigate to: [https://github.com/carpentries-incubator/open-science-with-r/blob/gh-pages/data/gapminder.csv](https://github.com/carpentries-incubator/open-science-with-r/blob/gh-pages/data/gapminder.csv).
@@ -139,15 +106,13 @@ This is data-view mode: so we can have a quick look at the data. It's a .csv fil
 
 ![](../img/gapminder_gh.png)
 
-### Read data with `readr::read_csv()`
+## 2.1 Import data with `readr::read_csv()`
 
 We can read this data into R directly from GitHub, without downloading it. But we can't read this data in view-mode. We have to click on the **Raw button** on the top-right of the data. This displays it as the raw csv file, without formatting. 
 
-![](../img/gapminder-gh-raw.png)
-
 Copy the url for raw data: `https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/gapminder.csv`
 
-Now, let's go back to RStudio. In our R Markdown, let's read this csv file and name the variable "gapminder". We will use the `read_csv()` function from the `readr` package (part of the `tidyverse`, so it's already installed!). 
+Now, let's go back to RStudio. In our R Markdown, let's read this `.csv` file and name the variable `gapminder`. We will use the `read_csv()` function from the `readr` package (part of the `tidyverse`, so it's already installed!). 
 
 ~~~
 ## read gapminder csv. Note the readr:: prefix identifies which package it's in
@@ -155,22 +120,19 @@ gapminder <- readr::read_csv('https://raw.githubusercontent.com/carpentries-incu
 ~~~
 {:.language-r}
 
-Note: `read_csv` works with local filepaths as well, you could use one from your computer.
+> ## Note
+> `read_csv` works with local filepaths as well, you could use one from your computer.
+{: .callout}
 
-Let's inspect: 
-~~~
-## explore the gapminder dataset
-gapminder # this is super long! Let's inspect in different ways
-~~~
-{:.language-r}
+## 2.2 Dataset inspection
 
-Let's use `head` and `tail`: 
+Let's inspect the data with `head` and `tail`: 
 ~~~
 head(gapminder) # shows first 6
 tail(gapminder) # shows last 6
 
-head(gapminder, 10) # shows first X that you indicate
-tail(gapminder, 12) # guess what this does!
+head(gapminder, n = 10) # shows first X that you indicate
+tail(gapminder, n = 12) # guess what this does!
 ~~~
 {:.language-r}
 
@@ -180,58 +142,129 @@ str(gapminder) # ?str - displays the structure of an object
 ~~~
 {:.language-r}
 
-`gapminder` is a `data.frame`. We aren't going to get into the other types of data receptacles today ('arrays', 'matrices'), because working with data.frames is what you should primarily use. Why?
+~~~
+ str(gapminder)
+Classes ‘spec_tbl_df’, ‘tbl_df’, ‘tbl’ and 'data.frame':	1704 obs. of  6 variables:
+ $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+ $ year     : num  1952 1957 1962 1967 1972 ...
+ $ pop      : num  8425333 9240934 10267083 11537966 13079460 ...
+ $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+ $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+ $ gdpPercap: num  779 821 853 836 740 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   country = col_character(),
+  ..   year = col_double(),
+  ..   pop = col_double(),
+  ..   continent = col_character(),
+  ..   lifeExp = col_double(),
+  ..   gdpPercap = col_double()
+  .. )
+~~~
+{: .output}
 
-- data.frames package related variables neatly together, great for analysis
-- most functions, including the latest and greatest packages actually __require__ that your data be in a data.frame
-- data.frames can hold variables of different flavors such as
+This will show how R understood your data types. Check that numbers are indeed understood as `num/numeric` and strings as `chr/character`.
+
+You can get the number of rows and columns of the `gapminder` dataframe with `dim()`.
+
+~~~
+dim(gapminder)
+~~~
+{: .language-r} 
+
+~~~
+[1] 1704    6
+~~~
+{: .output}
+
+It shows that our dataframe has 1704 rows and 6 columns. 
+
+
+
+R imports `gapminder` as a `dataframe`. We aren't going to get into the other types of data receptacles today ('arrays', 'matrices'), because working with dataframes is what you should primarily use. Why?
+
+- dataframes contain related variables neatly together, great for analysis
+- most functions, including the latest and greatest packages actually __require__ that your data be in a dataframe
+- dataframes can hold variables of different flavors such as:
     - character data (country or continent names; "Characters (chr)") 
     - quantitative data (years, population; "Integers (int)" or "Numeric (num)")
     - categorical information (male vs. female)
   
-We can also see the `gapminder` variable in RStudio's Environment pane (top right)
+We can also see the `gapminder` variable in RStudio's Environment pane (top right).
 
-More ways to learn basic info on a data.frame. 
+More ways to learn basic info on a dataframe. 
 ~~~
-names(gapminder)
-dim(gapminder)    # ?dim dimension
+names(gapminder)  # column names
 ncol(gapminder)   # ?ncol number of columns
 nrow(gapminder)   # ?nrow number of rows
 ~~~
 {:.language-r}
 
-We can combine using `c()` to reverse-engineer `dim()`! It's a side-note here, but I wanted to introduce you to `c()`: we'll use it later.
-
-~~~
-c(nrow(gapminder), ncol(gapminder)) # ?c combines values into a vector or list. 
-~~~
-{:.language-r}
+## 2.3 Descriptive statistics of the gapminder dataset
 
 A statistical overview can be obtained with `summary()`, or with `skimr::skim()`
+
 ~~~
 summary(gapminder)
+~~~
+{: .language-r}
 
-library(skimr) # install.packages('skimr')
+~~~
+   country               year           pop             continent            lifeExp        gdpPercap       
+ Length:1704        Min.   :1952   Min.   :6.001e+04   Length:1704        Min.   :23.60   Min.   :   241.2  
+ Class :character   1st Qu.:1966   1st Qu.:2.794e+06   Class :character   1st Qu.:48.20   1st Qu.:  1202.1  
+ Mode  :character   Median :1980   Median :7.024e+06   Mode  :character   Median :60.71   Median :  3531.8  
+                    Mean   :1980   Mean   :2.960e+07                      Mean   :59.47   Mean   :  7215.3  
+                    3rd Qu.:1993   3rd Qu.:1.959e+07                      3rd Qu.:70.85   3rd Qu.:  9325.5  
+                    Max.   :2007   Max.   :1.319e+09                      Max.   :82.60   Max.   :113523.1  
+
+~~~
+{: .output}
+
+This will give simple descriptive statistics (e.g. median, average) for each column if numeric. 
+
+Finally, the `skimr` package provides a powerful descriptive function for dataframes. 
+~~~
+library(skimr) 
 skim(gapminder)
 ~~~
-{:.language-r}
+{: .language-r}
 
-### Look at the variables inside a data.frame
-
-To specify a single variable from a data.frame, use the dollar sign `$`. The `$` operator is a way to extract of replace parts of an object — check out the help menu for `$`. It's a common operator you'll see in R. 
 
 ~~~
-gapminder$lifeExp # very long! hard to make sense of...
-head(gapminder$lifeExp) # can do the same tests we tried before
-str(gapminder$lifeExp) # it is a single numeric vector
-summary(gapminder$lifeExp) # same information, formatted slightly differently
+── Data Summary ────────────────────────
+                           Values   
+Name                       gapminder
+Number of rows             1704     
+Number of columns          6        
+_______________________             
+Column type frequency:              
+  character                2        
+  numeric                  4        
+________________________            
+Group variables            None     
+
+── Variable type: character ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+1 country               0             1     4    24     0      142          0
+2 continent             0             1     4     8     0        5          0
+
+── Variable type: numeric ────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate       mean          sd      p0       p25       p50        p75         p100 hist 
+1 year                  0             1     1980.         17.3  1952      1966.     1980.      1993.        2007   ▇▅▅▅▇
+2 pop                   0             1 29601212.  106157897.  60011   2793664   7023596.  19585222.  1318683096   ▇▁▁▁▁
+3 lifeExp               0             1       59.5        12.9    23.6      48.2      60.7       70.8         82.6 ▁▆▇▇▇
+4 gdpPercap             0             1     7215.       9857.    241.     1202.     3532.      9325.      113523.  ▇▁▁▁▁
 ~~~
-{:.language-r}
+{: .output}
 
+This gives you a comprehensive view of your data at a glance. 
 
-## `dplyr` basics
+<br>
 
-OK, so let's start wrangling with dplyr.
+# 3. `dplyr` basics
+
+OK, so let's start wrangling with the `dplyr` collection of functions. .
 
 There are five `dplyr` functions that you will use to do the vast majority of data manipulations:
 
@@ -264,7 +297,7 @@ All verbs work similarly:
 Together these properties make it easy to chain together multiple simple steps to achieve a complex result.
 
 
-## `filter()` observations
+## 3.1 `filter()` observations
 
 You will want to isolate bits of your data; maybe you want to only look at a single country or a few years. R calls this subsetting. 
 
@@ -305,28 +338,19 @@ filter(gapminder, country == "Mexico", year == 2002)
 {:.language-r}
 
 
-### Your turn 
-
 > ## Exercise
 >
-> What is the mean life expectancy of Sweden? Hint: do this in 2 steps by assigning a variable and then using the `mean()` function.
+> What is the mean life expectancy of Sweden?   
+> Hint: do this in 2 steps by assigning a variable and then using the `mean()` function.
 > 
 > > ## Solution
-> > `x <- filter(gapminder, country == "Sweden")`  
-> > `mean(x$lifeExp)`
+> > `sweden <- filter(gapminder, country == "Sweden")`  
+> > `mean(sweden$lifeExp)`
 >{: .solution}
 {: .challenge}
 
 
-<!---Don't use this one for now because gets off track for %>%
-2. Choose a country. How much has the population changed since the earliest record? Hint: create variables for the earliest and most recent years, and subtract from each other.  
-x1 <- filter(gapminder, country == "Sweden", year == 1952)
-x2 <- filter(gapminder, country == "Sweden", year == 2007)
-x2$pop - x1$pop
-##  1906415
---->
-
-## `select()` variables
+## 3.2 `select()` variables
 
 We use `select()` to subset the data on variables or columns. 
 
@@ -348,7 +372,9 @@ select(gapminder, -continent, -lifeExp) # you can use - to deselect columns
 ~~~
 {:.language-r}
 
-## Use `select()` and `filter()` together: the awesome pipe
+## 3.3 The pipe  `%>%` operator 
+
+What if we want to use `select()` __and__ `filter()` together?
 
 Let's filter for *Cambodia* and remove the continent and *lifeExp* columns. We'll save this as a variable. Actually, as two temporary variables, which means that for the second one we need to operate on `gap_cambodia`, not `gapminder`. 
 
@@ -362,11 +388,20 @@ We also could have called them both `gap_cambodia` and overwritten the first ass
 
 Good thing there is an awesome alternative.
 
-### Meet the new pipe `%>%` operator
+Before we go any further, we should exploit the new pipe operator that comes from the [`magrittr`](https://github.com/smbache/magrittr) package by Stefan Bache. The package name refers to the Belgium surrealist artist [René Magritte](https://en.wikipedia.org/wiki/Ren%C3%A9_Magritte) that made a famous painting with a pipe. 
 
-Before we go any further, we should exploit the new pipe operator that `dplyr` imports from the [`magrittr`](https://github.com/smbache/magrittr) package by Stefan Bache. **This is going to change your life**. You no longer need to enact multi-operation commands by nesting them inside each other. And we won't need to make temporary variables like we did in the Cambodia example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.
+<img src="../img/04-dplyr-pipe.jpg" width="400px" />
 
-Here's what it looks like: `%>%`. The RStudio keyboard shortcut: Ctrl + Shift + M (Windows), Cmd + Shift + M (Mac).
+
+**The `%>%` operator is going to change your life**. You no longer need to enact multi-operation commands by nesting them inside each other. And we won't need to make temporary variables like we did in the Cambodia example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.
+
+Here's what it looks like: `%>%`. 
+
+> ## Keyboard shortcuts for the pipe operator
+>The RStudio keyboard shortcut: 
+> `Ctrl` + `Shift` + `M` (Windows), 
+> `Cmd` + `Shift` + `M` (Mac).
+{: .callout}
 
 Let's demo then I'll explain:
 ~~~
@@ -374,11 +409,25 @@ gapminder %>% head()
 ~~~
 {:.language-r}
 
-This is equivalent to `head(gapminder)`. This pipe operator takes the thing on the left-hand-side and __pipes__ it into the function call on the right-hand-side. It literally drops it in as the first argument.
-
-Never fear, you can still specify other arguments to this function! To see the first 3 rows of Gapminder, we could say `head(gapminder, 3)` or this:
 ~~~
-gapminder %>% head(3)
+# A tibble: 6 x 6
+  country      year      pop continent lifeExp gdpPercap
+  <chr>       <dbl>    <dbl> <chr>       <dbl>     <dbl>
+1 Afghanistan  1952  8425333 Asia         28.8      779.
+2 Afghanistan  1957  9240934 Asia         30.3      821.
+3 Afghanistan  1962 10267083 Asia         32.0      853.
+4 Afghanistan  1967 11537966 Asia         34.0      836.
+5 Afghanistan  1972 13079460 Asia         36.1      740.
+6 Afghanistan  1977 14880372 Asia         38.4      786.
+~~~
+{: .output}
+
+This is equivalent to `head(gapminder)`.   
+This pipe operator takes the thing on the left-hand-side and __pipes__ it into the function call on the right-hand-side. It literally drops it in as the first argument.
+
+Never fear, you can still specify other arguments to this function! To see the first 3 rows of Gapminder, we could say `head(gapminder, n = 3)` or this:
+~~~
+gapminder %>% head(n = 3)
 ~~~
 {:.language-r}
 
@@ -402,10 +451,16 @@ gap_cambodia2 <- gap_cambodia %>% select(-continent, -lifeExp)
 
 So you can see that we'll start with gapminder in the first example line, and then gap_cambodia in the second. This makes it a bit easier to see what data we are starting with and what we are doing to it.
 
-...But, we still have those temporary variables so we're not truly that better off. But get ready to be majorly impressed:  
+> ## Exercise
+>
+> Can you filter for Finland and show only the `pop` (population) column?   
+> Use the pipe `%>%` operator twice.   
+> 
+> > ## Solution
+> > `gapminder %>% filter(country == "Finland") %>% select(pop)`   
+>{: .solution}
+{: .challenge}
 
-
-### Revel in the convenience
 
 We can use the pipe to chain those two operations together:
 
@@ -427,31 +482,25 @@ gap_cambodia  <- gapminder %>%
 {:.language-r}
 Amazing. I can actually read this like a story and there aren't temporary variables that get super confusing. In my head: 
 
+
+
 >start with the `gapminder` data, and then  
 filter for Cambodia, and then  
 deselect the variables continent and lifeExp.
 
 Being able to read a story out of code like this is really game-changing. We'll continue using this syntax as we learn the other dplyr verbs. 
 
-## `mutate()` adds new variables
+## 3.4 `mutate()` adds new variables
 
 Alright, let's keep going. 
 
-Let's say we needed to add an index column so we know which order these data came in. Let's not make a new variable, let's add a column to our gapminder data frame. How do we do that? With the `mutate()` function. 
+Let's say we need to compute a new variable from two pre-existing variables in the dataframe. We could calculate the [Gross Domestic Product](https://en.wikipedia.org/wiki/Gross_domestic_product) from the `gdpPercap` (GDP per person) and the `pop` (population) variables.
 
 Visually, we are doing this: 
 
 <img src="../img/rstudio-cheatsheet-mutate.png" width="400px" />
 
-We will name our new column index. We will name the new column 'index'; and we assign it with a single `=`. Notice that we can use the `nrow` function *within* our mutate call:
-
-~~~
-gapminder %>% 
-  mutate(index = 1:nrow(gapminder))
-~~~
-{:.language-r}
-
-OK, let's do another example. Imagine we wanted to recover each country's GDP. After all, the Gapminder data has a variable for population and GDP per capita. 
+We will name our new column `gdp` and assign it with a single `=`. 
 
 ~~~
 gapminder %>%
@@ -459,13 +508,28 @@ gapminder %>%
 ~~~
 {:.language-r}
 
-### Your turn 
+~~~
+   country      year      pop continent lifeExp gdpPercap          gdp
+   <chr>       <dbl>    <dbl> <chr>       <dbl>     <dbl>        <dbl>
+ 1 Afghanistan  1952  8425333 Asia         28.8      779.  6567086330.
+ 2 Afghanistan  1957  9240934 Asia         30.3      821.  7585448670.
+ 3 Afghanistan  1962 10267083 Asia         32.0      853.  8758855797.
+ 4 Afghanistan  1967 11537966 Asia         34.0      836.  9648014150.
+ 5 Afghanistan  1972 13079460 Asia         36.1      740.  9678553274.
+ 6 Afghanistan  1977 14880372 Asia         38.4      786. 11697659231.
+ 7 Afghanistan  1982 12881816 Asia         39.9      978. 12598563401.
+ 8 Afghanistan  1987 13867957 Asia         40.8      852. 11820990309.
+ 9 Afghanistan  1992 16317921 Asia         41.7      649. 10595901589.
+10 Afghanistan  1997 22227415 Asia         41.8      635. 14121995875.
+~~~
+{: .output}
 
-
+This is quite handy when you need to calculate a percentage for example. 
 
 > ## Exercise
 > 
-> Find the maximum gdpPercap of Egypt and the maximum gdpPercap of Vietnam. Create a new column with `mutate()`. Hint: use `max()`.
+> Find the maximum gdpPercap of Egypt and the maximum gdpPercap of Vietnam. Create a new column with `mutate()`.   
+> Hint: use `max()`.
 >
 > > ## Solution
 > > **Egypt:**  
@@ -488,7 +552,7 @@ With the things we know so far, the answers you have are maybe a bit limiting. F
 And second, this `max_gdpPercap` column is pretty redundant, because it's a repeated value a ton of times. Sometimes this is exactly what you want! You are now set up nicely to maybe take a proportion of gdpPercap/max_gdpPercap for each year or something. But maybe you only wanted that `max_gdpPercap` for something else. Let's keep going...
 
 
-## `group_by` makes group that can be `summarize()`
+## 3.5 `group_by` makes group that can be `summarize()`
 
 ### `group_by` operates on groups
 
@@ -513,11 +577,28 @@ So instead of filtering for a specific country, we've grouped by country, and th
 ~~~
 gapminder %>%
   group_by(country) %>%
-  mutate(gdp = pop * gdpPercap, max_gdp = max(gdp)) %>%
+  mutate(gdp = pop * gdpPercap, 
+  	     max_gdp = max(gdp)) %>%
   ungroup() %>% 
   tail(30)
 ~~~
 {:.language-r}
+
+~~~
+ country     year      pop continent lifeExp gdpPercap          gdp      max_gdp
+   <chr>      <dbl>    <dbl> <chr>       <dbl>     <dbl>        <dbl>        <dbl>
+ 1 Yemen Rep.  1982  9657618 Asia         49.1     1978. 19098490176. 50659874994.
+ 2 Yemen Rep.  1987 11219340 Asia         52.9     1972. 22121638707. 50659874994.
+ 3 Yemen Rep.  1992 13367997 Asia         55.6     1879. 25125105886. 50659874994.
+ 4 Yemen Rep.  1997 15826497 Asia         58.0     2117. 33512362498. 50659874994.
+ 5 Yemen Rep.  2002 18701257 Asia         60.3     2235. 41793958635. 50659874994.
+ 6 Yemen Rep.  2007 22211743 Asia         62.7     2281. 50659874994. 50659874994.
+ 7 Zambia      1952  2672000 Africa       42.0     1147.  3065822956. 14931695864.
+ 8 Zambia      1957  3016000 Africa       44.1     1312.  3956861606. 14931695864.
+ 9 Zambia      1962  3421000 Africa       46.0     1453.  4969774845. 14931695864.
+10 Zambia      1967  3900000 Africa       47.8     1777.  6930601540. 14931695864.
+~~~
+{: .output}
 
 OK, this is great. But what if this what we needed, a max_gdp value for each country. We don't need that kind of repeated value for each of the max_gdp values. Here's the next function: 
 
@@ -540,9 +621,25 @@ gapminder %>%
 ~~~
 {:.language-r}
 
+~~~
+  country           max_gdp
+   <chr>               <dbl>
+ 1 Afghanistan  31079291949.
+ 2 Albania      21376411360.
+ 3 Algeria     207444851958.
+ 4 Angola       59583895818.
+ 5 Argentina   515033625357.
+ 6 Australia   703658358894.
+ 7 Austria     296229400691.
+ 8 Bahrain      21112675360.
+ 9 Bangladesh  209311822134.
+10 Belgium     350141166520.
+~~~
+{: .output}
+
 How cool is that! `summarize()` will actually only keep the columns that are grouped_by or summarized. So if we wanted to keep other columns, we'd have to do have a few more steps. 
 
-## `arrange()` orders columns
+## 3.6 `arrange()` orders columns
 
 This is ordered alphabetically, which is cool. But let's say we wanted to order it in ascending order for `max_gdp`. The dplyr function is `arrange()`. 
 
@@ -556,12 +653,29 @@ gapminder %>%
 ~~~
 {:.language-r}
 
+~~~
+   country                      max_gdp
+   <chr>                          <dbl>
+ 1 Sao Tome and Principe     319014077.
+ 2 Comoros                   701111696.
+ 3 Guinea-Bissau             950984749.
+ 4 Djibouti                 1033689705.
+ 5 Gambia                   1270911775.
+ 6 Liberia                  1495937378.
+ 7 Central African Republic 3084613079.
+ 8 Lesotho                  3158513357.
+ 9 Burundi                  3669693671.
+10 Eritrea                  3707155863.
+~~~
+{: .output}
+
 ### Your turn
 
 > ## Exercise
 > 
-> 1. Arrange your data frame in descending order (opposite of what we've done). Expect that this is possible: `?arrange`
-> 2. Find the maximum life expectancy for countries in Asia. What is the earliest year you encounter? The latest? Hint: you can use either `base::max` or `dplyr::arrange()`...
+> 1. Arrange your data frame in descending order (opposite of what we've done). Look at the documentation `?arrange`
+> 2. Find the maximum life expectancy for countries in Asia. What is the earliest year you encounter? The latest? 
+> Hint: you can use either `base::max` or `dplyr::arrange()`...
 >
 > > ## Solution
 > > 1) `arrange(desc(max_gdp))`
@@ -574,20 +688,17 @@ gapminder %>%
 {: .challenge}
 
 
-## All together now
+# 4. All together now
 
 We have done a pretty incredible amount of work in a few lines. Our whole analysis is this. Imagine the possibilities from here. It's very readable: you see the data as the first thing, it's not nested. Then, you can read the verbs. This is the whole thing, with explicit package calls from `readr::` and `dplyr::`   
 
 
-### With `dplyr`
+## 4.1 With `dplyr`
 ~~~
-## gapminder-wrangle.R
-## J. Lowndes lowndes@nceas.ucsb.edu
+# load libraries
+library(tidyverse) 
 
-## load libraries
-library(tidyverse) ## install.packages('tidyverse')
-
-## read in data
+# read in data
 gapminder <- readr::read_csv('https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/gapminder.csv') 
 
 ## summarize
@@ -602,7 +713,7 @@ gap_max_gdp <- gapminder %>%
 
 I actually am borrowing this "All together now" from Tony Fischetti's blog post [How dplyr replaced my most common R idioms](http://www.statsblogs.com/2014/02/10/how-dplyr-replaced-my-most-common-r-idioms/). With that as inspiration, this is how what we have done would look like in Base R.
 
-### With `base` R
+## 4.2 With `base` R
 
 Let's compare with some base R code to accomplish the same things. Base R requires subsetting with the `[rows, columns]` notation. This notation is something you'll see a lot in base R. the brackets `[ ]` allow you to extract parts of an object. Within the brackets, the comma separates rows from columns. 
 
@@ -626,10 +737,18 @@ mex$max_gdp <- max(mex$gdp)
 
 Note too that the chain operator `%>%` that we used with the `tidyverse` lets us get away from the temporary variable `x1`. 
 
+> ## Discussion
+> What do you personally favor? What are pros and cons of the `dplyr` and `base` methods?   
+> Both `dplyr` and `base` solutions are fine. In the long run, you might better understand the pros and cons of each method. 
+{: .discussion}
 
-## Joining datasets 
+<br>
+
+# 5. Joining datasets 
 
 We've learned a ton in this session and we may not get to this right now. If we don't have time, we'll start here before getting into the next chapter: `tidyr`.
+
+## 5.1 Types of join
 
 Most of the time you will have data coming from different places or in different files, and you want to put them together so you can analyze them. Datasets you'll be joining can be called relational data, because it has some kind of relationship between them that you'll be acting upon. In the tidyverse, combining data that has a relationship is called "joining". 
 
@@ -657,14 +776,10 @@ I like graphical representations of complex things so here's a nice one taken fr
 
 You can visualise the different outputs from the different joins. 
 
-<!---
-These are all "mutating joins" because they add another column to what had been there previously. There are also "filtering joins" that do not add another column: 
+## 5.2 Join the gapminder dataset with a co2 dataset
 
-- `semi_join` keeps only the observations that are in both tables
-- `anti_join` keeps only the observations that are NOT in both tables.
---->
+Let's play with [these CO2 emissions data to illustrate](http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls):
 
-Let's play with [these](http://edgar.jrc.ec.europa.eu/news_docs/CO2_1970-2014_dataset_of_CO2_report_2015.xls) CO2 emissions data to illustrate:
 
 ~~~
 ## read in the data.
@@ -672,34 +787,89 @@ co2 <- read_csv("https://raw.githubusercontent.com/carpentries-incubator/open-sc
 
 ## explore
 co2 %>% head()
-co2 %>% dim() # 12
-
-## create new variable that is only 2007 data
-gap_2007 <- gapminder %>%
-  filter(year == 2007) 
-gap_2007 %>% dim() # 142  
-
-## left_join gap_2007 to co2
-lj <- left_join(gap_2007, co2, by = "country")
-
-## explore
-lj %>% dim() #142
-lj %>% summary() # lots of NAs in the co2_2017 columm
-lj %>% View() 
-
-## right_join gap_2007 and co2
-rj <- right_join(gap_2007, co2, by = "country")
-
-## explore
-rj %>% dim() # 12
-rj %>% summary()
-rj %>% View() 
 ~~~
 {: .language-r}
 
+~~~
+# A tibble: 6 x 2
+  country        co2_2007
+  <chr>             <dbl>
+1 Afghanistan      2938. 
+2 Albania          4218. 
+3 Algeria        105838. 
+4 American Samoa     18.4
+5 Angola          17405. 
+6 Anguilla           12.4
+~~~
+{: .output}
+
+It is a simple dataframe with countries and their level of CO2 in 2007. 
+
+Let's filter the gapminder dataset for the year 2007. 
+~~~
+## create new variable that is only 2007 data
+gap_2007 <- gapminder %>%
+  filter(year == 2007) 
+
+## left_join gap_2007 to co2
+gapminder_with_co2_left <- left_join(gap_2007, co2, by = "country")
+
+## First lines
+gapminder_with_co2_left
+~~~
+{: .language-r}
+
+
+~~~
+  country      year       pop continent lifeExp gdpPercap co2_2007
+   <chr>       <dbl>     <dbl> <chr>       <dbl>     <dbl>    <dbl>
+ 1 Afghanistan  2007  31889923 Asia         43.8      975.    2938.
+ 2 Albania      2007   3600523 Europe       76.4     5937.    4218.
+ 3 Algeria      2007  33333216 Africa       72.3     6223.  105838.
+ 4 Angola       2007  12420476 Africa       42.7     4797.   17405.
+ 5 Argentina    2007  40301927 Americas     75.3    12779.  175533.
+ 6 Australia    2007  20434176 Oceania      81.2    34435.  425957.
+ 7 Austria      2007   8199783 Europe       79.8    36126.   75961.
+ 8 Bahrain      2007    708573 Asia         75.6    29796.      NA 
+ 9 Bangladesh   2007 150448339 Asia         64.1     1391.      NA 
+10 Belgium      2007  10392226 Europe       79.4    33693.      NA 
+~~~
+{: .output}
+
+Some countries from the gapminder dataset do not have CO2 values and get assigned an `NA` with a `left_join()`.
+
+~~~
+## right_join gap_2007 and co2
+gapminder_with_co2_right <- right_join(gap_2007, co2, by = "country")
+
+## explore
+gapminder_with_co2_right
+~~~
+{: .language-r}
+
+~~~
+  country         year      pop continent lifeExp gdpPercap co2_2007
+   <chr>          <dbl>    <dbl> <chr>       <dbl>     <dbl>    <dbl>
+ 1 Afghanistan     2007 31889923 Asia         43.8      975.   2938. 
+ 2 Albania         2007  3600523 Europe       76.4     5937.   4218. 
+ 3 Algeria         2007 33333216 Africa       72.3     6223. 105838. 
+ 4 American Samoa    NA       NA NA           NA         NA      18.4
+ 5 Angola          2007 12420476 Africa       42.7     4797.  17405. 
+ 6 Anguilla          NA       NA NA           NA         NA      12.4
+ 7 Argentina       2007 40301927 Americas     75.3    12779. 175533. 
+ 8 Armenia           NA       NA NA           NA         NA    5336. 
+ 9 Aruba             NA       NA NA           NA         NA     282. 
+10 Australia       2007 20434176 Oceania      81.2    34435. 425957. 
+11 Austria         2007  8199783 Europe       79.8    36126.  75961. 
+12 Azerbaijan        NA       NA NA           NA         NA   28034. 
+~~~
+{: .output}
+
+Here, countries that have CO2 values but no values for their population or gdpPercap get an `NA`. 
+
 That's all we're going to talk about today with joining, but there are more ways to think about and join your data. Check out the [Relational Data Chapter](http://r4ds.had.co.nz/relational-data.html) in [R for Data Science](http://r4ds.had.co.nz).
 
-# Resources
+# 6. Resources and credits
 
 Today's materials are again borrowing from some excellent sources, including:
 

@@ -16,18 +16,34 @@ keypoints:
 - "The `complete` function fills in implicitely missing observations (balance the number of observations)."
 ---
 
-## Table of contents
-1. [Introduction](#introduction)
-2. [`tidyr` basics](#tidyr-basics)
-3. [Explore the gapminder dataset.](#explore-the-gapminder-dataset)
-4. [`gather()` data from wide to long format](#gather-data-from-wide-to-long-format)
-5. [Plot long format data](#plot-long-format-data)
-6. [`spread()`: from long to wide format ](#spread-from-long-to-wide-format-)
-7. [Recap: the complete RMarkdown notebook ](#recap-the-complete-rmarkdown-notebook-)
-8. [`complete()` turns implicit missing values into explicit missing values.](#complete-turns-implicit-missing-values-into-explicit-missing-values)
-9. [Other links](#other-links)
+<img src="../img/05-tidyr.png" width="200px" alt="tidyr logo">
 
-## Introduction
+<!-- MarkdownTOC autolink="true" -->
+
+- [Introduction](#introduction)
+  - [Resources](#resources)
+  - [Data and packages](#data-and-packages)
+- [`tidyr` basics](#tidyr-basics)
+  - [Explore the gapminder dataset.](#explore-the-gapminder-dataset)
+    - [Setup](#setup)
+    - [Load `tidyverse` \(which has `tidyr` inside\)](#load-tidyverse-which-has-tidyr-inside)
+  - [`gather()` data from wide to long format](#gather-data-from-wide-to-long-format)
+    - [Data import](#data-import)
+    - [Recap:](#recap)
+    - [From messy to tidy: final steps](#from-messy-to-tidy-final-steps)
+  - [Plot long format data](#plot-long-format-data)
+    - [Your turn](#your-turn)
+    - [Additional customization](#additional-customization)
+  - [`spread()`: from long to wide format](#spread-from-long-to-wide-format)
+    - [Your turn](#your-turn-1)
+  - [Recap: the complete RMarkdown notebook](#recap-the-complete-rmarkdown-notebook)
+  - [`complete()` turns implicit missing values into explicit missing values.](#complete-turns-implicit-missing-values-into-explicit-missing-values)
+  - [Credits](#credits)
+
+<!-- /MarkdownTOC -->
+
+
+# Introduction
 
 Now you have some experience working with tidy data and seeing the logic of wrangling when data are structured in a tidy way. But 'real' data often don't start off in a tidy way, and require some reshaping to become tidy. The `tidyr` package is for reshaping data. You won't use `tidyr` functions as much as you use `dplyr` functions, but it is incredibly powerful when you need it.
 
@@ -36,7 +52,7 @@ Why is this important? Well, if your data are formatted in a standard way, you w
 To make a long story short:
 > All messy datasets are messy in their own way but all tidy datasets look alike. 
 
-### Resources
+## Resources
 
 These materials borrow heavily from: 
 
@@ -44,14 +60,14 @@ These materials borrow heavily from:
 - [R for Data Science: Tidy Data](http://r4ds.had.co.nz/tidy-data.html#spreading-and-gathering)
 - [The original paper on tidy data](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf)
 
-### Data and packages
+## Data and packages
 
 We'll use the package `tidyr` and `dplyr`, which are bundled within the `tidyverse` package. 
 
 We'll also be using the Gapminder data we used when learning `dplyr`. We will also explore several datasets that come in `base-R`, in the `datasets` package.
 
 
-## `tidyr` basics
+# `tidyr` basics
 
 Remember, from the `dplyr` section, that tidy data means all rows are an observation and all columns are variables.
 ![](../img/tidy_data.png)
@@ -68,12 +84,28 @@ AirPassengers
 ~~~
 {:.language-r}
 
-<!---TODO: gather this (it's not a dataframe...)--->
+~~~
+     Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+1949 112 118 132 129 121 135 148 148 136 119 104 118
+1950 115 126 141 135 125 149 170 170 158 133 114 140
+1951 145 150 178 163 172 178 199 199 184 162 146 166
+1952 171 180 193 181 183 218 230 242 209 191 172 194
+1953 196 196 236 235 229 243 264 272 237 211 180 201
+1954 204 188 235 227 234 264 302 293 259 229 203 229
+1955 242 233 267 269 270 315 364 347 312 274 237 278
+1956 284 277 317 313 318 374 413 405 355 306 271 306
+1957 315 301 356 348 355 422 465 467 404 347 305 336
+1958 340 318 362 348 363 435 491 505 404 359 310 337
+1959 360 342 406 396 420 472 548 559 463 407 362 405
+1960 417 391 419 461 472 535 622 606 508 461 390 432
+~~~
+{: .output}
+
 This format is intuitive for data entry, but less so for data analysis. If you wanted to calculate the monthly mean, where would you put it? As another row? 
 
 Often, data must be reshaped for it to become tidy data. What does that mean? There are four main verbs we'll use, which are essentially pairs of opposites:
 
-- turn columns into rows (`gather()`),
+- turn columns into rows: `gather()` (tidyr < 1.0.0,
 - turn rows into columns (`spread()`),
 - turn a character column into multiple columns (`separate()`),
 - turn multiple character columns into a single column (`unite()`)
@@ -130,7 +162,7 @@ First load `tidyr` in an R chunk. You already have installed the tidyverse, so y
 ~~~
 library(tidyverse) 
 ~~~
-{:.language-r}
+{: .language-r}
 
 ## `gather()` data from wide to long format
 
@@ -499,10 +531,11 @@ kelpdf %>% complete(Year = full_seq(Year, period = 1),
 {:.language-r}
 
 
-## Other links
+## Credits
 
 * [Tidying up Data - Env Info](http://ucsb-bren.github.io/env-info/wk04_tidyr.html) 
 * [Rmd](https://github.com/ucsb-bren/env-info/blob/gh-pages/wk04_tidyr.Rmd)
 * [Data wrangling with dplyr and tidyr - Tyler Clavelle & Dan Ovando](http://bbest.github.io/dplyr-tidyr-tutorial/) 
 * [Rmd](https://github.com/bbest/dplyr-tidyr-tutorial/blob/gh-pages/index.Rmd)
+* [Great statistical illustrations by Allison Horst](https://github.com/allisonhorst/stats-illustrations)
 

@@ -26,13 +26,35 @@ keypoints:
 4. [Conditional statements with `if` and `else`](#conditional-statements-with-if-and-else)
 5. [More R!](#more-r)
 
-## Introduction
+<!-- MarkdownTOC autolink="true" -->
+
+- [Introduction](#introduction)
+- [Create an R script](#create-an-r-script)
+  - [Automation with for loops](#automation-with-for-loops)
+    - [Thinking ahead: cleaning up our code](#thinking-ahead-cleaning-up-our-code)
+    - [For loop basic structure](#for-loop-basic-structure)
+    - [Executable for loop!](#executable-for-loop)
+    - [Your turn](#your-turn)
+  - [Conditional statements with `if` and `else`](#conditional-statements-with-if-and-else)
+    - [if statement basic structure](#if-statement-basic-structure)
+    - [Executable if statement](#executable-if-statement)
+    - [Executable if/else statement](#executable-ifelse-statement)
+  - [More R!](#more-r)
+    - [Importing and Installing](#importing-and-installing)
+    - [Organization and workflows](#organization-and-workflows)
+    - [Getting help](#getting-help)
+    - [Going further](#going-further)
+
+<!-- /MarkdownTOC -->
+
+
+# Introduction
 
 Now we are going to build a little analysis. We will learn to automate our analyses with a *for loop*. We will make figures, and save them each with automated labeling. Then, we will join data from different files and conditionally label them with if/else statements.
 
 OK, here is the plan for our analysis. We want to plot the **gdpPercap** for each country in the gapminder data frame. So that's 142 separate plots! We will automate this, labeling each one with its name and saving it in a folder called figures. We will learn a bunch of things as we go.
 
-## Create an R script
+# Create an R script
 
 OK, now, we are going to create an R script. What is an R script? It's a text file with a .R extension. We've been writing R code in R Markdown files so far; R scripts are just R code without the Markdown plain text along with it.
 
@@ -44,7 +66,7 @@ Let's start off with a few comments so that we know what it is for, and save it:
 ## gapminder-analysis.R
 ## R-based analysis with gapminder data
 ~~~
-{:.language-r}
+{: .language-r}
 
 We'll be working with the gapminder data again so let's read it in here:
 

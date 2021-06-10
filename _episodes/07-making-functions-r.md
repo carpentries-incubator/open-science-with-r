@@ -4,7 +4,7 @@ teaching: 30
 exercises: 60
 questions:
 - "What is the structure of a function in R?"
-- "Functions allow to perform "
+- "What are functions important for code readability and quality?"
 objectives:
 - "Understand how a function in R is structured."
 - "Be able to name the advantages of creating functions."
@@ -51,8 +51,8 @@ Functions are at the heart of the R programming language. A lot of analytical st
 >  a - b
 > }
 > ```
-> {: .language-r}
-> 
+{: .language-r}
+ 
 > Type `?formals(subby)`  
 > Type `?body(subby)`
 > Type `?environment(subby)`
