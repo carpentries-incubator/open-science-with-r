@@ -432,13 +432,13 @@ ggsave("name_of_file.png", my_plot, width = 15, height = 10)
 
 Note: The parameters `width` and `height` also determine the font size in the saved plot.
 
-## Bonus
+## Bonus 1: animated graph
 
 So as you can see, `ggplot2` is a fantastic package for visualizing data. But there are some additional packages that let you make plots interactive. `plotly`, `gganimate`.
 
 ~~~
-# install package first and load library
-install.packages("plotly")
+# install package if necessary and load library
+# install.packages("plotly")
 library(plotly)
 
 my_plot <- ggplot(data = mass) +
@@ -464,3 +464,25 @@ acad_vis <- ggplot(data = acadia, aes(x = year, y = visitors)) +
 ggplotly(acad_vis)
 ~~~
 {:.language-r}
+
+
+## Bonus 2: additional colours with scale_colour_brewer
+
+We can use the `scale_colour_brewer` from the `ggplot2` package to change the colour scheme of our plot.   
+From the help page of the function: 
+> The brewer scales provides sequential, diverging and qualitative colour schemes from ColorBrewer. These are particularly well suited to display discrete values on a map. See [http://colorbrewer2.org](http://colorbrewer2.org) for more information.
+
+~~~
+# (re)create an object that stores averages of life expectancy per continent and per year
+acad_vis <- ggplot(data = acadia, aes(x = year, y = visitors)) +
+  geom_point() +
+  geom_line() +
+  geom_smooth(color = "red") +
+  labs(title = "Acadia National Park Visitation",
+       y = "Visitation",
+       x = "Year") +
+  theme_bw() +
+  scale_colour_brewer(type = "qual", palette = "Set1")  
+~~~ 
+{:.language-r}
+
