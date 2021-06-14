@@ -1,7 +1,7 @@
 ---
 title: "Data transformation with dplyr"
-teaching: 30
-exercises: 60
+teaching: 45
+exercises: 15
 questions:
 - "How do I perform data transformations such as removing columns on my data using R?"
 - "What are tidy data (in opposition to messy data)?"
@@ -19,32 +19,34 @@ keypoints:
 - "The _then_ operator `%>%` allows you to chain successive operations without needing to define intermediary variables for creating the most parsimonious, easily read analysis."
 ---
 
+<img src="../img/04-dplyr-logo.png" width="200px" alt="dplyr logo">
+
 # Table of contents
 
 <!-- MarkdownTOC autolink="true" levels="1,2" -->
 
 - [1. Introduction](#1-introduction)
-	- [1.1 Why should we care about data transformation?](#11-why-should-we-care-about-data-transformation)
-	- [1.2 Gapminder dataset](#12-gapminder-dataset)
-	- [1.3 Load the tidyverse suite](#13-load-the-tidyverse-suite)
-	- [1.4 Create a new R Markdown file.](#14-create-a-new-r-markdown-file)
+  - [1.1 Why should we care about data transformation?](#11-why-should-we-care-about-data-transformation)
+  - [1.2 Gapminder dataset](#12-gapminder-dataset)
+  - [1.3 Load the tidyverse suite](#13-load-the-tidyverse-suite)
+  - [1.4 Create a new R Markdown file.](#14-create-a-new-r-markdown-file)
 - [2. Explore the gapminder dataframe](#2-explore-the-gapminder-dataframe)
-	- [2.1 Import data with `readr::read_csv()`](#21-import-data-with-readrread_csv)
-	- [2.2 Dataset inspection](#22-dataset-inspection)
-	- [2.3 Descriptive statistics of the gapminder dataset](#23-descriptive-statistics-of-the-gapminder-dataset)
+  - [2.1 Import data with `readr::read_csv()`](#21-import-data-with-readrread_csv)
+  - [2.2 Dataset inspection](#22-dataset-inspection)
+  - [2.3 Descriptive statistics of the gapminder dataset](#23-descriptive-statistics-of-the-gapminder-dataset)
 - [3. `dplyr` basics](#3-dplyr-basics)
-	- [3.1 `filter()` observations](#31-filter-observations)
-	- [3.2 `select()` variables](#32-select-variables)
-	- [3.3 The pipe  `%>%` operator](#33-the-pipe--operator)
-	- [3.4 `mutate()` adds new variables](#34-mutate-adds-new-variables)
-	- [3.5 `group_by` makes group that can be `summarize()`](#35-group_by-makes-group-that-can-be-summarize)
-	- [3.6 `arrange()` orders columns](#36-arrange-orders-columns)
+  - [3.1 `filter()` observations](#31-filter-observations)
+  - [3.2 `select()` variables](#32-select-variables)
+  - [3.3 The pipe  `%>%` operator](#33-the-pipe--operator)
+  - [3.4 `mutate()` adds new variables](#34-mutate-adds-new-variables)
+  - [3.5 `group_by` makes group that can be `summarize()`](#35-group_by-makes-group-that-can-be-summarize)
+  - [3.6 `arrange()` orders columns](#36-arrange-orders-columns)
 - [4. All together now](#4-all-together-now)
-	- [4.1 With `dplyr`](#41-with-dplyr)
-	- [4.2 With `base` R](#42-with-base-r)
+  - [4.1 With `dplyr`](#41-with-dplyr)
+  - [4.2 With `base` R](#42-with-base-r)
 - [5. Joining datasets](#5-joining-datasets)
-	- [5.1 Types of join](#51-types-of-join)
-	- [5.2 Join the gapminder dataset with a co2 dataset](#52-join-the-gapminder-dataset-with-a-co2-dataset)
+  - [5.1 Types of join](#51-types-of-join)
+  - [5.2 Join the gapminder dataset with a co2 dataset](#52-join-the-gapminder-dataset-with-a-co2-dataset)
 - [6. Resources and credits](#6-resources-and-credits)
 
 <!-- /MarkdownTOC -->

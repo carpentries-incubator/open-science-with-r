@@ -1,17 +1,17 @@
 ---
 title: "Data tidying with tidyr"
-teaching: 30
-exercises: 60 
+teaching: 45
+exercises: 15 
 questions:
 - "How can I turn my dataset into the tidy format to perform efficient data analyses with R?"
 - "How can I convert from the tidy format to a more classic wide format?"
 - "How can I make my dataset explicit for all combinations of variables?"
 objectives:
-- "Be able to convert a dataset format using the `gather` and `spread` functions"
+- "Be able to convert a dataset format using the `pivot_longer()` and `pivot_wider()` functions"
 - "Be capable of understand and explore a publically available dataset (gapminder)"
 keypoints:
-- "The `gather` function turns columns into rows (make a dataset tidy)."
-- "The `spread` function turns rows into columns (make a dataset wide)."
+- "The `pivot_longer()` function turns columns into rows (make a dataset tidy)."
+- "The `pivot_wider()` function turns rows into columns (make a dataset wide and more human readable)."
 - "Tidy dataset go hand in hand with `ggplot2` plotting."
 - "The `complete` function fills in implicitely missing observations (balance the number of observations)."
 ---
@@ -35,17 +35,17 @@ keypoints:
     - [2.3.1 Back to the complete `gap_wide` dataset](#231-back-to-the-complete-gap_wide-dataset)
     - [2.3.2 The `separate()` function](#232-the-separate-function)
 - [3. Plotting tidy data](#3-plotting-tidy-data)
-  - [3.1 One country and one variable 🇨🇦](#31-one-country-and-one-variable-%F0%9F%87%A8%F0%9F%87%A6)
+  - [3.1 One country 🇨🇦 and one variable](#31-one-country-%F0%9F%87%A8%F0%9F%87%A6-and-one-variable)
   - [3.2 One country and many variables](#32-one-country-and-many-variables)
-- [3. Back to a compact wide format with `pivot_wider()`](#3-back-to-a-compact-wide-format-with-pivot_wider)
-  - [3.1 The `pivot_wider()` function](#31-the-pivot_wider-function)
-    - [Your turn](#your-turn)
-  - [Recap: the complete R Markdown notebook](#recap-the-complete-r-markdown-notebook)
-- [Bonus: the `complete()` function to turn implicit missing values into explicit missing values.](#bonus-the-complete-function-to-turn-implicit-missing-values-into-explicit-missing-values)
-- [Resources and credits](#resources-and-credits)
+- [4. Back to a compact wide format with `pivot_wider()`](#4-back-to-a-compact-wide-format-with-pivot_wider)
+  - [4.1 The `pivot_wider()` function](#41-the-pivot_wider-function)
+  - [4.2 From long to wide](#42-from-long-to-wide)
+- [5. Bonus: the `complete()` function](#5-bonus-the-complete-function)
+- [6. Resources and credits](#6-resources-and-credits)
 
 <!-- /MarkdownTOC -->
 
+<br>
 
 # 1. Introduction
 
@@ -475,7 +475,7 @@ When `values_to` is not specified inside the `pivot_longer()` function, the corr
 The underlying reasoning behind the tidying up of data is to allow complex and insightful representations of data. 
 In this section, some examples will be demonstrated in combination with your recently acquired `ggplot` know-how. 
 
-## 3.1 One country and one variable 🇨🇦
+## 3.1 One country 🇨🇦 and one variable 
 
 Say we are interested in Canada and we'd like to plot the life expectancy over time. Using all our `dplyr`, `magrittr`, `tidyr` and `ggplot` knowledge, this can be done in a series of sequential operation. 
 
@@ -498,7 +498,7 @@ gap_long %>%
 
 This gives us the following plot.
 
-<img src="../img/05-plot-canada.png" width="50%" alt="life expectancy versus year for Canada">
+<img src="../img/05-plot-canada.png" width="40%" alt="life expectancy versus year for Canada">
 
 ## 3.2 One country and many variables 
 
@@ -548,123 +548,149 @@ This gives us a very comprehensive plot that allows us to compare different vari
 > {: .solution}
 {: .challenge}
 
-# 3. Back to a compact wide format with `pivot_wider()` 
+<br>
 
-## 3.1 The `pivot_wider()` function
+# 4. Back to a compact wide format with `pivot_wider()` 
+
+## 4.1 The `pivot_wider()` function
 
 The function `pivot_wider()` function is used to transform data from long to wide format.
 
-Alright! Now just to double-check our work, let's use the opposite of `gather()` to spread our observation variables back to the original format with the aptly named `spread()`. You pass `spread()` the key and value pair, which is now `obs_type` and `obs_values`.
+The wide format is useful when you want to provide a compact form of your dataset. The previous tidy steps will make sure this compact form is clean and does not contain messy data anymore like several data types per cell. 
 
-![](../img/rstudio-cheatsheet-reshaping-data-spread.png)
+The `pivot_wider()` and `pivot_longer()` are reciprocal functions so we should get our observation variables back to the original format (without the messy parts). 
 
 <img src="../img/rstudio-cheatsheet-reshaping-data-gather.png" width="400px" />
 
 ~~~
-gap_normal <- gap_long %>% 
-  spread(obs_type, obs_values)
+?pivot_wider
+~~~
+{: .language-r}
+
+
+~~~
+pivot_wider(
+  data,
+  id_cols = NULL,
+  names_from = name,
+  names_prefix = "",
+  names_sep = "_",
+  names_glue = NULL,
+  names_sort = FALSE,
+  names_repair = "check_unique",
+  values_from = value,
+  values_fill = NULL,
+  values_fn = NULL,
+  ...
+)
+~~~
+{: .output}
+
+Here is an explanation of the main arguments of `pivot_wider()` that we will use:
+* `data`: the long tidy dataframe we will convert to the wide format.  
+* `names_from`: the column from which the column names will be taken for the wide dataframe. 
+* `values_from`: the column containing the cell values for the wide dataframe. 
+
+## 4.2 From long to wide
+
+Let's see if we can convert our `gap_gdp_long` dataframe. 
+~~~
+# Pivot longer
+
+gap_gdp_wide <- 
+  gap_gdp_long %>% 
+  pivot_wider(names_from = "year", 
+              values_from = "gdpPercap") 
+head(gap_gdp_wide, n = 10)
 ~~~
 {:.language-r}
+
+The `data` argument is not required because we use the `%>%` operator so we pass the `gap_gdp_long` dataframe to the `pivot_longer()` function.   
+Since we do not specify the `id_cols` argument, all remaining columns are used as identifier columns. Here, `continent` and `country` are used as identifier columns.  
+
+
 
 No warning messages is good...but still let's check:
 
 ~~~
-dim(gap_normal)
-dim(gapminder)
-names(gap_normal)
-names(gapminder)
+# A tibble: 142 x 14
+   continent country                  `1952` `1957` `1962` `1967` `1972` `1977` `1982` `1987` `1992` `1997` `2002` `2007`
+   <chr>     <chr>                     <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+ 1 Africa    Algeria                   2449.  3014.  2551.  3247.  4183.  4910.  5745.  5681.  5023.  4797.  5288.  6223.
+ 2 Africa    Angola                    3521.  3828.  4269.  5523.  5473.  3009.  2757.  2430.  2628.  2277.  2773.  4797.
+ 3 Africa    Benin                     1063.   960.   949.  1036.  1086.  1029.  1278.  1226.  1191.  1233.  1373.  1441.
+ 4 Africa    Botswana                   851.   918.   984.  1215.  2264.  3215.  4551.  6206.  7954.  8647. 11004. 12570.
+ 5 Africa    Burkina Faso               543.   617.   723.   795.   855.   743.   807.   912.   932.   946.  1038.  1217.
+ 6 Africa    Burundi                    339.   380.   355.   413.   464.   556.   560.   622.   632.   463.   446.   430.
+ 7 Africa    Cameroon                  1173.  1313.  1400.  1508.  1684.  1783.  2368.  2603.  1793.  1694.  1934.  2042.
+ 8 Africa    Central African Republic  1071.  1191.  1193.  1136.  1070.  1109.   957.   845.   748.   741.   739.   706.
+ 9 Africa    Chad                      1179.  1308.  1390.  1197.  1104.  1134.   798.   952.  1058.  1005.  1156.  1704.
+10 Africa    Comoros                   1103.  1211.  1407.  1876.  1938.  1173.  1267.  1316.  1247.  1174.  1076.   986.
+# … with 132 more rows
 ~~~
-{:.language-r}
+{: .output}
 
-Now we've got a dataframe `gap_normal` with the same dimensions as the original `gapminder`.
+Now we've got a dataframe `gap_gdp_wide` with 142 rows and 14 columns. Except the `continent` and `country`, all other columns contain one type of data (GPD per capita) for each year between 1952 and 2007. 
 
-### Your turn 
+> ## Be careful
+> Always double check the conversion of numbers
+> In this example, GDP per capita values have been stored as `dbl` (double, a float number) so it's all fine. 
+{: .callout} 
 
-> ## Exercise
+
+> ## Exercise 1
 >
-> Convert `gap_long` all the way back to `gap_wide`.  
-> **Hint:** Do this in 2 steps. First, create appropriate labels for all our new variables (variable_year combinations) with the opposite of separate: `tidyr::unite()`. Second, `spread()` that variable_year column into wider format.
->
+> Convert `gap_long` to its `gap_wide` wide format. 
+> **Hint:** your final `gap_wide` dataframe should contain a column per year and 3 identifier columns.   
+> 
 > > ## Solution
-> > `head(gap_long) # remember the columns`   
-> > `gap_wide_new <- gap_long %>%`   
-> > First unite obs_type and year into a new column called var_names. Separate by _     
-> > `unite(col = var_names, obs_type, year, sep = "_") %>%`  
-> > Then spread var_names out by key-value pair.  
-> > `spread(key = var_names, value = obs_values)`   
-> > `str(gap_wide_new)`    
+> > ~~~
+> > gap_wide <- 
+> >   gap_long %>% 
+> >   pivot_wider(names_from = "year", 
+> >                values_from = "value")
+> > ~~~
+> > {: .language-r}
+> > This gives the following dataframe:  
+> > ~~~
+> >  continent country variable   `1952`   `1957`   `1962`   `1967`  `1972`  `1977`  `1982`  `1987`  `1992`  `1997`  `2002`  `2007`
+> >   <chr>     <chr>   <chr>       <dbl>    <dbl>    <dbl>    <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+> > 1 Africa    Algeria gdpPercap  2.45e3   3.01e3   2.55e3   3.25e3  4.18e3  4.91e3  5.75e3  5.68e3  5.02e3  4.80e3  5.29e3  6.22e3
+> > 2 Africa    Algeria lifeExp    4.31e1   4.57e1   4.83e1   5.14e1  5.45e1  5.80e1  6.14e1  6.58e1  6.77e1  6.92e1  7.10e1  7.23e1
+> > 3 Africa    Algeria pop        9.28e6   1.03e7   1.10e7   1.28e7  1.48e7  1.72e7  2.00e7  2.33e7  2.63e7  2.91e7  3.13e7  3.33e7
+> > 4 Africa    Angola  gdpPercap  3.52e3   3.83e3   4.27e3   5.52e3  5.47e3  3.01e3  2.76e3  2.43e3  2.63e3  2.28e3  2.77e3  4.80e3
+> > 5 Africa    Angola  lifeExp    3.00e1   3.20e1   3.40e1   3.60e1  3.79e1  3.95e1  3.99e1  3.99e1  4.06e1  4.10e1  4.10e1  4.27e1
+> > ~~~
+> > {: .output}
 > {: .solution}
 {: .challenge}
 
-## Recap: the complete R Markdown notebook 
 
-Spend some time cleaning up and saving `gapminder-wrangle.Rmd`
-Restart R. In RStudio, use *Session > Restart R*. Otherwise, quit R with `q()` and re-launch it.
+> ## Exercise 2
+> Can you convert the `gap_wide` back to `gap_long` tidy format? 
+> 
+> > ## Solution
+> > ~~~
+> > gap_wide %>% 
+> >   pivot_longer(-c(continent, country, variable), names_to = "year")
+> > ~~~
+> > {: .language-r}
+> > This gives the following dataframe:
+> > ~~~
+> > # A tibble: 5,112 x 5
+> >    continent country variable  year  value
+> >    <chr>     <chr>   <chr>     <chr> <dbl>
+> >  1 Africa    Algeria gdpPercap 1952  2449.
+> >  2 Africa    Algeria gdpPercap 1957  3014.
+> >  3 Africa    Algeria gdpPercap 1962  2551.
+> >  4 Africa    Algeria gdpPercap 1967  3247.
+> >  5 Africa    Algeria gdpPercap 1972  4183.
+> {: .solution}
+{: .challenge}
 
-This session R Markdown notebook .Rmd could look something like this: 
+<br> 
 
-~~~
-## load tidyverse
-library(tidyverse) 
-
-## load wide data
-gap_wide <- readr::read_csv('https://github.com/carpentries-incubator/open-science-with-r/blob/gh-pages/data/gapminder_wide.csv')
-
-head(gap_wide)
-str(gap_wide)
-
-## practice tidyr::gather() wide to long
-gap_long <- gap_wide %>% 
-  gather(key   = obstype_year,
-         value = obs_values,
-         -continent, -country) 
-# or 
-gap_long <- gap_wide %>% 
-  gather(key   = obstype_year,
-         value = obs_values,
-         dplyr::starts_with('pop'),
-         dplyr::starts_with('lifeExp'),
-         dplyr::starts_with('gdpPercap'))
-
-## gather() and separate() to create our original gapminder
-gap_long <- gap_wide %>% 
-  gather(key   = obstype_year,
-         value = obs_values,
-         -continent, -country) %>%
-  separate(obstype_year,
-           into = c('obs_type','year'),
-           sep="_")
-
-## practice: can still do calculations in long format
-gap_long %>% 
-  group_by(continent, obs_type) %>%
-  summarize(means = mean(obs_values))
-
-## spread() from normal to wide
-gap_normal <- gap_long %>% 
-  spread(obs_type, obs_values) %>%
-  select(country, continent, year, lifeExp, pop, gdpPercap)
-
-## check that all.equal()
-all.equal(gap_normal,gapminder)
-
-## unite() and spread(): convert gap_long to gap_wide
-head(gap_long) # remember the columns
-
-gap_wide_new <- gap_long %>% 
-  # first unite obs_type and year into a new column called var_names. Separate by _
-  unite(col = var_names, obs_type, year, sep = "_") %>% 
-  # then spread var_names out by key-value pair.
-  spread(key = var_names, value = obs_values)
-str(gap_wide_new)
-~~~
-{:.language-r}
-
-
-
-
-
-# Bonus: the `complete()` function to turn implicit missing values into explicit missing values.
+# 5. Bonus: the `complete()` function 
 
 One of the coolest functions in `tidyr` is the function `complete()`. Jarrett Byrnes has written up a [great blog piece](http://www.imachordata.com/you-complete-me/) showcasing the utility of this function so I'm going to use that example here.
 
@@ -680,6 +706,17 @@ kelpdf
 ~~~
 {:.language-r}
 
+~~~
+> kelpdf
+  Year      Taxon Abundance
+1 1999 Saccharina         4
+2 2000 Saccharina         5
+3 2004 Saccharina         2
+4 1999     Agarum         1
+5 2004     Agarum         8
+~~~
+{: .output}
+
 Jarrett points out that *Agarum* is not listed for the year 2000. Does this mean it wasn't observed (Abundance = 0) or that it wasn't recorded (Abundance = NA)? Only the person who recorded the data knows, but let's assume that the this means the Abundance was 0 for that year. 
 
 We can use the `complete()` function to make our dataset more complete.
@@ -690,24 +727,72 @@ kelpdf %>%
 ~~~
 {:.language-r}
 
+~~~
+ A tibble: 6 x 3
+   Year Taxon      Abundance
+  <dbl> <fct>          <dbl>
+1  1999 Agarum             1
+2  1999 Saccharina         4
+3  2000 Agarum            NA
+4  2000 Saccharina         5
+5  2004 Agarum             8
+6  2004 Saccharina         2
+~~~
+{: .output}
+
+
 This gives us an NA for *Agarum* in 2000, but we want it to be a 0 instead. We can use the `fill` argument to assign the fill value.
 
 ~~~
-kelpdf %>% complete(Year, Taxon, fill = list(Abundance = 0))
+kelpdf %>% 
+  complete(Year, Taxon, fill = list(Abundance = 0))
 ~~~
 {:.language-r}
+
+~~~
+ A tibble: 6 x 3
+   Year Taxon      Abundance
+  <dbl> <fct>          <dbl>
+1  1999 Agarum             1
+2  1999 Saccharina         4
+3  2000 Agarum            0
+4  2000 Saccharina         5
+5  2004 Agarum             8
+6  2004 Saccharina         2
+~~~
+{: .output}
 
 Now we have what we want. Let's assume that all years between 1999 and 2004 that aren't listed should actually be assigned a value of 0. We can use the `full_seq()` function from `tidyr` to fill out our dataset with all years 1999-2004 and assign Abundance values of 0 to those years & species for which there was no observation.
 
 ~~~
 
-kelpdf %>% complete(Year = full_seq(Year, period = 1),
+kelpdf %>% 
+  complete(Year = full_seq(Year, period = 1),
                    Taxon,
                    fill = list(Abundance = 0))
 ~~~
 {:.language-r}
 
-# Resources and credits
+~~~
+# A tibble: 12 x 3
+    Year Taxon      Abundance
+   <dbl> <fct>          <dbl>
+ 1  1999 Agarum             1
+ 2  1999 Saccharina         4
+ 3  2000 Agarum             0
+ 4  2000 Saccharina         5
+ 5  2001 Agarum             0
+ 6  2001 Saccharina         0
+ 7  2002 Agarum             0
+ 8  2002 Saccharina         0
+ 9  2003 Agarum             0
+10  2003 Saccharina         0
+11  2004 Agarum             8
+12  2004 Saccharina         2
+~~~
+{: .output}
+
+# 6. Resources and credits
 
 These materials borrow heavily from: 
 - [R for Data Science: Relational Data](http://r4ds.had.co.nz/relational-data)
