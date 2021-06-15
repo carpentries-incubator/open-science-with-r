@@ -18,10 +18,10 @@ keypoints:
 
 <!-- MarkdownTOC autolink="True" levels="1,2" -->
 
-- [Introduction](#introduction)
-	- [When to make functions?](#when-to-make-functions)
-	- [Function components](#function-components)
-	- [Steps when building a function](#steps-when-building-a-function)
+- [1. Introduction](#1-introduction)
+	- [1.1 When to make functions?](#11-when-to-make-functions)
+	- [1.2 Function components](#12-function-components)
+	- [1.3 Steps when building a function](#13-steps-when-building-a-function)
 - [Good function practices](#good-function-practices)
 	- [Use verbs](#use-verbs)
 	- [Argument names](#argument-names)
@@ -33,34 +33,49 @@ keypoints:
 
 <!-- /MarkdownTOC -->
 
-#  Introduction
+#  1. Introduction
 Functions are at the heart of the R programming language. A lot of analytical steps you will perform in R will be based composed of a series of functions working together.
 
-## When to make functions?
+## 1.1 When to make functions?
 - When you repeat yourself many times. Same block of code repeated over and over (copy-paste-mistake pattern).
-- When your code becomes very long (e.g. > 50 lines) and it becomes hard to understand the logic behind your code. What are the steps taken? Why? - When you need to create a series of plots, models that all differ by very few optional arguments (e.g. p-value threhold), etc. 
+- When your code becomes very long (e.g. > 50 lines) and it becomes hard to understand the logic behind your code. What are the steps taken?
+- When you want to reuse  code over multiple projects over time. Think about a function that makes a plot from the same type of input data, a functiont that performs unit conversion, etc.
+-  Why? - When you need to create a series of plots, models that all differ by very few optional arguments (e.g. p-value threhold), etc. 
 
-## Function components    
+## 1.2 Function components    
+
+- __Signature:__ the name of the function together with its arguments. 
 - __Arguments:__ arguments of your function. This can be accessed using the `?formals(my_function)` or `?args(my_function)`
 - __Body:__ function definition (inside curly braces). What your function does. 
 - __Environment:__ the variables and objects in R memory that are known to R inside the function.  
 
-> ## Exercise
-> ```
-> subby <- function(a, b) {
->  a - b
-> }
-> ```
+
+Here is a simple function that converts the _weight in kilograms_ to its corresponding _weight in pounds_. The conversion rate is taken from [Wikipedia](https://en.wikipedia.org/wiki/Avoirdupois_system).   
+
+~~~
+convert_kilogram_to_pound <- function(weight_in_kg) {
+  # one pound = 0.45359237 kilogram
+  # Sourcehttps://en.wikipedia.org/wiki/Avoirdupois_system
+  weight_in_pounds <- weight_in_kg / 0.45359237
+  return(weight_in_pounds)
+}
+~~~
 {: .language-r}
+
  
-> Type `?formals(subby)`  
-> Type `?body(subby)`
-> Type `?environment(subby)`
+> ## Exercise
+> Question 1: Apply the `formals()` function to the `convert_kilogram_to_pound` function. What component of the function do you find?  
+> Question 2: What does the `body()` function call on `convert_kilogram_to_pound` return? 
+> 
+> > ## Solution
+> > `formals(convert_kilogram_to_pound)` returns the name(s) of the function arguments. Here it returns `weight_in_kg` as it is the only argument. An alternative function is `formalArgs(convert_kilogram_to_pound)`  which only returns the name of the argument as a character.  
+> > `body(convert_kilogram_to_pound)` returns the code written inside the `convert_kilogram_to_pound()` function. 
 {: .challenge}
 
-## Steps when building a function
+## 1.3 Steps when building a function
 
 1. Making a template: choose a name for your function. Assign it: 
+
 ~~~
 my_custom_function <- function(){
 
@@ -139,3 +154,4 @@ FIXME: create a function to calculate the mean, sd and se of different parameter
 ## References 
 
 - [Beautiful custom functions in R](https://www.pluralsight.com/guides/beauty-custom-functions-r)
+- [Richie Cotton DataCamp Introduction to Writing Functions in R](https://learn.datacamp.com/courses/introduction-to-function-writing-in-r)

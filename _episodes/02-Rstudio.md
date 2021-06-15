@@ -21,9 +21,9 @@ keypoints:
 - "Literate programming is a paradigm to combine code and text so that it remains understandable to humans, not only to machines."
 ---
 
-## Table of Contents
+# Table of Contents
 
-<!-- MarkdownTOC autolink="true" -->
+<!-- MarkdownTOC autolink="true" levels="1,2,3" -->
 
 - [1. Introduction](#1-introduction)
 	- [1.1 Resources](#11-resources)
@@ -52,16 +52,16 @@ keypoints:
 	- [5.1 Functions available](#51-functions-available)
 	- [5.2 Important tips](#52-important-tips)
 	- [5.2 Large tables](#52-large-tables)
-- [6. Additional resources](#6-additional-resources)
+- [6. Credits and additional resources](#6-credits-and-additional-resources)
 
 <!-- /MarkdownTOC -->
 
 
-## 1. Introduction
+# 1. Introduction
 
-This lesson is a combination of excellent lessons by others (thank you Jenny Bryan and Data Carpentry!) that I have combined and modified for our lesson. 
+This lesson is a combination of excellent lessons by others (see Credits) (thank you Jenny Bryan and Data Carpentry!) that I have combined and modified for our lesson. 
 
-### 1.1 Resources
+## 1.1 Resources
 
 I definitely recommend reading through the original lessons and using them as reference:   
 
@@ -75,11 +75,11 @@ RStudio has great resources about its IDE (IDE stands for integrated development
 - [webinars](https://www.rstudio.com/resources/webinars/) 
 - [cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
 
-### 1.2 Data and packages
+## 1.2 Data and packages
 
 We will be using data and packages that are installed with R (often called "Base R").
 
-### 1.3 Why learn R with RStudio?
+## 1.3 Why learn R with RStudio?
 
 You are all here today to learn how to code. Coding made me a better scientist because I was able to think more clearly about analyses, and become more efficient in doing so. Data scientists are creating tools that make coding more intuitive for new coders like us, and there is a wealth of awesome instruction and resources available to learn more and get help.
 
@@ -95,9 +95,9 @@ Something else to start us off is to mention that you are learning a new languag
 
 While language is a familiar concept, programming languages are in a different context from spoken languages, but you will get to know this context with time. For example: you have a concept that there is a first meal of the day, and there is a name for that: in English it's "breakfast". So if you're learning Spanish, you could expect there is a word for this concept of a first meal. (And you'd be right: 'desayuno'). **We will get you to expect that programming languages also have words (called functions in R) for concepts as well**. You'll soon expect that there is a way to order values numerically. Or alphabetically. Or search for patterns in text. Or calculate the median. Or reorganize columns to rows. Or subset exactly what you want. We will get you increase your expectations and learn to ask and find what you're looking for.
 
-## 2. A quick touR
+# 2. A quick touR
 
-### 2.1 RStudio panes
+## 2.1 RStudio panes
 
 Like a medieval window, RStudio has several panes (sections that divide the entire window). 
 <img src="../img/02_windows_with_panes.png" alt="Window with panes" width="600px">
@@ -118,7 +118,7 @@ Notice the default panels:
 {: .callout}
 
 
-### 2.2 Locating yourself
+## 2.2 Locating yourself
 
 An important first question: **where are we inside the computer file system?**  
 
@@ -127,7 +127,7 @@ If you've have opened RStudio for the first time, you'll be in your home directo
 ![](../img/RStudio_IDE_homedir.png)
 
 
-### 2.3 First step in the console
+## 2.3 First step in the console
 
 OK let's go into the Console, where we interact with the live R process.
 
@@ -190,7 +190,7 @@ sciencerocks
 ~~~
 {: .language-r}
 
-### 2.4 Error messages are your friends
+## 2.4 Error messages are your friends
 
 Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
 
@@ -200,7 +200,7 @@ Remember that this is a language, not unsimilar to English! There are times you 
 
 And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
 
-### 2.5 Logical operators and expressions
+## 2.5 Logical operators and expressions
 
 A moment about **logical operators and expressions**. We can ask questions about the objects we made. 
 
@@ -218,7 +218,7 @@ x != 5
 ~~~
 {: .language-r}
 
-### 2.6 Variable assignment
+## 2.6 Variable assignment
 
 Let's assign a number to a variable called `weight_kg`.
 ~~~
@@ -303,9 +303,9 @@ names
 {: .challenge}  
 
 
-## 3. Diving deepeR 
+# 3. Diving deepeR 
 
-### 3.1 Functions and help pages
+## 3.1 Functions and help pages
 
 R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do.  
 
@@ -385,7 +385,7 @@ date()
 ~~~
 {: .language-r}
 
-### 3.2 Packages
+## 3.2 Packages
 
 So far we've been using a couple functions from base R, such as `seq()` and `date()`. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones. 
 
@@ -418,7 +418,7 @@ praise()
 {: .language-r}
 
 
-### 3.3 Clearing the environment
+## 3.3 Clearing the environment
 
 Now look at the objects in your environment (workspace) -- in the upper right pane. The workspace is where user-defined objects accumulate. 
 
@@ -465,7 +465,7 @@ We will keep coming back to this theme but let's restart our R session together:
 > {: .solution}
 {: .challenge}
 
-## 4. R Markdown notebook
+# 4. R Markdown notebook
 
 R Markdown will allow you to create your own workflow, save it and generate a high quality report that you can share. It supports collaboration and reproducibility of your work. 
 This is really key for collaborative research, so we're going to get started with it early and then use it for the rest of the day. 
@@ -478,7 +478,7 @@ This is really key for collaborative research, so we're going to get started wit
 > - Create a report from your analysis using a R Markdown notebook to wrap together the data + code + text.    
 {: .callout}
 
-### 4.1 R Markdown video (1-minute)
+## 4.1 R Markdown video (1-minute)
 
 <div style="padding:62.5% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/178485416?color=428bca" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 <p><a href="https://vimeo.com/178485416">What is R Markdown?</a> from <a href="https://vimeo.com/rstudioinc">RStudio, Inc.</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
@@ -490,7 +490,7 @@ This is also going to introduce us to the fact that RStudio is a sophisticated t
 An R Markdown file will allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots.
 
 
-### 4.2 Create a R Markdown document
+## 4.2 Create a R Markdown document
 
 To do so, go to:
 *File* -> *New File* -> *R Markdown*... -> Document of output format HTML -> click OK.
@@ -509,7 +509,7 @@ Let's have a look at this file — it's not blank; there is some initial text is
 - and __formatted text__ and __various outputs__ (figures, tables)
 
 
-### 4.3 The YAML header
+## 4.3 The YAML header
 
 
 The header of your R Markdown document will allow you to personalize the related report from your R Markdown document.  
@@ -555,7 +555,7 @@ compiling your R Markdown notebook into a report.
 
 
 
-### 4.4 Code chunks
+## 4.4 Code chunks
 
 Code chunks appear in grey and will execute the R code when you compile the document. 
 The following chunk will create a summary of the `cars` dataframe. 
@@ -585,21 +585,28 @@ To insert a new code chunk, you can either:
 > ## Exercise
 > Introduce a new code chunk to produce a histogram of the cars speed.   
 > Compile your R Markdown document and visualise the results.  
-> in the final document, can you find a way to hide the code chunk that generates the plot? 
+> In the final document, can you find a way to hide the code chunk that generates the plot? 
 > > ## Solution
-> > 1. Add a new code chunk:  
+> > Add a new code chunk:  
 > > ~~~
 > > ```{r}
 > > hist(cars$speed)
 > > ```
-> > 2. Inside the curly braces, add:
+> > ~~~
+> > {: .language-r}
+> > 
+> > Inside the curly braces, add:  
+> > ~~~
 > > ```{r, echo = FALSE}
 > > hist(cars$speed)
 > > ```
+> > ~~~
+> > {: .language-r}
 > {: .solution}
 {: .challenge}
 
-### 4.5 Text markdown syntax
+
+## 4.5 Text markdown syntax
 
 You might wonder what the "markdown" in R Markdown stands for.   
 
@@ -622,23 +629,22 @@ There are some good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/M
 > In Markdown: 
 > 1. Format text in italics, 
 > 2. Make a numbered list, 
-> 3. Add a web link to this R tutorial episode. 
-> 4. 
-> Use the Markdown Quick Reference (in the menu bar: Help > Markdown Quick Reference). 
-> 2. Reknit your html file. 
+> 3. Add a web link to the RStudio website in your document, 
+> 4. Add a "this is a subheader" subheader with the level 2 or 3.    
+> Reknit your document.  
 >
 > > ## Solution
-> > 1. Write some text in between the R code chuncks (delimited by `{r LABEL}`).
-> > To make a numbered list, write `1.` then add a line and write a second `2.`. 
-> > Subheaders can be written with `###` or `##` depending on the level that you want to write.
-> > 2. Simply click on the `knit` button. 
+> > 1. Add one asterisk or one underscore on both sides of the text.    
+> > 2. To make a numbered list, write `1.` then add a line and write a second `2.`. 
+> > 3. Place the link between squared brackets. [RStudio link](https://www.rstudio.com/)
+> > 4. Subheaders can be written with `###` or `##` depending on the level that you want to write.
 > {: .solution}
 {: .challenge}
 
 A complete but short guide on Markdown syntax from Yihui Xie is available [here](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html).
 
 
-### 4.6 Compile your R Markdown document
+## 4.6 Compile your R Markdown document
 
 Now that we are all set, we can compile the document to generate the corresponding HTML document. Press the "Knit" button.
 
@@ -660,7 +666,7 @@ Notice how the code `plot(pressure)` is not shown in the HTML output because of 
 {: .callout}
 
 
-### 4.7 Useful tips and common issues
+## 4.7 Useful tips and common issues
 
 Here is a list of useful keyboard shortcuts: 
 
@@ -684,7 +690,7 @@ Type "chunk" to filter the shortcuts for code chunks.
 <img src="../img/02-shortcuts.png" alt="modify keyboard shortcut panel" width="600px">
 
 > ## Common issues
-> 1. Separate workspace when compiling
+> Separate workspace when compiling
 > When you compile your R Markdown document, it will start from a _clean_ R workspace. 
 > Anything you have in your current R interactive session _will not_ be available in the R Markdown tab. 
 {: .callout}
@@ -692,17 +698,31 @@ Type "chunk" to filter the shortcuts for code chunks.
 This is often the source of bugs and halting
 
 > ## Exercise
-> In your console, type:
+> **Step 1:** In the **R console**, type:
 > ~~~
-> `library(dplyr)`   
-> `dplyr::filter(cars, speed > 20)`
+> library(dplyr)   
+> tooth_filtered <- dplyr::filter(ToothGrowth, len > 1) 
 > ~~~
 > {: .language-r}
+> You should see the `tooth_filtered` R object in your current environment.  
+>      
+> **Step 2**: in your **R Markdown** document, add this line:
+> > ~~~
+> > with(tooth_filtered, hist(x = len, col = "darkgrey"))
+> > ~~~
+> > {: .language-r} 
+> > Try to knit your document. What bug do you experience?
+> > ## Solution
+> > Since your R Markdown workspace starts from scratch and creates a new environment, it ignores the `tooth_filtered` object you created in your R console.  
+> > The solution is to add the `tooth_filtered <- dplyr::filter(ToothGrowth, len > 1) ` line inside a code chunk. 
+> {: .solution}
 {: .challenge} 
 
-## 5. Import your own data
+<br> 
 
-### 5.1 Functions available
+# 5. Import your own data
+
+## 5.1 Functions available
 
 To import your own data, you can use different functions depending on your input format:
 * `read.table` is the generic function to import from various format. You _do have to_ specify the separator as it is not known by default (tabulation or comma for instance).
@@ -714,7 +734,7 @@ Some important parameters in data import functions:
 * `stringsAsFactors = TRUE` is by default converting your characters into factors. This can be an issue for plotting for instance. I recommend to turn it off (`stringsAsFactors = FALSE` and change your strings to factors explicitely later on using `factor()` for instance.
 * `check.names = TRUE` is by default checking your column names. For instance, if your column names start with a number, then R will prepend an `X` before your column variable name. To avoid this, add `check.names = FALSE`.
 
-### 5.2 Important tips 
+## 5.2 Important tips 
 
 Taken from [Anna Krystalli workshop](https://annakrystalli.me/rrresearch/02_RDM_intro.html#18):
 
@@ -734,11 +754,11 @@ read.csv(file,
 - `fileEncoding`: if you're getting funny characters, you probably need to specify the correct encoding.
 
 
-### 5.2 Large tables
+## 5.2 Large tables
 
 If you have very large tables (1000s of rows and/or columns), use the `fread()` function from the [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) package. 
 
-## 6. Additional resources
+# 6. Credits and additional resources
 
 - The official RStudio R Markdown documentation: [https://rmarkdown.rstudio.com/](https://rmarkdown.rstudio.com/)
 - R Markdown Crash Course: a very complete course on R Markdown.  [https://zsmith27.github.io/rmarkdown_crash-course/](https://zsmith27.github.io/rmarkdown_crash-course/)

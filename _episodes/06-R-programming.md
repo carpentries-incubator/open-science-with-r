@@ -1,7 +1,7 @@
 ---
 title: "Programming with R"
-teaching: 30
-exercises: 60
+teaching: 45
+exercises: 15
 questions:
 - "How can I create a script in R to automatise a data analysis?"
 - "How can I create `for` loops in R?"
@@ -19,46 +19,45 @@ keypoints:
 - "Condition `if/else` helps you to control the execution of your R script. "
 ---
 
-## Table of contents
-1. [Introduction](#introduction)
-2. [Create an R script](#create-an-r-script)
-3. [Automation with for loops](#automation-with-for-loops)
-4. [Conditional statements with `if` and `else`](#conditional-statements-with-if-and-else)
-5. [More R!](#more-r)
+# Table of contents
 
-<!-- MarkdownTOC autolink="true" -->
+<!-- MarkdownTOC autolink="true" levels="1,2,3" -->
 
-- [Introduction](#introduction)
-- [Create an R script](#create-an-r-script)
-  - [Automation with for loops](#automation-with-for-loops)
-    - [Thinking ahead: cleaning up our code](#thinking-ahead-cleaning-up-our-code)
-    - [For loop basic structure](#for-loop-basic-structure)
+- [1. Introduction](#1-introduction)
+  - [1.1 Create an R script](#11-create-an-r-script)
+  - [1.2 Run this R script](#12-run-this-r-script)
+    - [Option 1: run your R script line by line.](#option-1-run-your-r-script-line-by-line)
+    - [Option 2: run the entire R script](#option-2-run-the-entire-r-script)
+    - [Keyboard shortcuts recap](#keyboard-shortcuts-recap)
+- [2 Automation with for loops](#2-automation-with-for-loops)
+  - [2.1 One country 🇦🇫](#21-one-country-%F0%9F%87%A6%F0%9F%87%AB)
+  - [2.2 Generalizing our code](#22-generalizing-our-code)
+  - [2.3 For loop basic structure](#23-for-loop-basic-structure)
     - [Executable for loop!](#executable-for-loop)
-    - [Your turn](#your-turn)
   - [Conditional statements with `if` and `else`](#conditional-statements-with-if-and-else)
     - [if statement basic structure](#if-statement-basic-structure)
     - [Executable if statement](#executable-if-statement)
     - [Executable if/else statement](#executable-ifelse-statement)
-  - [More R!](#more-r)
-    - [Importing and Installing](#importing-and-installing)
-    - [Organization and workflows](#organization-and-workflows)
-    - [Getting help](#getting-help)
-    - [Going further](#going-further)
+- [Resources](#resources)
 
 <!-- /MarkdownTOC -->
 
 
-# Introduction
+# 1. Introduction
 
 Now we are going to build a little analysis. We will learn to automate our analyses with a *for loop*. We will make figures, and save them each with automated labeling. Then, we will join data from different files and conditionally label them with if/else statements.
 
 OK, here is the plan for our analysis. We want to plot the **gdpPercap** for each country in the gapminder data frame. So that's 142 separate plots! We will automate this, labeling each one with its name and saving it in a folder called figures. We will learn a bunch of things as we go.
 
-# Create an R script
+## 1.1 Create an R script
 
-OK, now, we are going to create an R script. What is an R script? It's a text file with a .R extension. We've been writing R code in R Markdown files so far; R scripts are just R code without the Markdown plain text along with it.
+OK, now, we are going to create an R script. What is an R script? It's a text file with a `.R` extension. We've been writing R code in R Markdown files with the `.Rmd` file extension so far.   
 
-Go to File > New File > R Script (or click the green plus in the top left corner).
+R scripts are just R code without the Markdown plain text along with it.
+
+Go to _File > New File > R Script_ (or click the green plus in the top left corner).
+
+<img src="../img/06-create-r-script.png" width="50%" alt="create R script">
 
 Let's start off with a few comments so that we know what it is for, and save it:
 
@@ -78,27 +77,51 @@ library(tidyverse)
 gapminder <- readr::read_csv('https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/gapminder.csv')
 ~~~
 {:.language-r}
+<br>
 
-Remember, like in R Markdown, hitting return does not execute this command. To execute it, we need to get what we typed in the script down into the console. Here is how we can do that:
+⚠️ Save this script and call it `programming-with-r.R`. 
 
-1. copy-paste this line into the console.
-2. select the line (or simply put the cursor there), and click 'Run'. This is available from
-a. the bar above the script (green arrow)
-b. the menu bar: Code > Run Selected Line(s)
-c. keyboard shortcut: command-return
-3. source the script, which means running the whole thing. This is also great for to see if there are any typos in your code that you've missed. You can do this by:
-a. clicking Source (blue arrow in the bar above the script).
-b. typing `source('gapminder-analysis.R')` in the console (or from another R file!!!).
+## 1.2 Run this R script
 
-## Automation with for loops
+Remember, like in R Markdown, hitting return does not execute this command. To execute it, we need to get what we typed in the script down into the console. There are several options there. 
 
-Our plan is to plot __gdpPercap__ for each country. This means that we want to do the same operation (plotting gdpPercap) on a bunch of different things (countries). Yesterday we learned the dplyr's `group_by()` function, and this is super powerful to automate through groups. But there are things that you may not want to do with `group_by()`, like plotting. So we will use a *for loop*.
+### Option 1: run your R script line by line. 
 
-Let's start off with what this would look like for just one country. I'm going to demonstrate with Afghanistan:
+You can click on "Run" to execute the selected line of your code. 
 
-<!---TODO
-For the figures, we want it to label the currency, which we have in another data file (=join). And, we'll want to add Westeros to the dataframe (=rbind) and create that figure too.
---->
+<img src="../img/06-run-line.png" width="50%" alt="Run selected line">
+
+Alternatively, you can use the keyboard shortcuts `Ctrl+Enter` (Windows) or `Cmd+Return` (Mac OS). 
+
+### Option 2: run the entire R script
+
+If you clean your workspace with the 🧹to remove all R objects in memory. Then run the entire script. This is great for testing purposes as it will show you potential problems with your code. 
+
+To do this, either:
+* go to _Code > Run Region > Run All_ (see image below).
+* type `source("programming-with-r.R")` in your console. Change the name of the script if you have saved it under a different name. 
+* Use the `Ctrl+Alt+R` (Windows) or `Cmd+Alt+R` (Mac OS).
+
+<img src="../img/06-run-all.png" width="50%" alt="Run all code">
+
+
+
+### Keyboard shortcuts recap
+
+| What you want to do           | Windows   | Mac OS  |
+|------------------------------ |---------  |-------- |
+| Run the current line of code  | `Ctrl + Enter` | `Cmd + Return`  |
+| Run the complete script       | `Ctrl+Alt+R`   | `Cmd+Alt+R`     |
+
+<br>
+
+# 2 Automation with for loops
+
+Our plan is to plot __gdpPercap__ for each country. This means that we want to do the same operation (plotting gdpPercap) on a bunch of different things (countries). Previously, we learned the dplyr's `group_by()` function, and this is super powerful to automate through groups. But there are things that you may not want to do with `group_by()`, like plotting. So we will use a *for loop*.
+
+
+## 2.1 One country 🇦🇫
+Let's start off with what this would look like for just one country. I'm going to demonstrate with Afghanistan 🇦🇫:
 
 ~~~
 ## filter the country to plot
@@ -146,14 +169,17 @@ ggsave(filename = "Afghanistan_gdpPercap.png", plot = my_plot)
 
 OK. So we can check our repo in the file pane (bottom right of RStudio) and see the generated figure:
 
-![](../img/Afghanistan_gdpPercap.png)
+<img src="../img/06-afghanistan.png" width=600px alt="Afghanistan_gdpPercap">
 
-
-### Thinking ahead: cleaning up our code
+## 2.2 Generalizing our code
 
 Now, in our code above, we've had to write out "Afghanistan" several times. This makes it not only typo-prone as we type it each time, but if we wanted to plot another country, we'd have to write that in 3 places too. It is not setting us up for an easy time in our future, and thinking ahead in programming is something to keep in mind.
 
-Instead of having "Afghanistan" written 3 times, let's instead create an object that we will assign to "Afghanistan". This object will be named `country`:
+Instead of having "Afghanistan" written 3 times, let's instead create an object that we will assign to "Afghanistan". This object will be named `cntry` and will help to generalize our script to other countries as well. 
+
+> ## Note
+> Since `country` is one variable name in the `gapminder` dataframe, we name our generalisation variable `cntry` to avoid ambiguity when refering to a variable. 
+{: .callout}
 
 ~~~
 ## create country variable
@@ -177,17 +203,25 @@ my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) +
   ## add title and save
   labs(title = paste(cntry, "GDP per capita", sep = " "))
 
-## note: there are many ways to create filenames with paste() or file.path(); we are doing this way for a reason.
-ggsave(filename = paste(cntry, "_gdpPercap.png", sep = ""), plot = my_plot)
+## note: the file name is created on the fly here using paste() 
+ggsave(filename = paste(cntry, "_gdpPercap.png", sep = ""), 
+       plot = my_plot)
 ~~~
 {:.language-r}
 
 Let's run this. Great! it saved our figure (I can tell this because the timestamp in the Files pane has updated!)
 
+> ## Exercise
+> Change one line of code and plot the GDP per capita of Cuba. 
+> 
+> > ## Solution
+> > The only line to be changed is `cntry <- "Cuba"` as this will overwrite the value of `cntry`.
+> {: .solution}
+{: .challenge}
 
-### For loop basic structure
+## 2.3 For loop basic structure
 
-Now, how about if we want to plot not only Afghanistan, but other countries as well? There wasn't actually that much code needed to get us here, but we definitely do not want to copy this for every country. Even if we copy-pasted and switched out the country assigned to the `country` variable, it would be very typo-prone. Plus, what if you wanted to instead plot lifeExp? You'd have to remember to change it each time...it gets messy quick.
+Now, how about if we want to plot not only Afghanistan, but other countries as well? There wasn't actually that much code needed to get us here, but we definitely do not want to copy this for every country. Even if we copy-pasted and switched out the country assigned to the `cntry` variable, it would be very typo-prone. Plus, what if you wanted to instead plot `lifeExp`? You'd have to remember to change it each time...it gets messy quickly.
 
 Better with a *for loop*. This will let us cycle through and do what we want to each thing in turn. If you want to iterate over a set of values, and perform the same operation on each, a `for` loop will do the job.
 
@@ -204,7 +238,7 @@ Note the `( )` and the `{ }`. We talk about iterating through each item in the *
 
 So looking back at our Afghanistan code: all of this is pretty much the "do a thing" part. And we can see that there are only a few places that are specific to Afghanistan. If we could make those places not specific to Afghanistan, we would be set.
 
-![](../img/for_loop_logic.png)
+<img src="../img/06-for-loop-logic.png" width=700px alt="For loop basic structure">
 
 Let's paste from what we had before, and modify it. I'm also going to use RStudio's indentation help to indent the lines within the for loop by highlighting the code in this chunk and going to Code > Reindent Lines (shortcut: command I)
 ~~~
@@ -235,7 +269,7 @@ OK. So let's start with the beginning of the *for loop*. We want a list of count
 
 ~~~
 ## create a list of countries
-country_list <- c("Albania", "Fiji", "Spain")
+country_list <- c("Albania", "Canada", "Spain")
 
 for ( cntry in country_list ) {
 
@@ -284,44 +318,42 @@ for( cntry in country_list ){
 {:.language-r}
 *For loops* are sometimes just the thing you need to iterate over many things in your analyses.
 
-### Your turn
-
 
 > ## Exercise
->
-> Modify our for loop so that it:
-> 1. loops through countries in Europe only.  
-> 2. plots the cumulative mean gdpPercap (Hint: Use the [Data Wrangling Cheatsheet](https://www.rstudio.com/resources/cheatsheets/)!)
-> 3. saves them to a new subfolder inside the (recreated) figures folder called "Europe".
+> 1. Create the `gapminder_europe` dataframe that contains only values for European countries. 
+> 2. Calculate the cumulative sum of the `gdpPercap` along the years using the `cumsum()` function of base R. 
+> Create a new column called `gdp_cumulative_sum`.  
+> 3. Loop through countries in Europe and plot the cumulative sum of the `gdpPercap` per year for every country.  
+> 4. Save your figures to a new subfolder called "Europe/".
 >
 > > ## Solution
-> > `dir.create("figures")`     
-> > `dir.create("figures/Europe")`    
-> >    
-> > ` ## create a list of countries. Calculations go here, not in the for loop`    
-> > `gap_europe <- gapminder %>%`    
-> >   `mutate(gdpPercap_cummean = dplyr::cummean(gdpPercap))`    
-> >  
-> > `for ( cntry in country_list ) { `  
-> >       
-> >     `## filter the country to plot`  
-> >     `gap_to_plot <- gap_europe %>%`  
-> >        `filter(country == cntry)`  
-> >
-> >   `## add a print message to see what's plotting`  
-> >   `print(paste("Plotting", cntry))`  
+> > ~~~
+> > gap_europe <- gapminder %>%
+> >   filter(continent == "Europe") %>% 
+> >   mutate(gdpPercap_cumulative_sum = cumsum(gdpPercap))
+> > 
+> > dir.create("Europe/")
+> > 
+> > country_list <- unique(gap_europe$country)
+> > 
+> > for (cntry in country_list) {
+> >   ## filter the country to plot
+> >   gap_to_plot <- 
+> >     gap_europe  %>%
+> >     filter(country == cntry)
 > >   
-> >   `## plot`  
-> >   `my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap_cummean)) + `  
-> >     `geom_point() +`  
-> >    `## add title and save`  
-> >     `labs(title = paste(cntry, "GDP per capita", sep = " "))`  
+> >   my_plot <-
+> >     ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap_cumulative_sum)) +
+> >     geom_point() +
+> >     labs(title = paste(cntry, "GDP per capita", sep = " ")) +
 > >   
-> > `ggsave(filename = paste("figures/Europe/", cntry, "_gdpPercap_cummean.png", sep = "")),plot = my_plot)`  
-> > `}`   
-> >
+> >   # Save plot 
+> >   ggsave(filename = paste("Europe/", cntry, "-gdpPercap.png", sep = ""), plot = my_plot)
+> > }
+> > ~~~  
+> > {: .language-r}
 > {: .solution}
-{: .challenge}  
+{: .challenge}
 
 Notice how we put the calculation for `cummean()` outside the *for loop*. It could have gone inside, but it's an operation that could be done just one time before hand (outside the loop) rather than multiple times as you go (inside the *for loop*).
 
@@ -522,34 +554,7 @@ Note that this works because we know there are only two conditions, `Estimated =
 This construction is necessary if you have more than two conditions to test for.
 
 
-## More R!
-
-With just a little bit of time left, here are some things that you can look into more on your own.
-
-### Importing and Installing
-
-Here are  some really helpful packages for you to work with:
-
-Remember you'll use `install.packages("package-name-in-quotes")` to install from CRAN.
-
-- `readr` to read in .csv files
-- `readxl` to read in Excel files
-- `stringr` to work with strings
-- `lubridate` to work with dates
-
-You are also able to install packages directly with Github, using the `devtools` package. Then, instead of `install.packages()`, you'll use `devtools::install_github()`. And you can create *your own* packages when you're ready. Read http://r-pkgs.had.co.nz/ to learn how!
-
-### Organization and workflows
-
-- set up a folder for figs, intermediate analyses, final outputs, figures
-
-### Getting help
-
-You'll soon have questions that are outside the scope of this workshop, how do you find answers?
-
-- [Ton of resources and advices](https://peerj.com/collections/50-practicaldatascistats/)
-
-### Going further
+# Resources
 
 - [stringr](http://r4ds.had.co.nz/strings.html)
 - Hadley Wichkam scripting tips: [R for Data Science](https://r4ds.had.co.nz/workflow-scripts.html)
