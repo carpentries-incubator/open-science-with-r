@@ -30,19 +30,19 @@ keypoints:
     - [Option 2: run the entire R script](#option-2-run-the-entire-r-script)
     - [Keyboard shortcuts recap](#keyboard-shortcuts-recap)
 - [2 Automation with for loops](#2-automation-with-for-loops)
-  - [2.1 One country 🇦🇫](#21-one-country-%F0%9F%87%A6%F0%9F%87%AB)
+  - [2.1 One country](#21-one-country)
   - [2.2 Generalizing our code](#22-generalizing-our-code)
   - [2.3 For loop basic structure](#23-for-loop-basic-structure)
-    - [Executable for loop!](#executable-for-loop)
-  - [Conditional statements with `if` and `else`](#conditional-statements-with-if-and-else)
-    - [if statement basic structure](#if-statement-basic-structure)
-    - [Executable if statement](#executable-if-statement)
-    - [Executable if/else statement](#executable-ifelse-statement)
-- [Resources](#resources)
+  - [2.4 Executable for loop!](#24-executable-for-loop)
+- [3. Conditional statements with `if` and `else`](#3-conditional-statements-with-if-and-else)
+  - [3.1  `if` statement basic structure](#31-if-statement-basic-structure)
+  - [3.2 Executable if statement](#32-executable-if-statement)
+  - [3.3 Executable if/else statement](#33-executable-ifelse-statement)
+- [4. Resources](#4-resources)
 
 <!-- /MarkdownTOC -->
 
-
+<br> 
 # 1. Introduction
 
 Now we are going to build a little analysis. We will learn to automate our analyses with a *for loop*. We will make figures, and save them each with automated labeling. Then, we will join data from different files and conditionally label them with if/else statements.
@@ -120,7 +120,7 @@ To do this, either:
 Our plan is to plot __gdpPercap__ for each country. This means that we want to do the same operation (plotting gdpPercap) on a bunch of different things (countries). Previously, we learned the dplyr's `group_by()` function, and this is super powerful to automate through groups. But there are things that you may not want to do with `group_by()`, like plotting. So we will use a *for loop*.
 
 
-## 2.1 One country 🇦🇫
+## 2.1 One country
 Let's start off with what this would look like for just one country. I'm going to demonstrate with Afghanistan 🇦🇫:
 
 ~~~
@@ -263,7 +263,7 @@ for (each country in a list of countries ) {
 ~~~
 {:.language-r}
 
-### Executable for loop!
+## 2.4 Executable for loop!
 
 OK. So let's start with the beginning of the *for loop*. We want a list of countries that we will iterate through. We can do that by adding this code before the *for loop*.
 
@@ -357,14 +357,15 @@ for( cntry in country_list ){
 
 Notice how we put the calculation for `cummean()` outside the *for loop*. It could have gone inside, but it's an operation that could be done just one time before hand (outside the loop) rather than multiple times as you go (inside the *for loop*).
 
-## Conditional statements with `if` and `else`
+<br>
 
-Often when we're coding we want to control the flow of our actions. This can be done
-by setting actions to occur only if a condition or a set of conditions are met.
+# 3. Conditional statements with `if` and `else`
 
-In R and other languages, these are called "if statements".
+Often when we're coding we want to control the flow of our actions. This can be done by setting actions to occur only if a condition or a set of conditions are met.
 
-### if statement basic structure
+In R and other languages, these are called **if statements**.
+
+## 3.1  `if` statement basic structure
 
 ~~~
 # if
@@ -383,13 +384,32 @@ if (condition is true) {
 
 Let's bring this concept into our *for loop* for Europe that we've just done. What if we want to add the label "Estimated" to countries that were estimated? Here's what we'd do.
 
-First, import csv file with information on whether data was estimated or reported, and join to gapminder dataset:
+First, import `.csv` file with information on whether data was estimated or reported, and perform a `left_join` to gapminder dataset:
 
 ~~~
 est <- readr::read_csv('https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/countries_estimated.csv')
 gapminder_est <- left_join(gapminder, est)
 ~~~
 {:.language-r}
+
+This adds a column called "estimated" to the dataframe with "yes/no" values. We will use this column in the if statement.  
+
+~~~
+# A tibble: 1,704 x 7
+   country      year      pop continent lifeExp gdpPercap estimated
+   <chr>       <dbl>    <dbl> <chr>       <dbl>     <dbl> <chr>    
+ 1 Afghanistan  1952  8425333 Asia         28.8      779. yes      
+ 2 Afghanistan  1957  9240934 Asia         30.3      821. yes      
+ 3 Afghanistan  1962 10267083 Asia         32.0      853. yes      
+ 4 Afghanistan  1967 11537966 Asia         34.0      836. yes      
+ 5 Afghanistan  1972 13079460 Asia         36.1      740. yes      
+ 6 Afghanistan  1977 14880372 Asia         38.4      786. yes      
+ 7 Afghanistan  1982 12881816 Asia         39.9      978. yes      
+ 8 Afghanistan  1987 13867957 Asia         40.8      852. yes      
+ 9 Afghanistan  1992 16317921 Asia         41.7      649. yes      
+10 Afghanistan  1997 22227415 Asia         41.8      635. yes   
+~~~
+{: .output}
 
 ~~~
 dir.create("figures")
@@ -398,7 +418,7 @@ dir.create("figures/Europe")
 ## create a list of countries
 gap_europe <- gapminder_est %>% ## use instead of gapminder
   filter(continent == "Europe") %>%
-  mutate(gdpPercap_cummean = dplyr::cummean(gdpPercap))
+  mutate(gdpPercap_cumsum = cumsum(gdpPercap))
 
 country_list <- unique(gap_europe$country)
 
@@ -412,7 +432,7 @@ for ( cntry in country_list ) {
   print(paste("Plotting", cntry))
 
   ## plot
-  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap_cummean)) +
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap_cumsum)) +
     geom_point() +
     ## add title and save
     labs(title = paste(cntry, "GDP per capita", sep = " "))
@@ -430,10 +450,8 @@ for ( cntry in country_list ) {
   # In if (gap_to_plot$estimated == "yes") { :
   #   the condition has length > 1 and only the first element will be used
 
-  ggsave(filename = paste("figures/Europe/", cntry, "_gdpPercap_cummean.png", sep = ""),
+  ggsave(filename = paste("figures/Europe/", cntry, "_gdpPercap_cumsum.png", sep = ""),
          plot = my_plot)
-
-}
 
 }
 ~~~
@@ -441,7 +459,7 @@ for ( cntry in country_list ) {
 
 This worked, but we got a warning message with the if statement. This is because if we look at `gap_to_plot$estimated`, it is many "yes"s or "no"s, and the if statement works just on the first one. We know that if any are yes, all are yes, but you can imagine that this could lead to problems down the line if you *didn't* know that. So let's be explicit:
 
-### Executable if statement
+## 3.2 Executable if statement
 
 ~~~
 dir.create("figures")
@@ -451,7 +469,7 @@ dir.create("figures/Europe")
 ## create a list of countries
 gap_europe <- gapminder_est %>% ## use instead of gapminder
   filter(continent == "Europe") %>%
-  mutate(gdpPercap_cummean = dplyr::cummean(gdpPercap))
+  mutate(gdpPercap_cumsum = cumsum(gdpPercap))
 
 country_list <- unique(gap_europe$country)
 
@@ -465,7 +483,7 @@ for ( country in country_list ) {
   print(paste("Plotting", country))
 
   ## plot
-  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap_cummean)) +
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap_cumsum)) +
     geom_point() +
     ## add title and save
     labs(title = paste(country, "GDP per capita", sep = " "))
@@ -478,7 +496,7 @@ for ( country in country_list ) {
     my_plot <- my_plot +
       labs(subtitle = "Estimated data")
   }
-  ggsave(filename = paste("figures/Europe/", country, "_gdpPercap_cummean.png", sep = ""),
+  ggsave(filename = paste("figures/Europe/", country, "_gdpPercap_cumsum.png", sep = ""),
          plot = my_plot)
 
 }
@@ -487,7 +505,7 @@ for ( country in country_list ) {
 
 OK so this is working as we expect! Note that we do not need an `else` statement above, because we only want to do something (add a subtitle) if one condition is met. But what if we want to add a different subtitle based on another condition, say where the data are reported, to be extra explicit about it?
 
-### Executable if/else statement
+## 3.3 Executable if/else statement
 
 ~~~
 dir.create("figures")
@@ -497,7 +515,7 @@ dir.create("figures/Europe")
 ## create a list of countries
 gap_europe <- gapminder_est %>% ## use instead of gapminder
   filter(continent == "Europe") %>%
-  mutate(gdpPercap_cummean = dplyr::cummean(gdpPercap))
+  mutate(gdpPercap_cummean = cumsum(gdpPercap))
 
 country_list <- unique(gap_europe$country)
 
@@ -511,7 +529,7 @@ for ( cntry in country_list ) {
   print(paste("Plotting", cntry))
 
   ## plot
-  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap_cummean)) +
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap_cumsum)) +
     geom_point() +
     ## add title and save
     labs(title = paste(cntry, "GDP per capita", sep = " "))
@@ -524,7 +542,7 @@ for ( cntry in country_list ) {
     my_plot <- my_plot +
       labs(subtitle = "Estimated data")
   }
-  ggsave(filename = paste("figures/Europe/", cntry, "_gdpPercap_cummean.png", sep = ""),
+  ggsave(filename = paste("figures/Europe/", cntry, "_gdpPercap_cumsum.png", sep = ""),
          plot = my_plot)
 
 }
@@ -554,7 +572,7 @@ Note that this works because we know there are only two conditions, `Estimated =
 This construction is necessary if you have more than two conditions to test for.
 
 
-# Resources
+# 4. Resources
 
 - [stringr](http://r4ds.had.co.nz/strings.html)
 - Hadley Wichkam scripting tips: [R for Data Science](https://r4ds.had.co.nz/workflow-scripts.html)
