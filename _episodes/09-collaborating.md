@@ -1,9 +1,9 @@
 ---
-title: "Collaborating with Github"
+title: "Collaborating with you and others with Github"
 teaching: 30
 exercises: 60
 questions:
-- "How can I develop and collaborate on code with another scientist?"
+- "How can I develop and collaborate on code with me or another scientist?"
 - "How can I give access to my code to another collaborator?"
 - "How can I keep code synchronised with another scientist?"
 - "How can I solve conflicts that arise from that collaboration?"
@@ -33,7 +33,49 @@ keypoints:
 11. [Create your collaborative website](#create-your-collaborative-website)
 12. [Explore on GitHub.com](#explore-on-github.com)
 
-## Introduction
+# 1. Introduction
+
+Collaborating with yourself...
+
+Collaborating with others. 
+
+What is GitHub? 
+GitHub acts as a manually synchronised dropbox for your files and project history. It allows you to visualize online your files, the commits you've made and the differences between your file versions. 
+
+
+## 1.1 What is GitHub? 
+
+
+GitHub is a company 
+Git + Hub = a website that hosts your project work, its history and nurture collaborations with your peers.  
+
+But much more! It has dozens of features that makes version control easier and more appealing. 
+
+| GitHub jargon                                                                                 | human translation                                                                                                                                         |
+|--------------------------------------------------------------------------------------------   |---------------------------------------------------------------------------------------------------------------------------------------------------------  |
+| __user__                                             | a Github account for you (e.g., jules32).                                                                                                                 |
+| **organization**                | the Github account for one or more user (e.g., datacarpentry).                                                                                            |
+| **repository**    | a folder within the organization that includes files dedicated to a   project.                                                                            |
+| **commit**    | a snapshot of your project at a give time. Gets a unique commit identifier.                                                                            |
+| **clone**                                                                                         | process of making a local copy of a remote Github repository. This only   needs to be done once (unless you mess up your local copy).                     |
+| **pull**                                                                                          | copy changes on the remote Github   repository to your local Github repository. This is useful if multiple people   are making changes to a repository.   |
+| **push**                                                                                          | save local changes to remote Github                                                                                                                       |
+
+## 1.2 Connect your local RStudio project with GitHub
+
+
+> ## Checklist
+> You should have:
+> * a free GitHub account. 
+> * You’ve installed Git (chapter 6).
+    You’ve introduced yourself to Git (chapter 7).
+    You’ve confirmed that you can push to / pull from GitHub from the command line (chapter 9).
+
+{: .checklist}
+
+# 2. Me, myself and GitHub
+
+## 2.1 Let's use the 
 
 The collaborative power of GitHub and RStudio is really game changing. So far we've been collaborating with our most important collaborator: ourselves. But, we are lucky that in science we have so many other collaborators, so let's learn how to accelerate our collaborations with them through GitHub!
 
