@@ -17,26 +17,32 @@ keypoints:
 - "Vectorised operations allow to replace for loops and make your code more readable and maintanable."
 ---
 
+
+# Table of contents
 <!-- MarkdownTOC autolink="True" levels="1,2" -->
 
 - [1. Introduction](#1-introduction)
-	- [1.1 When to make functions?](#11-when-to-make-functions)
-	- [1.2 Function components](#12-function-components)
-	- [1.3 A simple example](#13-a-simple-example)
-	- [1.4 Function environment](#14-function-environment)
-	- [1.5 Recap scheme](#15-recap-scheme)
-	- [1.6 Setup](#16-setup)
+  - [1.1 When to make functions?](#11-when-to-make-functions)
+  - [1.2 Function components](#12-function-components)
+  - [1.3 A simple example](#13-a-simple-example)
+  - [1.4 Function environment](#14-function-environment)
+  - [1.5 Recap scheme](#15-recap-scheme)
+  - [1.6 Setup](#16-setup)
 - [2. Steps when building a function](#2-steps-when-building-a-function)
-	- [2.1 Find a name](#21-find-a-name)
-	- [2.2 Turn your initial script into the body of a function](#22-turn-your-initial-script-into-the-body-of-a-function)
-	- [2.3 Add arguments in the function signature](#23-add-arguments-in-the-function-signature)
-- [3. Functional programming in R](#3-functional-programming-in-r)
-	- [3.1 The `map()` function](#31-the-map-function)
-	- [3.2 Application to `gapminder`](#32-application-to-gapminder)
-	- [3.3 For loops versus vectorised operations](#33-for-loops-versus-vectorised-operations)
+  - [2.1 Find a name](#21-find-a-name)
+  - [2.2 Turn your initial script into the body of a function](#22-turn-your-initial-script-into-the-body-of-a-function)
+  - [2.3 Add arguments in the function signature](#23-add-arguments-in-the-function-signature)
+- [3. Functional programming in R - simple case](#3-functional-programming-in-r---simple-case)
+  - [3.1 The `map()` function](#31-the-map-function)
+  - [3.2 Application to `gapminder`](#32-application-to-gapminder)
+  - [3.3 For loops versus vectorised operations](#33-for-loops-versus-vectorised-operations)
+- [4. Functional programming in R - more advanced](#4-functional-programming-in-r---more-advanced)
+  - [4.1 `map` applied to gapminder](#41-map-applied-to-gapminder)
 - [4. References](#4-references)
 
 <!-- /MarkdownTOC -->
+
+<img src="../img/07-purrr.png" alt="purrr logo" width="200px">
 
 #  1. Introduction
 Functions are at the heart of the R programming language. A lot of analytical steps you will perform in R will be based composed of a series of functions working together.
@@ -137,20 +143,21 @@ So make sure you give your custom function, a clear distinctive name.
 
 Let's see how we can convert our script to plot the GDP per capita per country [section 2.1 of the previous episode](/06-R-programming/index.html#21-one-country)
 
-This is what we had. 
+This is what we had for one country (e.g. "Afghanistan"):
 
 ~~~
 ## filter the country to plot
 gap_to_plot <- gapminder %>%
-  filter(country == cntry)
+  filter(country == "Afghanistan")
 
 ## plot
 my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) +
   geom_point() +
   ## add title and save
-  labs(title = paste(cntry, "GDP per capita", sep = " "))
- ~~~
- {: .language-r}
+  labs(title = paste("Afghanistan", "GDP per capita", sep = " "))
+my_plot
+~~~
+{: .language-r}
 
 This will become the body of a new function. 
 
@@ -165,13 +172,13 @@ Since it is also a good style tip to have indentations after the `%>%` operator 
 plot_gdp_percap_from_gapminder <- function(data = gapminder){
  
   gap_to_plot <- data %>%
-    filter(country == cntry)
+    filter(country == "Afghanistan")
 
   ## plot
   my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) +
     geom_point() +
     ## add title and save
-    labs(title = paste(cntry, "GDP per capita", sep = " "))
+    labs(title = paste("Afghanistan", "GDP per capita", sep = " "))
 
   return(my_plot) # optional but explicit on what the function returns
 }
@@ -179,11 +186,11 @@ plot_gdp_percap_from_gapminder <- function(data = gapminder){
 {: .language-r}
 
 > ## Exercise
-> Take a look at the code of our function. There are two lines of code that will not work. Can you find which ones?
+> Take a look at the code of our function. There are two lines of code that need to be generalised. Can you find which ones?
 > > ## Solution
-> > Line 1: `filter(country == cntry)`  
-> > Line 2: `labs(title = paste(cntry, "GDP per capita", sep = " "))`  
-> These two lines will not work because the `cntry` object is not defined within the function nor outside of the function (in the global environment.)
+> > Line 1: `filter(country == "Afghanistan")`  
+> > Line 2: `labs(title = paste("Afghanistan", "GDP per capita", sep = " "))`  
+> These two lines are not generic and our function will always plot results for "Afghanistan". 
 > {: .solution}
 {: .challenge}
 
@@ -253,14 +260,87 @@ Now, you can easily plot the GDP per capita for a given country.
 plot_gdp_percap_from_gapminder(country_to_plot = "Cuba")
 plot_gdp_percap_from_gapminder(country_to_plot = "France")
 ~~~
+{: .language-r}
 
-# 3. Functional programming in R
+# 3. Functional programming in R - simple case
+
+R is at its core a functional language meaning it applies functions to objects and returns another object. We can use this property to improve our code and get ride of the _for loops_. 
+
+Indeed, _for loops_ are not easy to read and understand since they make use of temporary variables, 
 
 ## 3.1 The `map()` function
+
+This example is taken from [Stanford Data Challenge Lab (DCL)](https://dcl-prog.stanford.edu/purrr-basics.html) course.
+
+Execute this code to get the number of moons per planet as a list:
+~~~
+moons <-
+  list(
+    earth = 1737.1,
+    mars = c(11.3, 6.2),
+    neptune = 
+      c(60.4, 81.4, 156, 174.8, 194, 34.8, 420, 2705.2, 340, 62, 44, 42, 40, 60)
+  )
+~~~
+{: .language-r}
+
+Each vector in the list contains the radius of the moons in kilometer. For instance, the Earth moon radius is 1731.1 km. 
+
+To count the number of moons for each planet, we can execute `length()` on each element of the list:  
+
+~~~
+length(moons$earth)
+length(moons$mars)
+length(moons$neptune)
+~~~
+{: .language-r} 
+
+Not only this is tedious but can be impossible to perform if the `moons` list would contain too many elements. Previously, _for loop_ gave us one solution to do this.  
+
+> ## Exercise
+> Can you achieve the same result with a _for loop_?
+> 
+> > ## Solution
+> > ~~~
+> > for (i in seq_along(moons)){
+> >   length(moons[[i]])
+> > }
+> > ~~~
+> > {: .language-r}
+> {: .solution}
+{: .challenge}
+
+Here, we will see a package called `purrr` that makes this process more straightforward. 
+
+<img src="../img/07-cat-puring.jpg" alt="cat purring" width="400px">
+
+The `map` function takes a vector or a list and a function as its two arguments. 
+
+
+~~~
+# first argument = list of moons' radius
+# second argument = function length()
+map(moons, length) 
+~~~
+{: .language-r}
+
+This returns a list. Ideally, a simplified object would be a vector with only 3 values inside (the number of moons per planet). There is a `map()` variant that does precisely that and it is called `map_int()`:
+
+~~~
+
+
+~~~
+{: .language-r}
+
+
 
 ## 3.2 Application to `gapminder` 
 
 ## 3.3 For loops versus vectorised operations
+
+# 4. Functional programming in R - more advanced
+
+## 4.1 `map` applied to gapminder
 
 # 4. References 
 
@@ -270,3 +350,4 @@ plot_gdp_percap_from_gapminder(country_to_plot = "France")
 - [Exploring Non-Standard Evaluation](https://www.daeconomist.com/post/2018-03-27-exploring-nse-enquo-and-quos/)
 - [Programming with dplyr](https://dplyr.tidyverse.org/articles/programming.html#transforming-user-supplied-variables-1)
 - [Practical tidy evaluation](https://jessecambon.github.io/2019/12/08/practical-tidy-evaluation.html)
+- [Stanford Data Challenge Lab (DCL)](https://dcl-prog.stanford.edu/purrr-basics.html) 

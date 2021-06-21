@@ -43,7 +43,9 @@ keypoints:
     - [4.2 Modify the plot](#42-modify-the-plot)
     - [4.3 Switch back to the master branch](#43-switch-back-to-the-master-branch)
 - [5. Recap of git commands](#5-recap-of-git-commands)
-- [5. Resources](#5-resources)
+- [6. Resources](#6-resources)
+    - [6.1 Links](#61-links)
+    - [6.2 Troubleshooting](#62-troubleshooting)
 
 <!-- /MarkdownTOC -->
 
@@ -100,7 +102,7 @@ But how do you make sure that your changes are properly been saved and tracked? 
 
 Compare two solutions below, one without `git` and one with:
 
-<img src="../img/09-timeline.png" width="600px" alt="timeline of files">
+<img src="../img/08-timeline.png" width="600px" alt="timeline of files">
 
 > ## Discussion
 > Can you list the potential and proven drawbacks of keeping track of changes by saving copies of the files?
@@ -116,15 +118,15 @@ Projects in RStudio are a great feature and work very well in combination with `
  
 Go to RStudio and click on _File > New Project > New directory_. 
 
-<img src="../img/09-new-project.png" width="400px" alt="New project">
+<img src="../img/08-new-project.png" width="400px" alt="New project">
 
 Then select _New project_
 
-<img src="../img/09-new-project-type.png" width="400px" alt="New project type">
+<img src="../img/08-new-project-type.png" width="400px" alt="New project type">
 
 We will call our new project "learning_git"
 
-<img src="../img/09-new-project-name.png" width="400px" alt="New project type">
+<img src="../img/08-new-project-name.png" width="400px" alt="New project type">
 
 ## 2.2 Create a new R Markdown document
 
@@ -138,7 +140,7 @@ library("tidyverse")
 
 Save your document under the name `learning_git.Rmd`. You should see this in your _File_ pane: 
 
-<img src="../img/09-files.png" width="600px" alt="A learning_git.Rmd" file>
+<img src="../img/08-files.png" width="600px" alt="A learning_git.Rmd" file>
 
 ## 2.3 Initialize `git` from within the folder
 
@@ -146,7 +148,7 @@ Great, but `git` is still unaware of things that happen in this R project folder
 
 In the console pane, click on "Terminal" to get access to a Shell from within RStudio. We will initialise `git` in this folder. 
 
-<img src="../img/09-shell-rstudio.png" width="600px" alt="Shell from within RStudio">
+<img src="../img/08-shell-rstudio.png" width="600px" alt="Shell from within RStudio">
 
 This is a regular Shell in which you can type any command-line instruction. Let's type this: 
 
@@ -183,13 +185,13 @@ drwxr-xr-x   4 mgalland  staff  128 Jun 17 17:45 refs
 
 Close and restart RStudio to show the "git" tab in the environment pane. You should see this:
 
-<img src="../img/09-git-tab.png" width="600px" alt="git tab">
+<img src="../img/08-git-tab.png" width="600px" alt="git tab">
 
 For now, `git` does not track anything in this RStudio project folder. 
 
 We would like `git` to track changes in our `learning_git.Rmd` document. To do this, click in the empty checkbox: 
 
-<img src="../img/09-add-rmd.png" width="600px" alt="git add R Markdown document">
+<img src="../img/08-add-rmd.png" width="600px" alt="git add R Markdown document">
 
 You can see that there is now a small green "A" next to the `learning_git.Rmd` file under the "Status" column. This means that our file is now being tracked by `git`. 
 
@@ -210,15 +212,15 @@ gapminder <- readr::read_csv('https://raw.githubusercontent.com/carpentries-incu
 
 Save your `learning_git.Rmd` document 
 
-<img src="../img/09-gap-modified.png" width="600px" alt="Modification of the Rmd document as seen in git pane">
+<img src="../img/08-gap-modified.png" width="600px" alt="Modification of the Rmd document as seen in git pane">
 
 You see a small blue "M" button next to your `learning_git.Rmd` file. This stands for "Modified". You can visualise the changes in your Rmd document by selecting "diff":
 
-<img src="../img/09-diff-arrow.png" width="600px" alt="diff button in git pane">
+<img src="../img/08-diff-arrow.png" width="600px" alt="diff button in git pane">
 
 This opens a new window where you can see that 3 lines where added (shown in green). These lines are the code chunk we've added where we read the gapminder dataset.
 
-<img src="../img/09-gap-diff-2.png" width="600px" alt="Show the modification of the Rmd document with diff">
+<img src="../img/08-gap-diff-2.png" width="600px" alt="Show the modification of the Rmd document with diff">
 
 While we are in this "diff" view, we can write a small commit message to describe what happened to our document in a meaningful way. 
 
@@ -234,7 +236,7 @@ It will be used to produce a plot of the GDP per year.
 
 Now, click on commit. This will assign a unique identifier to your commit as `git` takes a snapshot of your `learning_git.Rmd` file.
 
-<img src="../img/09-first-commit.png" alt="first commit" width="600px">
+<img src="../img/08-first-commit.png" alt="first commit" width="600px">
 
 Let's continue our work, add the changes and create commit messages.  
 
@@ -248,11 +250,11 @@ Let's continue our work, add the changes and create commit messages.
 
 If all went well, you can click on "History" to preview the history of commits that you have already made:   
 
-<img src="../img/09-history.png" alt="history of commits" width="600px">
+<img src="../img/08-history.png" alt="history of commits" width="600px">
 
 This gives you a history of your Rmd file and your project so far. These 3 commits are nicely placed on top of each other. Each of them has a unique SHA identifier to trace it back. We will see in the next section how to move back and forth in time using these SHA ids. 
 
-<img src="../img/09-history-2.png" alt="history of commits" width="800px">
+<img src="../img/08-history-2.png" alt="history of commits" width="800px">
 
 
 ## 2.6 Great commits tell a great story
@@ -282,13 +284,13 @@ from other packages
 
 # 3. Travel back in time
 
-<img src="../img/09-back-future.jpg" height="400px" alt="Back to the future poster">
+<img src="../img/08-back-future.jpg" height="400px" alt="Back to the future poster">
 
 ## 3.1 History of commits
 
 If all went well in the [previous exercise](/08-git/index.html#25-making-changes-and-visualising-them), you have 3 nicely self-explainable commits like this:  
 
-<img src="../img/09-history-2.png" alt="history of commits" width="800px">
+<img src="../img/08-history-2.png" alt="history of commits" width="800px">
 
 In this section we will see how to move back and forth between these commits safely. This can be useful to see what happened to a file or to _revert_ to a previous commit (because you are not happy with the current version). 
 
@@ -356,7 +358,7 @@ This simply tells us that our latest commit (the `HEAD`) is now pointing at the 
 
 Check your `learning_git.Rmd` file. It should have changed and the conclusion about the plot is now gone. 
 
-<img src="../img/09-file-lost.png" alt="work loss" width="600px">
+<img src="../img/08-file-lost.png" alt="work loss" width="600px">
 
 Actually not, `git` has just masked commits that were happening after the commit we checked out. 
 
@@ -403,13 +405,13 @@ gapminder %>%
 Make sure you add + commit your changes. 
 
 
-<img src="../img/09-branch-1.png" alt="work loss" width="600px">
+<img src="../img/08-branch-1.png" alt="work loss" width="600px">
 
-<img src="../img/09-branch-2.png" alt="work loss" width="600px">
+<img src="../img/08-branch-2.png" alt="work loss" width="600px">
 
-<img src="../img/09-branch-3.png" alt="work loss" width="600px">
+<img src="../img/08-branch-3.png" alt="work loss" width="600px">
 
-<img src="../img/09-branch-4.png" alt="work loss" width="600px">
+<img src="../img/08-branch-4.png" alt="work loss" width="600px">
 
 
 
@@ -419,7 +421,7 @@ Once your changes are committed inside the `barplot` branch, you can easily swit
 You can either use the branch tool in RStudio and select `master` or use the Terminal of RStudio (see below):
 
 **RStudio tool**
-<img src="../img/09-branch-5.png" alt="work loss" width="600px">
+<img src="../img/08-branch-5.png" alt="work loss" width="600px">
 
 
 **Terminal alternative**
@@ -443,21 +445,29 @@ Before we dive in, there is a bit of technical terms to know.
 
 | git command      | description                                                                           | RStudio equivalent                                                                |
 |------------------|-------------------------------------------------------------------------------------  |------------------------------------------------------------------------------     |
-| `git add`        | asking git to track the file changes. This is also called "staging" the file.         | <img src="../img/09-stage-button.png" height="50px" alt="add button">             |
-| `git commit`     | taking a snapshot of the folder at a given time point.                                | <img src="../img/09-commit-button.png" width="100px" alt="commit button">         | 
+| `git add`        | asking git to track the file changes. This is also called "staging" the file.         | <img src="../img/08-stage-button.png" height="50px" alt="add button">             |
+| `git commit`     | taking a snapshot of the folder at a given time point.                                | <img src="../img/08-commit-button.png" width="100px" alt="commit button">         | 
 | `git status`     | asking git to give an overview of changes to be committed, untracked   files, etc.    | None                                                                              | 
-| `git hist`       | list the history of commits                                                           |<img src="../img/09-history-button.png" width="50px" alt="history button"> |
-| `git log`        | showing the most recent commits. Do `git log --oneline` for more concision            |<img src="../img/09-history-button.png" width="50px" alt="history button"> |
-| `git checkout -b`| makes a new branch                                                                    |<img src="../img/09-branch-button.png" width="50px" alt="history button"> |
+| `git hist`       | list the history of commits                                                           |<img src="../img/08-history-button.png" width="50px" alt="history button"> |
+| `git log`        | showing the most recent commits. Do `git log --oneline` for more concision            |<img src="../img/08-history-button.png" width="50px" alt="history button"> |
+| `git checkout -b`| makes a new branch                                                                    |<img src="../img/08-branch-button.png" width="50px" alt="history button"> |
 
 
 <br> 
 
 
-# 5. Resources
+# 6. Resources
+
+## 6.1 Links  
 
 - [A "git for humans" presentation](https://inbo.github.io/git-course/static/presentations/git.pdf)
 - Jenny Bryan's [HappyGitWithR](http://happygitwithr.com) is very useful for troubleshooting, particularly the sections on [Detect Git from RStudio](http://happygitwithr.com/rstudio-see-git.html) and [RStudio, Git, GitHub Hell (troubleshooting)](http://happygitwithr.com/troubleshooting.html).
 - [Online game](https://learngitbranching.js.org/)
 - [RStudio webinar on GitHub and RStudio](https://rstudio.com/resources/webinars/managing-part-2-github-and-rstudio/)
 - [Using git and GitHub for scientific writing](http://paulklemm.com/blog/2014-07-16-use-github-for-scientific-writing/)
+
+## 6.2 Troubleshooting
+
+Sometimes, `git` integration with RStudio has issues.
+
+- Issues with `git` and Mac OS X: [https://github.com/jennybc/happy-git-with-r/issues/8](https://github.com/jennybc/happy-git-with-r/issues/8) 
