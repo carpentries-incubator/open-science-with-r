@@ -301,7 +301,7 @@ ggplot(se, aes(x = year, y = visitors, color = park_name)) +
 ~~~
 {:.language-r}
 
-`ggplot2` provides over 30 geoms, and extension packages provide even more (see <https://exts.ggplot2.tidyverse.org/> for a sampling). The best way to get a comprehensive overview is the [ggplot2 cheatsheet](http://rstudio.com/cheatsheets). To learn more about any single geom, use help: `?geom_smooth`.
+`ggplot2` provides over 30 geoms, and extension packages provide even more (see <https://exts.ggplot2.tidyverse.org/> for a sampling). The best way to get a comprehensive overview is the [ggplot2 cheatsheet](https://zenodo.org/record/5005756/files/ggplot2_cheat_sheet.pdf?download=1). To learn more about any single geom, use help: `?geom_smooth`.
 
 To display multiple geoms in the same plot, add multiple geom functions to `ggplot()`:
 
@@ -340,7 +340,7 @@ ggplot(data = acadia, aes(x = year, y = visitors)) +
 
 > ## Exercise
 >
-> With all of this information in hand, please take another five minutes to either improve one of the plots generated in this exercise or create a beautiful graph of your own. Use the RStudio [`ggplot2` cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for inspiration.
+> With all of this information in hand, please take another five minutes to either improve one of the plots generated in this exercise or create a beautiful graph of your own. Use the RStudio [`ggplot2` cheat sheet](https://zenodo.org/record/5005756/files/ggplot2_cheat_sheet.pdf?download=1) for inspiration.
 >
 > Here are some ideas:
 > 1. See if you can change the thickness of the lines or line type (e.g. dashed line)
@@ -401,7 +401,7 @@ ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) +
 
 > ## Exercise
 >
-> With all of this information in hand, please take another five minutes to either improve one of the plots generated in this exercise or create a beautiful graph of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for inspiration. Remember to use the help documentation (e.g. `?geom_bar`)
+> With all of this information in hand, please take another five minutes to either improve one of the plots generated in this exercise or create a beautiful graph of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://zenodo.org/record/5005756/files/ggplot2_cheat_sheet.pdf?download=1) for inspiration. Remember to use the help documentation (e.g. `?geom_bar`)
 > Here are some ideas:
 > 1. Flip the x and y axes.
 > 2. Change the color palette used
