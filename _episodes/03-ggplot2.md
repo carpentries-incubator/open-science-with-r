@@ -90,6 +90,10 @@ You can also install packages by going to the Packages tab in the bottom right p
 
 Copy and paste the code chunk below and read it in to your RStudio to load the five datasets we will use in this section.
 
+> ## Important note
+> The `read_csv()` function comes from the `readr` package part of the `tidyverse` suite of packages. Make sure you've run `library(tidyverse)` to load the datasets. 
+{: .callout} 
+
 ~~~
 # National Parks in California
 ca <- read_csv("https://raw.githubusercontent.com/carpentries-incubator/open-science-with-r/gh-pages/data/ca.csv")
@@ -198,7 +202,7 @@ ggplot(data=ca) +
 
 ## Customizing plots
 
-Take a look at the [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf), and think of ways you could improve the plot.
+Take a look at the [**`ggplot2`** cheat sheet](https://zenodo.org/record/5005756/files/ggplot2_cheat_sheet.pdf?download=1), and think of ways you could improve the plot.
 
 Now, let's capitalize the x and y axis labels and add a main title to the figure. I also like to remove that standard gray background using a different `theme`. Many themes come built into the `ggplot2` package. My preference is `theme_bw()` but once you start typing `theme_` a list of options will pop up. The last thing I'm going to do is remove the legend title.
 
