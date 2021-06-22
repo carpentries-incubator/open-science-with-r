@@ -34,10 +34,9 @@ keypoints:
   - [2.3 Add arguments in the function signature](#23-add-arguments-in-the-function-signature)
 - [3. Functional programming in R - simple case](#3-functional-programming-in-r---simple-case)
   - [3.1 The `map()` function](#31-the-map-function)
-  - [3.2 Application to `gapminder`](#32-application-to-gapminder)
-  - [3.3 For loops versus vectorised operations](#33-for-loops-versus-vectorised-operations)
-- [4. Functional programming in R - more advanced](#4-functional-programming-in-r---more-advanced)
-  - [4.1 `map` applied to gapminder](#41-map-applied-to-gapminder)
+  - [3.2 Detailed explanation](#32-detailed-explanation)
+  - [3.3 `map()` family of functions](#33-map-family-of-functions)
+  - [3.4 `map()` applied to gapminder](#34-map-applied-to-gapminder)
 - [4. References](#4-references)
 
 <!-- /MarkdownTOC -->
@@ -262,6 +261,8 @@ plot_gdp_percap_from_gapminder(country_to_plot = "France")
 ~~~
 {: .language-r}
 
+<br> 
+
 # 3. Functional programming in R - simple case
 
 R is at its core a functional language meaning it applies functions to objects and returns another object. We can use this property to improve our code and get ride of the _for loops_. 
@@ -303,7 +304,7 @@ Not only this is tedious but can be impossible to perform if the `moons` list wo
 > > ## Solution
 > > ~~~
 > > for (i in seq_along(moons)){
-> >   length(moons[[i]])
+> >   print(length(moons[[i]]))
 > > }
 > > ~~~
 > > {: .language-r}
@@ -327,20 +328,131 @@ map(moons, length)
 This returns a list. Ideally, a simplified object would be a vector with only 3 values inside (the number of moons per planet). There is a `map()` variant that does precisely that and it is called `map_int()`:
 
 ~~~
-
-
+map_int(moons, length)
 ~~~
 {: .language-r}
 
+~~~
+earth    mars  neptune 
+    1       2       14 
+~~~
+{: .output}
 
 
-## 3.2 Application to `gapminder` 
+## 3.2 Detailed explanation
 
-## 3.3 For loops versus vectorised operations
+The `map()` function takes a list or a vector and a function as its two arguments. 
 
-# 4. Functional programming in R - more advanced
+<img src="../img/07-map-1.png" alt="map explanation 1" height="200px">
 
-## 4.1 `map` applied to gapminder
+`map()` takes each element of the list/vector and applies the function to it. Hence the name "map" since it _maps_ each item of a vector/list to a function. 
+
+<img src="../img/07-map-2.png" alt="map explanation 2" height="200px"> 
+
+<img src="../img/07-map-3.png" alt="map explanation 3" height="400px">
+
+When we applied the `map()` function to the `moons` list with the `length()` function, it returned a list with the length of each item in the moons list. 
+
+## 3.3 `map()` family of functions
+
+We have already seen that the `map()` function comes with variants since we used the `map_int()` function that returns integers.   
+When mathematical operations need to be performed, the `map_dbl()` that returns doubles (numeric decimal values) comes in handy. 
+
+Try out:  
+~~~
+map_dbl(moons, median)
+~~~  
+{: .language-r}
+
+~~~
+earth    mars  neptune 
+1737.1   11.3  2705.2 
+~~~
+{: .output}
+
+This is necessary when the applied function returns doubles/numeric values while the `map()` variant expects integers. If you try this, it will return an error:  
+
+~~~
+map_int(moons, median)
+~~~
+{: .language-r}
+
+The first element returned by median is `1731.1` that is a double. Therefore, it cannot be converted to an integer (1731) without losing information. 
+~~~
+Error: Can't coerce element 1 from a double to a integer
+~~~
+{: .output}
+
+Indeed, `map()` comes with a whole family of functions. Check the help manual of `map()`:
+
+~~~
+?map()
+~~~
+{: .language-r}
+
+~~~
+[...]
+map(.x, .f, ...)
+
+map_lgl(.x, .f, ...)
+
+map_chr(.x, .f, ...)
+
+map_int(.x, .f, ...)
+
+map_dbl(.x, .f, ...)
+
+map_raw(.x, .f, ...)
+
+map_dfr(.x, .f, ..., .id = NULL)
+
+map_dfc(.x, .f, ...)
+
+[...]
+
+Value
+map() Returns a list the same length as .x.
+
+map_lgl() returns a logical vector, map_int() an integer vector, map_dbl() a double vector, and map_chr() a character vector.
+
+map_df(), map_dfc(), map_dfr() all return a data frame.
+~~~
+{: .output}
+
+## 3.4 `map()` applied to gapminder
+
+Using the `map()` function, we can now create a list called `all_plots` that contain all our ggplot figures.
+
+~~~
+# We take only the first 10 countries 
+countries_to_plot <- unique(gapminder$country)[1:10]
+
+# Create a list that contain our plots
+all_plots <- map(
+  .x = countries_to_plot, 
+  .f = function(x) plot_gdp_percap_from_gapminder(data = gapminder, country_to_plot = x)
+  )
+~~~
+{: .language-r}
+
+To save the plots on the disk, the `map2()` function that takes two input vector/list instead of one. The first vector/list will be the titles of the files while the second vector/list will be the `all_plots` list. 
+
+The two input vector/list have to have the same length. 
+~~~
+# save plots
+map2(.x = paste0(countries_to_plot, ".png"), 
+     .y = plots$plot, 
+     function(x,y) ggsave(filename = x, plot = y))
+~~~
+{: .language-r}
+
+<br> 
+
+> ## Discussion
+> What do you think about this _for loop_ replacement? Do you find it more clear or just more complex?
+{: .discussion}
+
+<br>
 
 # 4. References 
 

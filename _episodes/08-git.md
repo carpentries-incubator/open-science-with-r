@@ -470,4 +470,6 @@ Before we dive in, there is a bit of technical terms to know.
 
 Sometimes, `git` integration with RStudio has issues.
 
-- Issues with `git` and Mac OS X: [https://github.com/jennybc/happy-git-with-r/issues/8](https://github.com/jennybc/happy-git-with-r/issues/8) 
+- Issues with `git` and Mac OS X: [https://github.com/jennybc/happy-git-with-r/issues/8](https://github.com/jennybc/happy-git-with-r/issues/8)
+
+ 

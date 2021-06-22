@@ -1,13 +1,13 @@
 ---
 title: "Collaborating with you and others with Github"
 teaching: 30
-exercises: 60
+exercises: 30
 questions:
 - "How can I develop and collaborate on code with me or another scientist?"
 - "How can I give access to my code to another collaborator?"
 - "How can I keep code synchronised with another scientist?"
 - "How can I solve conflicts that arise from that collaboration?"
-- "What are Github "
+- "What is Github?"
 objectives:
 - "Be able to create a new repository and share it with another scientist."
 - "Be able to work together on a R script through RStudio and Github integration."
@@ -111,7 +111,8 @@ This is where GitHub becomes a sort of social network for scientific programmers
 For instance, you can create a GitHub organization for your research group where all researchers would place their computational work. 
 
 GitHub acts as a manually synchronised dropbox for your files and project history. It allows you to visualize online your files, the commits you've made and the differences between your file versions. 
-                                             |
+
+<br> 
 
 # 2. Me, myself and GitHub
 
