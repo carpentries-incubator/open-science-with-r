@@ -65,10 +65,10 @@ This lesson is a combination of excellent lessons by others (see Credits) (thank
 
 I definitely recommend reading through the original lessons and using them as reference:   
 
-[Dr. Jenny Bryan's lectures from STAT545 at UBC](https://stat545-ubc.github.io/)
+[Dr. Jenny Bryan's lectures from STAT545 at R Studio Education](https://stat545.com/)
 
-- [R basics, workspace and working directory, RStudio projects](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html)
-- [Basic care and feeding of data in R](http://stat545-ubc.github.io/block006_care-feeding-data.html)
+- [R basics, workspace and working directory, RStudio projects](https://stat545.com/r-basics.html)
+- [Basic care and feeding of data in R](https://stat545.com/basic-data-care.html)
 
 RStudio has great resources about its IDE (IDE stands for integrated development environment): 
 
