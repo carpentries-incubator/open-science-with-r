@@ -76,6 +76,11 @@ This episode is focusing on the concept of **literate programming** supported by
 
 ## 1.1 The R Markdown format
 
+[Dr. Jenny Bryan's lectures from STAT545 at R Studio Education](https://stat545.com/)
+
+- [R basics, workspace and working directory, RStudio projects](https://stat545.com/r-basics.html)
+- [Basic care and feeding of data in R](https://stat545.com/basic-data-care.html)
+
 > ## Leave your mark
 R Markdown allows you to convert your complete analysis into a single report that is easy to share and that should recapitulate the logic of your code and related outputs.   
 A variety of output formats are supported:
