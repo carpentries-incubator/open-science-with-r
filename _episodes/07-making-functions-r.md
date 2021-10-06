@@ -167,10 +167,12 @@ This will become the body of a new function.
 By convention, everything within the body of a function has to be indented. You can add two spaces (space bar x 2) in front of every line. 
 Since it is also a good style tip to have indentations after the `%>%` operator ([following the tidyverse style](https://style.tidyverse.org/pipes.html)), you will have a total of 2x2 (4) spaces before some lines. 
 
+
+Let's copy and paste our piece of code into the body of our newly defined function: 
 ~~~
-plot_gdp_percap_from_gapminder <- function(data = gapminder){
+plot_gdp_per_cap_per_country <- function(data = gapminder){
  
-  gap_to_plot <- data %>%
+  gap_to_plot <- gapminder %>%
     filter(country == "Afghanistan")
 
   ## plot
@@ -192,6 +194,26 @@ plot_gdp_percap_from_gapminder <- function(data = gapminder){
 > These two lines are not generic and our function will always plot results for "Afghanistan". 
 > {: .solution}
 {: .challenge}
+
+<br> 
+
+~~~
+plot_gdp_per_cap_per_country <- function(data = gapminder){
+ 
+  gap_to_plot <- gapminder %>%
+    filter(country == "Afghanistan")
+
+  ## plot
+  my_plot <- ggplot(data = gap_to_plot, aes(x = year, y = gdpPercap)) +
+    geom_point() +
+    ## add title and save
+    labs(title = paste("Afghanistan", "GDP per capita", sep = " "))
+
+  return(my_plot) # optional but explicit on what the function returns
+}
+~~~
+{: .language-r}
+
 
 ## 2.3 Add arguments in the function signature 
 

@@ -38,7 +38,7 @@ keypoints:
 
 Welcome!
 
-In this training you will learn R, RStudio, Git, and GitHub. You will learn modern data science with R and the `tidyverse` suite of packages. It's going to be fun and empowering! You will learn a reproducible workflow that can be used in research and analyses of all kinds.   
+In this training you will learn R, RStudio, `git`, and GitHub. You will learn modern data science with R and the `tidyverse` suite of packages. It's going to be fun and empowering! You will learn a reproducible workflow that can be used in research and analyses of all kinds.   
 
 In particular, you will learn about the concept of __literate programming__, a concept coined by Donald Kuth where a program code is made primarily to be _read_ and _understood_ by other people, and secondarily to be _executed_ by the computer. This means that literate programs are very easy to understand and share, as all the code is well explained.
 

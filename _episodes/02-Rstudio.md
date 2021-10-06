@@ -26,16 +26,16 @@ keypoints:
 <!-- MarkdownTOC autolink="true" levels="1,2,3" -->
 
 - [1. Introduction](#1-introduction)
-	- [1.1 Resources](#11-resources)
-	- [1.2 Data and packages](#12-data-and-packages)
-	- [1.3 Why learn R with RStudio?](#13-why-learn-r-with-rstudio)
+	- [1.1 The R Markdown format](#11-the-r-markdown-format)
+	- [1.2 Why learn R with RStudio?](#12-why-learn-r-with-rstudio)
 - [2. A quick touR](#2-a-quick-tour)
 	- [2.1 RStudio panes](#21-rstudio-panes)
 	- [2.2 Locating yourself](#22-locating-yourself)
 	- [2.3 First step in the console](#23-first-step-in-the-console)
-	- [2.4 Error messages are your friends](#24-error-messages-are-your-friends)
-	- [2.5 Logical operators and expressions](#25-logical-operators-and-expressions)
-	- [2.6 Variable assignment](#26-variable-assignment)
+	- [2.4 Make your life easier with keyboard shortcuts](#24-make-your-life-easier-with-keyboard-shortcuts)
+	- [2.5 Error messages are your friends](#25-error-messages-are-your-friends)
+	- [2.6 Logical operators and expressions](#26-logical-operators-and-expressions)
+	- [2.7 Variable assignment](#27-variable-assignment)
 - [3. Diving deepeR](#3-diving-deeper)
 	- [3.1 Functions and help pages](#31-functions-and-help-pages)
 	- [3.2 Packages](#32-packages)
@@ -53,33 +53,44 @@ keypoints:
 	- [5.2 Important tips](#52-important-tips)
 	- [5.2 Large tables](#52-large-tables)
 - [6. Credits and additional resources](#6-credits-and-additional-resources)
+	- [6.1 Jenny Bryan](#61-jenny-bryan)
+	- [6.2 RStudio materials](#62-rstudio-materials)
+	- [6.3 The definitive R Markdown guide](#63-the-definitive-r-markdown-guide)
+	- [6.4 Others](#64-others)
 
 <!-- /MarkdownTOC -->
 
 
 # 1. Introduction
 
-This lesson is a combination of excellent lessons by others (see Credits) (thank you Jenny Bryan and Data Carpentry!) that I have combined and modified for our lesson. 
+<br> 
+This episode is focusing on the concept of **literate programming** supported by the ability to combine code, its output and human-readable descriptions in a single R Markdown document.
 
-## 1.1 Resources
+> ## Literate programming
+> More generally, the mixture of code, documentation (conclusion, comments) and figures in a notebook is part of the so-called __"literate programming"__ paradigm (Donald Knuth, 1984). Your code and logical steps should be understandable for human beings. In particular these four tips are related to this paradigm:
+> - Do not write your program only for R but think also of code readers (that includes you).
+> - Focus on the logic of your workflow. Describe it in plain language (e.g. English) to explain the steps and why you are doing them.
+> - Explain the "why" and not the "how".
+> - Create a report from your analysis using a R Markdown notebook to wrap together the data + code + text.    
+{: .callout}
 
-I definitely recommend reading through the original lessons and using them as reference:   
+## 1.1 The R Markdown format
 
-[Dr. Jenny Bryan's lectures from STAT545 at UBC](https://stat545-ubc.github.io/)
+> ## Leave your mark
+R Markdown allows you to convert your complete analysis into a single report that is easy to share and that should recapitulate the logic of your code and related outputs.   
+A variety of output formats are supported:
+* Word document
+* Powerpoint
+* HTML
+* PDF
+{: .callout}
 
-- [R basics, workspace and working directory, RStudio projects](http://stat545-ubc.github.io/block002_hello-r-workspace-wd-project.html)
-- [Basic care and feeding of data in R](http://stat545-ubc.github.io/block006_care-feeding-data.html)
+<img src="../img/02-rmarkdown_overview.png" alt="R Markdown conversion to different formats" width="600px">  
 
-RStudio has great resources about its IDE (IDE stands for integrated development environment): 
+In practice, it is best practice to create a **PDF document** from your analysis as PDF documents are easy to open and visualise online especially on GitHub. 
 
-- [webinars](https://www.rstudio.com/resources/webinars/) 
-- [cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
 
-## 1.2 Data and packages
-
-We will be using data and packages that are installed with R (often called "Base R").
-
-## 1.3 Why learn R with RStudio?
+## 1.2 Why learn R with RStudio?
 
 You are all here today to learn how to code. Coding made me a better scientist because I was able to think more clearly about analyses, and become more efficient in doing so. Data scientists are creating tools that make coding more intuitive for new coders like us, and there is a wealth of awesome instruction and resources available to learn more and get help.
 
@@ -94,6 +105,8 @@ And **if R were an airplane, RStudio is the airport**. RStudio provides support!
 Something else to start us off is to mention that you are learning a new language here. It's an ongoing process, it takes time, you'll make mistakes, it can be frustrating, but it will be overwhelmingly awesome in the long run. We all speak at least one language; it's a similar process, really. And no matter how fluent you are, you'll always be learning, you'll be trying things in new contexts, learning words that mean the same as others, etc, just like everybody else. And just like any form of communication, there will be miscommunications that can be frustrating, but hands down we are all better off because of it. 
 
 While language is a familiar concept, programming languages are in a different context from spoken languages, but you will get to know this context with time. For example: you have a concept that there is a first meal of the day, and there is a name for that: in English it's "breakfast". So if you're learning Spanish, you could expect there is a word for this concept of a first meal. (And you'd be right: 'desayuno'). **We will get you to expect that programming languages also have words (called functions in R) for concepts as well**. You'll soon expect that there is a way to order values numerically. Or alphabetically. Or search for patterns in text. Or calculate the median. Or reorganize columns to rows. Or subset exactly what you want. We will get you increase your expectations and learn to ask and find what you're looking for.
+
+<br> 
 
 # 2. A quick touR
 
@@ -190,7 +203,27 @@ sciencerocks
 ~~~
 {: .language-r}
 
-## 2.4 Error messages are your friends
+## 2.4 Make your life easier with keyboard shortcuts
+
+One can rapidly experience that typing the *assign* operator `<-` is laborious to type in the long run. Instead, we can create a keyboard shortcut to make our life easier.    
+
+With RStudio, this is relatively straightforward. Follow the screenshots to change the default to `Alt + L` for instance. 
+
+Go to "Tools" followed by "Modify Keyboard Shortcuts":  
+
+<img src="../img/02-change-keyboard-shortcut-1.png" width="800px">
+
+Then in the "Filter" text box, type "assign" to find the current keyboard shortcut for the assign operator. Change it to `Alt + L` or any other convenient key combination.   
+
+<img src="../img/02-change-keyboard-shortcut-3.png" width="600px">
+
+
+> ## Lovely keyboard shortcuts: 
+> RStudio offers many handy [keyboard shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts).   
+> Also, `Alt + Shift + K` brings up a keyboard shortcut reference card.
+{: .testimonial}
+
+## 2.5 Error messages are your friends
 
 Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
 
@@ -200,16 +233,16 @@ Remember that this is a language, not unsimilar to English! There are times you 
 
 And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
 
-## 2.5 Logical operators and expressions
+## 2.6 Logical operators and expressions
 
 A moment about **logical operators and expressions**. We can ask questions about the objects we made. 
 
 - `==` means 'is equal to'
 - `!=` means 'is not equal to'
-- `<` means ` is less than'
-- `>` means ` is greater than'
-- `<=` means ` is less than or equal to'
-- `>=` means ` is greater than or equal to'
+- `<` means 'is less than'
+- `>` means 'is greater than'
+- `<=` means 'is less than or equal to'
+- `>=` means 'is greater than or equal to'  
 
 ~~~
 x == 2
@@ -218,7 +251,7 @@ x != 5
 ~~~
 {: .language-r}
 
-## 2.6 Variable assignment
+## 2.7 Variable assignment
 
 Let's assign a number to a variable called `weight_kg`.
 ~~~
@@ -228,15 +261,9 @@ weight_kg          # and so does typing the name of the object
 ~~~
 {: .language-r}
 
-> ## Lovely keyboard shortcuts: 
-> You will make lots of assignments and the operator `<-` is a pain to type. Don't be lazy and use `=`, although it would work, because it will just sow confusion later.   
-Instead, utilize **RStudio's keyboard shortcut: Alt + - (the minus sign)**.
-Notice that RStudio automagically surrounds `<-` with spaces, which demonstrates a useful code formatting practice. Code is miserable to read on a good day. Give your eyes a break and use spaces.  
-RStudio offers many handy [keyboard shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts). Also, Alt+Shift+K brings up a keyboard shortcut reference card.
-{: .testimonial}
+
 
 When assigning a value to an object, R does not print anything. You can force R to print the value by using parentheses or by typing the object name:
-
 
 
 Now that R has `weight_kg` in memory, we can do arithmetic with it. For
@@ -295,13 +322,20 @@ names
 > 3. Calculate the total weight.
 > 
 > > ## Solution
-> > * fish_weights <- c(12, 34, 20, 6.6)
-> > * fish_weights_lb <- fish_weights * 2.2 
-> > * sum(fish_weights_lb) #we haven't gone over functions like `sum()` yet but this is covered in the next section.
-> > 
+> > ~~~
+> > # Q1 
+> > fish_weights <- c(12, 34, 20, 6.6)
+> > # Q2
+> > fish_weights_lb <- fish_weights * 2.2
+> > # Q3
+> > # we haven't gone over functions like `sum()` yet but this is covered in the next section. 
+> > sum(fish_weights_lb) 
+> > ~~~
+> > {: .language-r}
 > {: .solution}
 {: .challenge}  
 
+<br>
 
 # 3. Diving deepeR 
 
@@ -446,7 +480,7 @@ rm(list = ls())
 ~~~
 {: .language-r}
 
-or click the broom in RStudio Environment panel.
+or click the broom 🧹 in RStudio Environment panel.
 
 For reproducibility, it is critical that you delete your objects and restart your R session frequently. You don't want your whole analysis to only work in whatever way you've been working right now — you need it to work next week, after you upgrade your operating system, etc. Restarting your R session will help you identify and account for anything you need for your analysis. 
 
@@ -554,7 +588,6 @@ More generally, you can use the syntax `option: r <some R command>` to have opti
 compiling your R Markdown notebook into a report.  
 
 
-
 ## 4.4 Code chunks
 
 Code chunks appear in grey and will execute the R code when you compile the document. 
@@ -574,7 +607,7 @@ summary(cars)
 
 The code chunk will be executed when compiling the report. You can also run it by clicking on the green arrow. 
 
-<img src="../img/02-r-chunk-run.png" alt="simple code chunk" width="400px">
+<img src="../img/02-r-chunk-run.png" alt="simple code chunk" width="600px">
 
 To insert a new code chunk, you can either:
 1. Use a keyboard shortcut:  `Ctrl + Alt + I`: to add a code chunk. Use `Cmd + Alt + I` on Mac OS.  
@@ -758,13 +791,24 @@ read.csv(file,
 
 If you have very large tables (1000s of rows and/or columns), use the `fread()` function from the [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) package. 
 
+<br> 
+
 # 6. Credits and additional resources
 
-- The official RStudio R Markdown documentation: [https://rmarkdown.rstudio.com/](https://rmarkdown.rstudio.com/)
-- R Markdown Crash Course: a very complete course on R Markdown.  [https://zsmith27.github.io/rmarkdown_crash-course/](https://zsmith27.github.io/rmarkdown_crash-course/)
-- The R Markdown definitive guide: [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
-- The [RStudio R Markdown cheatsheet](https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
-- Remedy: additional functionalities for markdown in RStudio: [https://thinkr-open.github.io/remedy/](https://thinkr-open.github.io/remedy/)
+## 6.1 Jenny Bryan 
 
+* Stat 545 University module: https://stat545.com/
+* Main website: https://jennybryan.org/
+
+## 6.2 RStudio materials
+- The official RStudio R Markdown documentation: [https://rmarkdown.rstudio.com/](https://rmarkdown.rstudio.com/)
+- The [RStudio R Markdown cheatsheet](https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+
+## 6.3 The definitive R Markdown guide
+"The R Markdown definitive guide" by Yihui Xie, J. J. Allaire and Garrett Grolemund: [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
+
+## 6.4 Others
+- Remedy: additional functionalities for markdown in RStudio: [https://thinkr-open.github.io/remedy/](https://thinkr-open.github.io/remedy/)
+- R Markdown Crash Course: a very complete course on R Markdown.  [https://zsmith27.github.io/rmarkdown_crash-course/](https://zsmith27.github.io/rmarkdown_crash-course/)
 
 <br>
